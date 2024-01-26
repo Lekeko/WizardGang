@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=shiro
+comment1.params=
+comment1.target=shiro()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveAround()
+comment4.params=
+comment4.target=void\ gravity()
+comment5.params=
+comment5.target=void\ colideTheScreen()
+numComments=6

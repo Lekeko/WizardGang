@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=level
+comment1.params=
+comment1.target=level()
+comment2.params=
+comment2.target=void\ setFields()
+comment3.params=
+comment3.target=void\ nextLevel()
+numComments=4
