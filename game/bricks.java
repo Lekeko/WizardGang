@@ -1,5 +1,5 @@
 import greenfoot.*;
-public class bricks extends Actor
+public class bricks extends platform
 {
     public void act()
     {
