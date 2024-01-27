@@ -12,7 +12,7 @@ public class lvl1 extends level
                              "ppp                      ",
                              "                         ",
                              "                         ",
-                             "     pp             k    ",
+                             "     pp                  ",
                              "                         ",
                              "             pppppppppppp",
                              "                         ",
@@ -20,18 +20,15 @@ public class lvl1 extends level
                              "               m         ",
                              "    m                    ",
                              "             pppp     m  ",
-                             "  ppppp                  ",
-                             "                     ppp ",
                              "                         ",
                              "    m                m   ",
                              "         w        w      ",
-                             "                         ",
-                             "                         ",
-                             "                         ",
-                             "                         ",
-                             "                         ",
-                             "                         ",
-                             "ppppppppppppppppppppppppp"};
+                             "      p                  ",
+                             " k   pp   p              ",
+                             "    pp    p           pp ",
+                             "   pp     p     pppp     ",
+                             "   p      p              ",
+                             "ppppppppppppppppppppppppp", };
     }
     public void nextLevel()
     {

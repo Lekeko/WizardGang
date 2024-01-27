@@ -11,8 +11,8 @@ public class shiro extends Actor
     private int frame = 1;
     public shiro(){
         GreenfootImage originalImage = getImage();
-        int newWidth = originalImage.getWidth() * 2;
-        int newHeight = originalImage.getHeight() * 2;
+        int newWidth = originalImage.getWidth() * 3;
+        int newHeight = originalImage.getHeight() * 3;
         GreenfootImage scaledImage = new GreenfootImage(originalImage);
         scaledImage.scale(newWidth, newHeight);
         setImage(scaledImage);
@@ -29,21 +29,22 @@ public class shiro extends Actor
         }
         if(Greenfoot.isKeyDown("right"))
         {
+            if(checkRightWall()){
             direction = 1;
             moveRight();
         }
+        }
         if(Greenfoot.isKeyDown("left"))
         {
+            if(checkLeftWall()){
             direction = -1;
-            moveLeft();
+            moveLeft();}
         }
         if(Greenfoot.isKeyDown("up") && jumping == false)
         {
             jump();
         }
-        colideTheScreen();
-        checkRightWalls();
-        checkLeftWalls();
+        colideTheScreen();//platformAbove();unStuck();
         if(Greenfoot.isKeyDown("q")){
             ((level)getWorld()).nextLevel();
         }
@@ -66,6 +67,12 @@ public class shiro extends Actor
             setLocation(getWorld().getWidth()-getImage().getWidth()/2,getY() );
         }
     }
+    public void unStuck(){
+        if(isTouching(platform.class)){
+            setLocation(getX(), getY()+ 1);
+        }
+    }
+    
         public boolean platformAbove()
     {
         int spriteHeight = getImage().getHeight();
@@ -101,24 +108,27 @@ public class shiro extends Actor
     {
         int spriteHeight = getImage().getHeight();
         int yDistance = (int)(spriteHeight/2) + 5;
-        Actor ground = getOneObjectAtOffset(0, getImage().getHeight()/2+8, platform.class);
-        if(ground == null)
+        Actor ground1 = getOneObjectAtOffset(5, getImage().getHeight()/2+8, platform.class);
+        Actor ground2 = getOneObjectAtOffset(-5, getImage().getHeight()/2+8, platform.class);
+        if(ground1 == null && ground2 == null)
         {
+            
             jumping = true;
             return false;
         }
         else
         {
-            moveOnGround(ground);
+            moveOnGround(ground1);
             return true;
         }
     }
     public void moveOnGround(Actor ground)
     {
-        int groundHeight = ground.getImage().getHeight();
+        
+        try{int groundHeight = ground.getImage().getHeight();
         int newY = ground.getY() - (groundHeight + getImage().getHeight())/2;
         setLocation(getX(), newY);
-        jumping = false;
+        jumping = false;}catch(Exception e){};
     }
     public void moveLeft()
     {
@@ -186,50 +196,25 @@ public class shiro extends Actor
         jumping = true;
         fall();
     }
-    public boolean checkRightWalls()
-    {
-        int spriteWidth = getImage().getWidth();
-        int xDistance = (int)(spriteWidth/2);
-        Actor rightWall = getOneObjectAtOffset(xDistance, 0, platform.class);
-        if(rightWall == null)
-        {
-            return false;
-        }
-        else
-        {
-            stopByRightWall(rightWall);
-            return true;
-        }
-    }
-
-    public void stopByRightWall(Actor rightWall)
-    {
-        int wallWidth = rightWall.getImage().getWidth();
-        int newX = rightWall.getX() - (wallWidth + getImage().getWidth())/2;
-        setLocation(newX - 5, getY());
-
-    }
-
-    public boolean checkLeftWalls()
-    {
+    public boolean checkLeftWall(){
         int spriteWidth = getImage().getWidth();
         int xDistance = (int)(spriteWidth/-2);
-        Actor leftWall = getOneObjectAtOffset(xDistance, 0, platform.class);
-        if(leftWall == null)
-        {
+        Actor leftWall = getOneObjectAtOffset(xDistance + 14, 0, platform.class);
+        if(leftWall == null){
+            return true;
+        }else{
             return false;
         }
-        else
-        {
-            stopByLeftWall(leftWall);
-            return true;
-        }
     }
-//:)
-    public void stopByLeftWall(Actor leftWall)
-    {
-        int wallWidth = leftWall.getImage().getWidth();
-        int newX = leftWall.getX() + (wallWidth + getImage().getWidth())/2;
-        setLocation(newX + 5, getY());
+    
+    public boolean checkRightWall(){
+        int spriteWidth = getImage().getWidth();
+        int xDistance = (int)(spriteWidth/-2);
+        Actor leftWall = getOneObjectAtOffset(-xDistance-5, 0, platform.class);
+        if(leftWall == null){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
