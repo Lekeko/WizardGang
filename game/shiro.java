@@ -225,7 +225,7 @@ public class shiro extends Actor
             return true;
         }
     }
-
+//:)
     public void stopByLeftWall(Actor leftWall)
     {
         int wallWidth = leftWall.getImage().getWidth();
