@@ -4,6 +4,7 @@ public class shiro extends Actor
     private int vSpeed=0;
     private int acceleration = 1;
     private boolean jumping=false;
+    private boolean onGround=false;
     private int jumpStrength = 16;
     private int speed = 4;
     private int direction = 1; // 1 = right and -1 = left
@@ -86,6 +87,9 @@ public class shiro extends Actor
     }
     public boolean onGround()
     {
+        if(!onGround){
+            
+        }
         int spriteHeight = getImage().getHeight();
         Actor ground1 = getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.getX(), -halfHeightSprite+leftDownCorner.getY()+8, platform.class);
         Actor ground2 = getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.getX(), -halfHeightSprite+rightDownCorner.getY()+8, platform.class);
@@ -179,6 +183,7 @@ public class shiro extends Actor
     }*/
     public void jump()
     {
+        onGround=false;
         vSpeed = vSpeed - jumpStrength;
         jumping = true;
         fall();

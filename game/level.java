@@ -4,7 +4,7 @@ public abstract class level extends World
     String[] map;
     public level()
     {    
-        super(800, 800, 1);
+        super(800, 800, 1,true);
         setFields();
         vector2 playerCoordinates=new vector2();
         Actor player = null;
