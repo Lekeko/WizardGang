@@ -9,27 +9,30 @@ public class lvl1 extends level
     {
         map = new String[] { "                      s  ",
                              "d m           c    m     ",
-                             "ppp                      ",
+                             "ppp            pppppppppp",
                              "                         ",
-                             "                         ",
+                             "                  k      ",
                              "     pp                  ",
                              "                         ",
-                             "             pppppppppppp",
+                             "             pppppppppp  ",
                              "                         ",
                              "   f    pp               ",
                              "               m         ",
                              "    m                    ",
                              "             pppp     m  ",
-                             "                         ",
+                             "            pp           ",
                              "    m                m   ",
                              "         w        w      ",
                              "      p                  ",
-                             " k   pp   p              ",
+                             "     pp   p              ",
                              "    pp    p           pp ",
                              "   pp     p     pppp     ",
                              "   p      p              ",
-                             "ppppppppppppppppppppppppp", };
-    }
+                             "pppppppppppp  ppppppppppp",
+                             "                         ",
+                             "                         ",
+                             "ppppppppppppppppppppppppp",};
+    }//25,25 map will fit
     public void nextLevel()
     {
         Greenfoot.setWorld(new lvl2());

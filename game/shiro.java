@@ -9,16 +9,41 @@ public class shiro extends Actor
     private int direction = 1; // 1 = right and -1 = left
     private int animationCounter = 0;
     private int frame = 1;
+    //the coordinates of the colider with the 00 in the left up of the sprite
+    private vector2 leftUpCorner=new vector2(10,13);
+    private vector2 rightUpCorner=new vector2(19,13);
+    private vector2 leftDownCorner=new vector2(10,31);
+    private vector2 rightDownCorner=new vector2(19,31);
+    private int halfWidthSprite;
+    private int halfHeightSprite;
     public shiro(){
-        GreenfootImage originalImage = getImage();
-        int newWidth = originalImage.getWidth() * 3;
-        int newHeight = originalImage.getHeight() * 3;
-        GreenfootImage scaledImage = new GreenfootImage(originalImage);
-        scaledImage.scale(newWidth, newHeight);
-        setImage(scaledImage);
+        scaleShiro(3);
+        halfWidthSprite=getImage().getWidth()/2;
+        halfHeightSprite=getImage().getHeight()/2;
     }
     public void act()
     {
+        //move
+        if(Greenfoot.isKeyDown("right"))
+        {
+            if(!checkRightWall()){
+                direction = 1;
+                moveRight();
+            }
+        }
+        if(Greenfoot.isKeyDown("left"))
+        {
+            if(!checkLeftWall()){
+                direction = -1;
+                moveLeft();
+            }
+        }
+        //jump
+        if(Greenfoot.isKeyDown("up") && jumping == false)
+        {
+            jump();
+        }
+        //gravity logic
         if(onGround())
         {
             vSpeed = 0;
@@ -27,73 +52,28 @@ public class shiro extends Actor
         {
             fall();
         }
-        if(Greenfoot.isKeyDown("right"))
-        {
-            if(checkRightWall()){
-            direction = 1;
-            moveRight();
-        }
-        }
-        if(Greenfoot.isKeyDown("left"))
-        {
-            if(checkLeftWall()){
-            direction = -1;
-            moveLeft();}
-        }
-        if(Greenfoot.isKeyDown("up") && jumping == false)
-        {
-            jump();
-        }
-        colideTheScreen();//platformAbove();unStuck();
+        platformAbove();//collide with the platforms above
         if(Greenfoot.isKeyDown("q")){
             ((level)getWorld()).nextLevel();
         }
     }
-    public void colideTheScreen(){
-        //upper border
-        if (getY()-getImage().getHeight()/2 < 0) {
-            setLocation(getX(), getImage().getHeight()/2);
-        }
-        //left border
-        if (getX()-getImage().getWidth()/2<0){
-            setLocation(getImage().getWidth()/2, getY());
-        }
-        //bottom border
-        if (getY()+getImage().getHeight()/2 > getWorld().getHeight()) {
-            setLocation(getX(), getWorld().getHeight()-getImage().getHeight()/2);
-        }
-        //right border
-        if (getX()+getImage().getWidth()/2 > getWorld().getWidth()) {
-            setLocation(getWorld().getWidth()-getImage().getWidth()/2,getY() );
-        }
-    }
-    public void unStuck(){
-        if(isTouching(platform.class)){
-            setLocation(getX(), getY()+ 1);
-        }
-    }
-    
         public boolean platformAbove()
     {
         int spriteHeight = getImage().getHeight();
         int yDistance = (int)(spriteHeight/-2);
-        Actor ceiling = getOneObjectAtOffset(0, yDistance, platform.class);
-        if(ceiling != null)
-        {
-            vSpeed = 1;
-            bopHead(ceiling);
-            return true;
-        }
-        else
+        Actor ceiling1 = getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x,-halfHeightSprite+leftUpCorner.y-8, platform.class);
+        Actor ceiling2 = getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x,-halfHeightSprite+rightUpCorner.y-8, platform.class);
+        if(ceiling1 == null && ceiling2 == null&& getY()-halfHeightSprite+leftUpCorner.y > 0)
         {
             return false;
         }
-    }
-    public void bopHead(Actor ceiling)
-    {
-        int ceilingHeight = ceiling.getImage().getHeight();
-        int newY = ceiling.getY() + (ceilingHeight + getImage().getHeight())/2;
-        setLocation(getX(), newY);
+        else
+        {
+            if (vSpeed<0){
+                vSpeed = -vSpeed/2;   
+            }
+            return true;
+        }
     }
     public void fall()
     {
@@ -107,28 +87,35 @@ public class shiro extends Actor
     public boolean onGround()
     {
         int spriteHeight = getImage().getHeight();
-        int yDistance = (int)(spriteHeight/2) + 5;
-        Actor ground1 = getOneObjectAtOffset(5, getImage().getHeight()/2+8, platform.class);
-        Actor ground2 = getOneObjectAtOffset(-5, getImage().getHeight()/2+8, platform.class);
+        Actor ground1 = getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.getX(), -halfHeightSprite+leftDownCorner.getY()+8, platform.class);
+        Actor ground2 = getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.getX(), -halfHeightSprite+rightDownCorner.getY()+8, platform.class);
         if(ground1 == null && ground2 == null)
         {
-            
             jumping = true;
             return false;
         }
+        /*else if(getY()-halfHeightSprite+leftDownCorner.y >= getWorld().getHeight()){//collision with the lower border
+            setLocation(getX(),getWorld().getHeight()-getImage().getHeight()/2+(leftDownCorner.y+leftUpCorner.y)/2);
+            jumping = true;
+            return true;
+        }idk im incapable this is not working*/
         else
         {
-            moveOnGround(ground1);
+            if(ground1!=null){
+                moveOnGround(ground1);   
+            }
+            else{
+                moveOnGround(ground2);
+            }
             return true;
         }
     }
     public void moveOnGround(Actor ground)
     {
-        
-        try{int groundHeight = ground.getImage().getHeight();
+        int groundHeight = ground.getImage().getHeight();
         int newY = ground.getY() - (groundHeight + getImage().getHeight())/2;
         setLocation(getX(), newY);
-        jumping = false;}catch(Exception e){};
+        jumping = false;
     }
     public void moveLeft()
     {
@@ -198,23 +185,49 @@ public class shiro extends Actor
     }
     public boolean checkLeftWall(){
         int spriteWidth = getImage().getWidth();
-        int xDistance = (int)(spriteWidth/-2);
-        Actor leftWall = getOneObjectAtOffset(xDistance + 14, 0, platform.class);
-        if(leftWall == null){
+        int checkUp=-halfHeightSprite+leftUpCorner.y;
+        int checkDown=-halfHeightSprite+leftDownCorner.y;
+        Actor leftWall1 = getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 8, checkUp, platform.class);
+        Actor leftWall2 = getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 8,(checkUp+checkDown)/2, platform.class);
+        Actor leftWall3 = getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.x - 8, checkDown, platform.class);
+        if(leftWall1 != null || leftWall2!=null || leftWall3!=null ||getX()-halfWidthSprite+leftUpCorner.x<0){
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
     }
     
     public boolean checkRightWall(){
         int spriteWidth = getImage().getWidth();
-        int xDistance = (int)(spriteWidth/-2);
-        Actor leftWall = getOneObjectAtOffset(-xDistance-5, 0, platform.class);
-        if(leftWall == null){
+        int checkUp=-halfHeightSprite+rightUpCorner.y;
+        int checkDown=-halfHeightSprite+rightDownCorner.y;
+        Actor rightWall1 = getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 8, checkUp, platform.class);
+        Actor rightWall2 = getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 8,(checkUp+checkDown)/2, platform.class);
+        Actor rightWall3 = getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.x + 8, checkDown, platform.class);
+        if(rightWall1 != null || rightWall2!=null|| rightWall3!=null||getX()-halfWidthSprite+rightUpCorner.x> getWorld().getWidth()){
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
+    }
+    public void scaleShiro(int scalar){
+        //scalse sprite
+        GreenfootImage originalImage = getImage();
+        int newWidth = originalImage.getWidth() * scalar;
+        int newHeight = originalImage.getHeight() * scalar;
+        GreenfootImage scaledImage = new GreenfootImage(originalImage);
+        scaledImage.scale(newWidth, newHeight);
+        setImage(scaledImage);
+        //scale collider
+        leftUpCorner=leftUpCorner.multiply(scalar);
+        rightUpCorner=rightUpCorner.multiply(scalar);
+        leftDownCorner=leftDownCorner.multiply(scalar);
+        leftDownCorner.x+=(scalar-1);
+        rightDownCorner=rightDownCorner.multiply(scalar);
+        rightDownCorner.x+=(scalar-1);
     }
 }
