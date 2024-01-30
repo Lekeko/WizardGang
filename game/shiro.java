@@ -17,10 +17,41 @@ public class shiro extends Actor
     private vector2 rightDownCorner=new vector2(19,31);
     private int halfWidthSprite;
     private int halfHeightSprite;
+    boolean isLeft = false;
+    GreenfootImage[] imagini = {
+        new GreenfootImage("jhonnyWalk1.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk3.png"),
+        new GreenfootImage("jhonnyWalk4.png"),
+        new GreenfootImage("jhonnyWalk5.png"),
+        new GreenfootImage("jhonnyWalk6.png"),
+        new GreenfootImage("jhonnyWalk7.png"),
+        new GreenfootImage("jhonnyWalk8.png"),
+    };
+    
+    GreenfootImage[] imaginiLeft = {
+        new GreenfootImage("jhonnyWalk1.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk3.png"),
+        new GreenfootImage("jhonnyWalk4.png"),
+        new GreenfootImage("jhonnyWalk5.png"),
+        new GreenfootImage("jhonnyWalk6.png"),
+        new GreenfootImage("jhonnyWalk7.png"),
+        new GreenfootImage("jhonnyWalk8.png"),
+    };
+    
+    int animate = 0;
+    int animateSpeed = 3;
+    int animatePos = 0;
+    
     public shiro(){
         scaleShiro(3);
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
+        for(int i = 0; i < 8; i++){
+            
+            imaginiLeft[i].mirrorHorizontally();
+        }
     }
     public void act()
     {
@@ -30,16 +61,40 @@ public class shiro extends Actor
             if(!checkRightWall()){
                 direction = 1;
                 moveRight();
+                animate();
+                
+                if(isLeft){
+                    
+                    isLeft = false;
+               }
             }
-        }
+        }else{
         if(Greenfoot.isKeyDown("left"))
         {
             if(!checkLeftWall()){
                 direction = -1;
                 moveLeft();
+                animate();
+                
+                if(!isLeft){
+                    
+                    isLeft = true;
+               }
+                
             }
-        }
+        }else{
+            setImage("jhonnyIdle.png");
+            if(isLeft){getImage().mirrorHorizontally();}
+            scaleShiroForever(3);
+        }}
         //jump
+        if(animate < animateSpeed){
+            animate++;
+        }else {animate = 0;
+            if(animatePos < imagini.length-1){
+                animatePos++;
+            }else{animatePos = 0;}
+        }
         if(Greenfoot.isKeyDown("up") && jumping == false)
         {
             jump();
@@ -57,6 +112,23 @@ public class shiro extends Actor
         if(Greenfoot.isKeyDown("q")){
             ((level)getWorld()).nextLevel();
         }
+    }
+    
+    public void animate(){
+            
+            if(!isLeft){
+                    
+            
+                   
+                   getImage().mirrorVertically();
+                   setImage(imagini[animatePos]);
+               }else{
+                   
+                   getImage().mirrorVertically();
+                
+                setImage(imaginiLeft[animatePos]);}
+                    
+            scaleShiroForever(3);
     }
         public boolean platformAbove()
     {
@@ -234,5 +306,17 @@ public class shiro extends Actor
         leftDownCorner.x+=(scalar-1);
         rightDownCorner=rightDownCorner.multiply(scalar);
         rightDownCorner.x+=(scalar-1);
+    }
+    
+    
+    public void scaleShiroForever(int scalar){
+        //scalse sprite
+        GreenfootImage originalImage = getImage();
+        int newWidth = originalImage.getWidth() * scalar;
+        int newHeight = originalImage.getHeight() * scalar;
+        GreenfootImage scaledImage = new GreenfootImage(originalImage);
+        scaledImage.scale(newWidth, newHeight);
+        setImage(scaledImage);
+        
     }
 }
