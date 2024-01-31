@@ -4,7 +4,6 @@ comment1.params=
 comment1.target=shiro()
 comment10.params=
 comment10.target=void\ jump()
-comment10.text=public\ void\ animateRight()\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ if(frame\ \=\=\ 1)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run1r);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ if(frame\ \=\=\ 2)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run2r);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ if(frame\ \=\=\ 3)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run3r);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ if(frame\ \=\=\ 4)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run4r);\r\n\ \ \ \ \ \ \ \ \ \ \ \ frame\ \=\ 1;\r\n\ \ \ \ \ \ \ \ \ \ \ \ return;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ frame++;\r\n}
 comment11.params=
 comment11.target=boolean\ checkLeftWall()
 comment12.params=
@@ -29,5 +28,4 @@ comment8.params=
 comment8.target=void\ moveLeft()
 comment9.params=
 comment9.target=void\ moveRight()
-comment9.text=public\ void\ animateLeft()\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ if(frame\ \=\=\ 1)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run1l);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ if(frame\ \=\=\ 2)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run2l);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ if(frame\ \=\=\ 3)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run3l);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ if(frame\ \=\=\ 4)\r\n\ \ \ \ \ \ \ \ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(run4l);\r\n\ \ \ \ \ \ \ \ \ \ \ \ frame\ \=\ 1;\r\n\ \ \ \ \ \ \ \ \ \ \ \ return;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ frame++;\r\n}
 numComments=15

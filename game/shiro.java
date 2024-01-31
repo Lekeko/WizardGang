@@ -7,7 +7,6 @@ public class shiro extends Actor
     private boolean onGround=false;
     private int jumpStrength = 16;
     private int speed = 4;
-    private int direction = 1; // 1 = right and -1 = left
     private int animationCounter = 0;
     private int frame = 1;
     //the coordinates of the colider with the 00 in the left up of the sprite
@@ -17,7 +16,8 @@ public class shiro extends Actor
     private vector2 rightDownCorner=new vector2(19,31);
     private int halfWidthSprite;
     private int halfHeightSprite;
-    boolean isLeft = false;
+    private int maxFallAcceleration=19;
+    boolean isLeft = false; //if the player is facing left
     GreenfootImage[] imagini = {
         new GreenfootImage("jhonnyWalk1.png"),
         new GreenfootImage("jhonnyWalk2.png"),
@@ -59,7 +59,6 @@ public class shiro extends Actor
         if(Greenfoot.isKeyDown("right"))
         {
             if(!checkRightWall()){
-                direction = 1;
                 moveRight();
                 animate();
                 
@@ -68,32 +67,40 @@ public class shiro extends Actor
                     isLeft = false;
                }
             }
-        }else{
-        if(Greenfoot.isKeyDown("left"))
+        }
+        else
         {
-            if(!checkLeftWall()){
-                direction = -1;
-                moveLeft();
-                animate();
-                
-                if(!isLeft){
+            if(Greenfoot.isKeyDown("left"))
+            {
+                if(!checkLeftWall()){
+                    moveLeft();
+                    animate();
                     
-                    isLeft = true;
-               }
-                
+                    if(!isLeft){
+                        
+                        isLeft = true;
+                   }
+                    
+                }
             }
-        }else{
-            setImage("jhonnyIdle.png");
-            if(isLeft){getImage().mirrorHorizontally();}
-            scaleShiroForever(3);
-        }}
+            else
+            {
+                setImage("jhonnyIdle.png");
+                if(isLeft){getImage().mirrorHorizontally();}
+                scaleShiroForever(3);
+            }
+        }
         //jump
         if(animate < animateSpeed){
             animate++;
-        }else {animate = 0;
+        }
+        else
+        {animate = 0;
             if(animatePos < imagini.length-1){
                 animatePos++;
-            }else{animatePos = 0;}
+            }
+            else
+            {animatePos = 0;}
         }
         if(Greenfoot.isKeyDown("up") && jumping == false)
         {
@@ -130,10 +137,9 @@ public class shiro extends Actor
                     
             scaleShiroForever(3);
     }
-        public boolean platformAbove()
+    public boolean platformAbove()//prevents the player from no clipping through the ceiling
     {
         int spriteHeight = getImage().getHeight();
-        int yDistance = (int)(spriteHeight/-2);
         Actor ceiling1 = getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x,-halfHeightSprite+leftUpCorner.y-8, platform.class);
         Actor ceiling2 = getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x,-halfHeightSprite+rightUpCorner.y-8, platform.class);
         if(ceiling1 == null && ceiling2 == null&& getY()-halfHeightSprite+leftUpCorner.y > 0)
@@ -148,16 +154,16 @@ public class shiro extends Actor
             return true;
         }
     }
-    public void fall()
+    public void fall()//guess what this does
     {
         setLocation(getX(), getY() + vSpeed);
-        if(vSpeed <=9)
+        if(vSpeed <=maxFallAcceleration)
         {
             vSpeed = vSpeed + acceleration;
         }
         jumping = true;
     }
-    public boolean onGround()
+    public boolean onGround()//true if on ground and false otherwise (also helps the player to not go to the backrooms)
     {
         if(!onGround){
             
@@ -186,7 +192,7 @@ public class shiro extends Actor
             return true;
         }
     }
-    public void moveOnGround(Actor ground)
+    public void moveOnGround(Actor ground)//this happens while the player moves on the ground (also helps to not go through walls)
     {
         int groundHeight = ground.getImage().getHeight();
         int newY = ground.getY() - (groundHeight + getImage().getHeight())/2;
@@ -201,28 +207,6 @@ public class shiro extends Actor
             //animateLeft();
         }
     }
-    /*public void animateLeft()
-    {
-        if(frame == 1)
-        {
-            setImage(run1l);
-        }
-        else if(frame == 2)
-        {
-            setImage(run2l);
-        }
-        else if(frame == 3)
-        {
-            setImage(run3l);
-        }
-        else if(frame == 4)
-        {
-            setImage(run4l);
-            frame = 1;
-            return;
-        }
-        frame++;
-    }*/
     public void moveRight()
     {
         setLocation(getX()+speed, getY());
@@ -231,28 +215,6 @@ public class shiro extends Actor
             //animateRight();
         }
     }
-    /*public void animateRight()
-    {
-        if(frame == 1)
-        {
-            setImage(run1r);
-        }
-        else if(frame == 2)
-        {
-            setImage(run2r);
-        }
-        else if(frame == 3)
-        {
-            setImage(run3r);
-        }
-        else if(frame == 4)
-        {
-            setImage(run4r);
-            frame = 1;
-            return;
-        }
-        frame++;
-    }*/
     public void jump()
     {
         onGround=false;
@@ -260,7 +222,7 @@ public class shiro extends Actor
         jumping = true;
         fall();
     }
-    public boolean checkLeftWall(){
+    public boolean checkLeftWall(){//wall left-true   no wall left-false (also helps to not go through walls)
         int spriteWidth = getImage().getWidth();
         int checkUp=-halfHeightSprite+leftUpCorner.y;
         int checkDown=-halfHeightSprite+leftDownCorner.y;
@@ -276,7 +238,7 @@ public class shiro extends Actor
         }
     }
     
-    public boolean checkRightWall(){
+    public boolean checkRightWall(){//wall right-true   no wall right-false
         int spriteWidth = getImage().getWidth();
         int checkUp=-halfHeightSprite+rightUpCorner.y;
         int checkDown=-halfHeightSprite+rightDownCorner.y;
@@ -310,7 +272,7 @@ public class shiro extends Actor
     
     
     public void scaleShiroForever(int scalar){
-        //scalse sprite
+        //scalse only the sprite
         GreenfootImage originalImage = getImage();
         int newWidth = originalImage.getWidth() * scalar;
         int newHeight = originalImage.getHeight() * scalar;

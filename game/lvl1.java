@@ -7,31 +7,31 @@ public class lvl1 extends level
     //      c = character    d = door            s = score
     public void setFields()
     {
-        map = new String[] { "                      s  ",
+        map = new String[] { "                     pspppppppppppppppppppp",
                              "d m           c    m     ",
                              "ppp            pppppppppp",
                              "                         ",
-                             "                  k      ",
+                             "                  k      p",
                              "     pp                  ",
-                             "                         ",
+                             "                        p",
                              "             pppppppppp  ",
-                             "                         ",
+                             "                        p",
                              "   f    pp               ",
-                             "               m         ",
+                             "               m                 p",
                              "    m                    ",
-                             "             pppp     m  ",
+                             "             pppp     m                  p",
                              "            pp           ",
-                             "    m                m   ",
-                             "         w        w      ",
-                             "      p                  ",
-                             "     pp   p              ",
-                             "    pp    p           pp ",
-                             "   pp     p     pppp     ",
-                             "   p      p              ",
+                             "    m                m  p",
+                             "         w        w                ppppp",
+                             "      p                 p       p",
+                             "     pp   p                 p",
+                             "    pp    p          pp p  p",
+                             "   pp     p     pppp      p",
+                             "p  p      p             pp",
                              "pppppppppppp  ppppppppppp",
+                             "                        p",
                              "                         ",
-                             "                         ",
-                             "ppppppppppppppppppppppppp",};
+                             "ppppppppppppppppppppppppppppppppppppppppppp",};
     }//25,25 map will fit
     public void nextLevel()
     {
