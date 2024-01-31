@@ -6,7 +6,7 @@ public class shiro extends Actor
     private boolean jumping=false;
     private boolean onGround=false;
     private int jumpStrength = 16;
-    private int speed = 4;
+    public int speed = 4;
     private int animationCounter = 0;
     private int frame = 1;
     //the coordinates of the colider with the 00 in the left up of the sprite

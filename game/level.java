@@ -35,8 +35,29 @@ public abstract class level extends World
     public void act(){
         player = (shiro) getObjects(shiro.class).get(0);
         if (player.getX()>getWidth()/2){
-            player.setLocation(player.getX()-1, player.getY());
-            offset--;
+            player.setLocation(player.getX()-player.speed, player.getY());
+            offset-=player.speed;
+            for (int i=0; i<map.length; i++){
+                for (int j=0; j<map[i].length(); j++)
+                {
+                    int kind = "cbpwmdksf".indexOf(""+map[i].charAt(j));
+                    if (kind < 0) continue;
+                    Actor actor = null;
+                    if (kind == 2) actor = new bricks();
+                    if(actor!=null){
+                        List<Actor> objectsAtLocation = getObjectsAt(16 + j * 32 + offset - 1, 16 + i * 32, (Class<Actor>) actor.getClass());
+                        if (!objectsAtLocation.isEmpty()) {
+                            bricks singleBrick = (bricks) objectsAtLocation.get(0);
+                            singleBrick.setLocation(16 + j * 32 + offset, 16 + i * 32);
+                            //offset 16 pixels to counter the inferiority of the engine
+                        }
+                    }
+                }
+            }
+        }
+        else if (player.getX()<getWidth()/2){
+            player.setLocation(player.getX()+player.speed, player.getY());
+            offset+=player.speed;
             for (int i=0; i<map.length; i++){
                 for (int j=0; j<map[i].length(); j++)
                 {
