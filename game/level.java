@@ -10,14 +10,16 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public abstract class level extends World
 {
     private int offset=0;
-    String map;
-    int mapHeight;
-    int mapWidth;
     private vector2[][] tileCoordinates;
-    shiro player = null;
+    public String map;
+    public int mapHeight;
+    public int mapWidth;
+    public shiro player = null;
+    public File jsonFile;
     public level()
     {
         super(800, 800, 1,true);
+        setMap();
         setFields();
         tileCoordinates=new vector2[mapHeight][mapWidth];
         vector2 playerCoordinates=new vector2();
@@ -26,18 +28,16 @@ public abstract class level extends World
             for (int j=0; j<mapWidth; j++)
             {
                 int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
-               // System.out.println("\n"+kind+"\n");
-                if (kind < 0) continue;
-                if (kind == 2){//player is 2
-                    playerCoordinates=new vector2(16+j*32, 16+i*32);
-                    player=new shiro();
-                }
-                
                 int tileX = 16 + j * 32;
                 int tileY = 16 + i * 32;
+                if (kind == 2){//player is 2
+                    playerCoordinates=new vector2(tileX, tileY);
+                    player=new shiro();
+                }
                 tileCoordinates[i][j]=new vector2(tileX,tileY);
                 Actor actor = null;
                 if (kind == 1) actor = new bricks();
+                if (kind == 3) actor = new bricks1();
                 if(actor!=null){
                     addObject(actor, tileX, tileY);   
                 }
@@ -57,20 +57,6 @@ public abstract class level extends World
             moveCamera(-1);
         }
     }
-    private static int getHeightFromJsonFile(File jsonFile) {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(jsonFile);
-
-            // Extract the value of "height" from the root JSON object
-            int height = jsonNode.get("height").asInt();
-
-            return height;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return -1; // Handle the error appropriately in your application
-        }
-    }
     private boolean locationOnScreen(vector2 location){
         if(location.x>player.getX()-getWidth()/2&&location.x<player.getX()+getWidth()/2){
             return true;
@@ -84,24 +70,21 @@ public abstract class level extends World
                 for (int j=0; j<mapWidth; j++)
                 {
                     int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
-                    if (kind < 0) continue;
                     Actor actor = null;
-                    
-                    int tileX = 16 + j * 32;
-                    int tileY = 16 + i * 32;
                     tileCoordinates[i][j].x+=offset;
                     if (kind == 1) actor = new bricks();
+                    if (kind == 3) actor = new bricks1();
                     if(actor!=null){
                         List<Actor> objectsAtLocation = getObjectsAt(tileCoordinates[i][j].x, tileCoordinates[i][j].y , (Class<Actor>) actor.getClass());
-                        if(!objectsAtLocation.isEmpty()&&!locationOnScreen(tileCoordinates[i][j])){
-                            bricks singleBrick = (bricks) objectsAtLocation.get(0);
+                        if(!objectsAtLocation.isEmpty()&&!locationOnScreen(tileCoordinates[i][j])){//if tile exists but is not on the screen
+                            platform singleBrick = (platform) objectsAtLocation.get(0);
                             removeObject(singleBrick);
                         }
                         else if(!objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//if tile exists
-                            bricks singleBrick = (bricks) objectsAtLocation.get(0);
+                            platform singleBrick = (platform) objectsAtLocation.get(0);
                             singleBrick.setLocation(tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
                         }
-                        else if(objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//tile does not exist and is on screen then instantiate
+                        else if(objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//tile does not exists and is on screen then instantiate
                             addObject(actor, tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
                         }
                         //if tile exist but is not on screen
@@ -110,7 +93,33 @@ public abstract class level extends World
             }
     }
 
-    public void setFields() {}
+    public void setFields()
+    {
+        File jsonFile = new File("untitled.json");
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonFile);
+            //extract the "width" and "height" values from the root JSON object
+            mapWidth = jsonNode.get("width").asInt();
+            mapHeight = jsonNode.get("height").asInt();
+
+            //extract the "layers" array from the root JSON object
+            JsonNode layersNode = jsonNode.get("layers");
+            //extract the "data" array from the first layer in the "layers" array
+            JsonNode dataNode = layersNode.get(0).get("data");
+            //extract and concatenate the numbers from the "data" array
+            StringBuilder numbersStringBuilder = new StringBuilder();
+            for (JsonNode numberNode : dataNode) {
+                numbersStringBuilder.append(numberNode.asText());
+            }
+            // Convert the "data" array to a String
+            map = numbersStringBuilder.toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void nextLevel() {}
+    public void setMap(){}
 }
