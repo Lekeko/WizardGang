@@ -2,7 +2,11 @@
 class.border.image=border.png
 class.bricks.image=Wall.png
 class.bricks1.image=bricks1.png
+<<<<<<< HEAD
 class.crate.image=crate.png
+=======
+class.lvl1.image=sandstone.jpg
+>>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
 class.shiro.image=jhonnyIdle.png
 dependency1.from=level
 dependency1.to=shiro
@@ -14,17 +18,18 @@ dependency3.from=level
 dependency3.to=bricks
 dependency3.type=UsesDependency
 dependency4.from=level
-dependency4.to=border
+dependency4.to=bricks1
 dependency4.type=UsesDependency
-dependency5.from=shiro
-dependency5.to=vector2
+dependency5.from=level
+dependency5.to=border
 dependency5.type=UsesDependency
-dependency6.from=shiro
-dependency6.to=level
+dependency6.from=level
+dependency6.to=platform
 dependency6.type=UsesDependency
 dependency7.from=shiro
-dependency7.to=platform
+dependency7.to=vector2
 dependency7.type=UsesDependency
+<<<<<<< HEAD
 editor.fx.0.height=1056
 editor.fx.0.width=1936
 editor.fx.0.x=-8
@@ -32,6 +37,21 @@ editor.fx.0.y=-8
 height=1056
 package.numDependencies=7
 package.numTargets=11
+=======
+dependency8.from=shiro
+dependency8.to=level
+dependency8.type=UsesDependency
+dependency9.from=shiro
+dependency9.to=platform
+dependency9.type=UsesDependency
+editor.fx.0.height=1407
+editor.fx.0.width=1734
+editor.fx.0.x=1713
+editor.fx.0.y=0
+height=1001
+package.numDependencies=9
+package.numTargets=10
+>>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -60,6 +80,7 @@ target10.type=ClassTarget
 target10.width=120
 target10.x=0
 target10.y=0
+<<<<<<< HEAD
 target11.height=70
 target11.name=bricks1
 target11.showInterface=false
@@ -67,6 +88,8 @@ target11.type=ClassTarget
 target11.width=120
 target11.x=0
 target11.y=0
+=======
+>>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
 target2.height=70
 target2.name=bricks
 target2.showInterface=false
@@ -117,14 +140,18 @@ target8.width=120
 target8.x=0
 target8.y=0
 target9.height=70
+<<<<<<< HEAD
 target9.name=vector2
+=======
+target9.name=bricks1
+>>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
 target9.showInterface=false
 target9.type=ClassTarget
 target9.width=120
 target9.x=0
 target9.y=0
 version=3.1.0
-width=1936
+width=1114
 world.lastInstantiated=lvl1
-xPosition=0
-yPosition=0
+xPosition=401
+yPosition=281
