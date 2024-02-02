@@ -90,7 +90,6 @@ public class shiro extends Actor
                 scaleShiroForever(3);
             }
         }
-        //jump
         if(animate < animateSpeed){
             animate++;
         }
@@ -102,6 +101,7 @@ public class shiro extends Actor
             else
             {animatePos = 0;}
         }
+        //jump
         if(Greenfoot.isKeyDown("up") && jumping == false)
         {
             jump();
@@ -202,18 +202,10 @@ public class shiro extends Actor
     public void moveLeft()
     {
         setLocation(getX()-speed, getY());
-        if(animationCounter %4 == 0)
-        {
-            //animateLeft();
-        }
     }
     public void moveRight()
     {
         setLocation(getX()+speed, getY());
-        if(animationCounter % 4 == 0)
-        {
-            //animateRight();
-        }
     }
     public void jump()
     {
