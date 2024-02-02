@@ -5,7 +5,7 @@ public class shiro extends Actor
     private int acceleration = 1;
     private boolean jumping=false;
     private boolean onGround=false;
-    private int jumpStrength = 16;
+    private int jumpStrength = 20;
     public int speed = 4;
     private int animationCounter = 0;
     private int frame = 1;

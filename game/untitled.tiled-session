@@ -1,0 +1,57 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "idk.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "images/Wall.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "jhonnyIdle.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "untitled.json": {
+            "scale": 0.7402597402597403,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1229.2982456140353,
+                "y": 397.1578947368421
+            }
+        },
+        "untitled.xml": {
+            "scale": 0.5918222402597403,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1232.6336362077832,
+                "y": 400.45808331904675
+            }
+        }
+    },
+    "last.imagePath": "E:/greenfoot/WizardGang/game/images",
+    "map.height": 25,
+    "map.lastUsedFormat": "json",
+    "map.width": 77,
+    "openFiles": [
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "untitled.json",
+        "idk.tsx",
+        "untitled.xml"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}

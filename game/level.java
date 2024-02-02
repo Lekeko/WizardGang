@@ -1,29 +1,46 @@
 import greenfoot.*;
 import java.util.List;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+
 public abstract class level extends World
 {
     private int offset=0;
-    String[] map;
+    String map;
+    int mapHeight;
+    int mapWidth;
+    private vector2[][] tileCoordinates;
+    List<bricks> tilesToRemove = new ArrayList<>();
     shiro player = null;
     public level()
-    {    
+    {
         super(800, 800, 1,true);
         setFields();
+        tileCoordinates=new vector2[mapHeight][mapWidth];
         vector2 playerCoordinates=new vector2();
         Actor player = null;
-        for (int i=0; i<map.length; i++){
-            for (int j=0; j<map[i].length(); j++)
+        for (int i=0; i<mapHeight; i++){
+            for (int j=0; j<mapWidth; j++)
             {
-                int kind = "cbpwmdksf".indexOf(""+map[i].charAt(j));
+                int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
+               // System.out.println("\n"+kind+"\n");
                 if (kind < 0) continue;
-                if (kind == 6){//player is 6 (k)
+                if (kind == 2){//player is 2
                     playerCoordinates=new vector2(16+j*32, 16+i*32);
                     player=new shiro();
                 }
+                
+                int tileX = 16 + j * 32;
+                int tileY = 16 + i * 32;
+                tileCoordinates[i][j]=new vector2(tileX,tileY);
                 Actor actor = null;
-                if (kind == 2) actor = new bricks();
+                if (kind == 1) actor = new bricks();
                 if(actor!=null){
-                    addObject(actor, 16+j*32, 16+i*32);   
+                    addObject(actor, tileX, tileY);   
                 }
                 //offset 16 pixels to counter the inferiority of the engine
             }
@@ -36,46 +53,88 @@ public abstract class level extends World
         player = (shiro) getObjects(shiro.class).get(0);
         if (player.getX()>getWidth()/2){
             player.setLocation(player.getX()-player.speed, player.getY());
-            offset-=player.speed;
-            for (int i=0; i<map.length; i++){
-                for (int j=0; j<map[i].length(); j++)
+            offset=-player.speed;
+            for (int i=0; i<mapHeight; i++){
+                for (int j=0; j<mapWidth; j++)
                 {
-                    int kind = "cbpwmdksf".indexOf(""+map[i].charAt(j));
+                    int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
                     if (kind < 0) continue;
                     Actor actor = null;
-                    if (kind == 2) actor = new bricks();
+                    
+                    int tileX = 16 + j * 32;
+                    int tileY = 16 + i * 32;
+                    tileCoordinates[i][j].x+=offset;
+                    if (kind == 1) actor = new bricks();
                     if(actor!=null){
-                        List<Actor> objectsAtLocation = getObjectsAt(16 + j * 32 + offset - 1, 16 + i * 32, (Class<Actor>) actor.getClass());
-                        if (!objectsAtLocation.isEmpty()) {
+                        List<Actor> objectsAtLocation = getObjectsAt(tileCoordinates[i][j].x, tileCoordinates[i][j].y , (Class<Actor>) actor.getClass());
+                        if(!objectsAtLocation.isEmpty()&&!locationOnScreen(tileCoordinates[i][j])){
                             bricks singleBrick = (bricks) objectsAtLocation.get(0);
-                            singleBrick.setLocation(16 + j * 32 + offset, 16 + i * 32);
-                            //offset 16 pixels to counter the inferiority of the engine
+                            removeObject(singleBrick);
                         }
+                        else if(!objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//if tile exists
+                            bricks singleBrick = (bricks) objectsAtLocation.get(0);
+                            singleBrick.setLocation(tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
+                        }
+                        else if(objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//tile does not exist and is on screen then instantiate
+                            addObject(actor, tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
+                        }
+                        //if tile exist but is not on screen
                     }
                 }
             }
         }
         else if (player.getX()<getWidth()/2){
             player.setLocation(player.getX()+player.speed, player.getY());
-            offset+=player.speed;
-            for (int i=0; i<map.length; i++){
-                for (int j=0; j<map[i].length(); j++)
+            offset=player.speed;
+            for (int i=0; i<mapHeight; i++){
+                for (int j=0; j<mapWidth; j++)
                 {
-                    int kind = "cbpwmdksf".indexOf(""+map[i].charAt(j));
+                    int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
                     if (kind < 0) continue;
                     Actor actor = null;
-                    if (kind == 2) actor = new bricks();
+                    
+                    int tileX = 16 + j * 32;
+                    int tileY = 16 + i * 32;
+                    tileCoordinates[i][j].x+=offset;
+                    if (kind == 1) actor = new bricks();
                     if(actor!=null){
-                        List<Actor> objectsAtLocation = getObjectsAt(16 + j * 32 + offset - 1, 16 + i * 32, (Class<Actor>) actor.getClass());
-                        if (!objectsAtLocation.isEmpty()) {
+                        List<Actor> objectsAtLocation = getObjectsAt(tileCoordinates[i][j].x, tileCoordinates[i][j].y  , (Class<Actor>) actor.getClass());
+                        if(!objectsAtLocation.isEmpty()&&!locationOnScreen(tileCoordinates[i][j])){//it exist but not on screen
                             bricks singleBrick = (bricks) objectsAtLocation.get(0);
-                            singleBrick.setLocation(16 + j * 32 + offset, 16 + i * 32);
-                            //offset 16 pixels to counter the inferiority of the engine
+                            removeObject(singleBrick);
                         }
+                        else if(!objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//if tile exists and on screen
+                            bricks singleBrick = (bricks) objectsAtLocation.get(0);
+                            singleBrick.setLocation(tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
+                        }
+                        else if(objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//tile does not exist and is on screen then instantiate
+                            addObject(actor, tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
+                        }
+                        //if tile exist but is not on screen
                     }
                 }
             }
         }
+    }
+    private static int getHeightFromJsonFile(File jsonFile) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonFile);
+
+            // Extract the value of "height" from the root JSON object
+            int height = jsonNode.get("height").asInt();
+
+            return height;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1; // Handle the error appropriately in your application
+        }
+    }
+    private boolean locationOnScreen(vector2 location){
+        if(location.x>player.getX()-getWidth()/2&&location.x<player.getX()+getWidth()/2){
+            return true;
+        }
+        return false;
     }
 
     public void setFields() {}
