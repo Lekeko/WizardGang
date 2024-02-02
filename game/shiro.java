@@ -9,6 +9,7 @@ public class shiro extends Actor
     public int speed = 4;
     private int animationCounter = 0;
     private int frame = 1;
+   
     //the coordinates of the colider with the 00 in the left up of the sprite
     private vector2 leftUpCorner=new vector2(10,13);
     private vector2 rightUpCorner=new vector2(19,13);
@@ -59,14 +60,17 @@ public class shiro extends Actor
         if(Greenfoot.isKeyDown("right"))
         {
             if(!checkRightWall()){
-                moveRight();
-                animate();
+               moveRight();
+               animate();
                 
                 if(isLeft){
                     
                     isLeft = false;
                }
-            }
+            }else{
+            setImage("jhonnyIdle.png");
+                if(isLeft){getImage().mirrorHorizontally();}
+                scaleShiroForever(3);}
         }
         else
         {
@@ -80,8 +84,11 @@ public class shiro extends Actor
                         
                         isLeft = true;
                    }
-                    
-                }
+                }else{
+                   setImage("jhonnyIdle.png");
+                if(isLeft){getImage().mirrorHorizontally();}
+                scaleShiroForever(3);}
+                
             }
             else
             {
@@ -90,6 +97,8 @@ public class shiro extends Actor
                 scaleShiroForever(3);
             }
         }
+        
+        
         if(animate < animateSpeed){
             animate++;
         }
@@ -133,7 +142,8 @@ public class shiro extends Actor
                    
                    getImage().mirrorVertically();
                 
-                setImage(imaginiLeft[animatePos]);}
+                setImage(imaginiLeft[animatePos]);
+            }
                     
             scaleShiroForever(3);
     }
@@ -226,6 +236,9 @@ public class shiro extends Actor
         }
         else
         {
+            setImage("jhonnyIdle.png");
+                if(isLeft){getImage().mirrorHorizontally();}
+                scaleShiroForever(3);
             return false;
         }
     }
@@ -242,6 +255,9 @@ public class shiro extends Actor
         }
         else
         {
+            setImage("jhonnyIdle.png");
+                if(!isLeft){getImage().mirrorHorizontally();}
+                scaleShiroForever(3);
             return false;
         }
     }
