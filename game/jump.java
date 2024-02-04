@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+//cacat
 /**
  * Write a description of class jump here.
  * 
@@ -27,7 +27,7 @@ public class jump extends Actor
     
     
     public jump(){
-        	
+            
         setImage((GreenfootImage)null);
     }
     
