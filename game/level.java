@@ -27,7 +27,7 @@ public abstract class level extends World
         
         setMap();//chose what map should be played
         setFields();//read the map specifics and structure
-        processMap();//saving the default location of all objects and tiles
+        processMap();//saving the default location of all objects and tiles and instantiating them
         moveCamera(0);
 
         addObject(border,halfWidth,halfHeight);

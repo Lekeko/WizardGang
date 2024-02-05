@@ -59,7 +59,6 @@ public class shiro extends Actor
     }
     public void act()
     {
-        System.out.print(getX());
         //move
         if(Greenfoot.isKeyDown("right"))
         {
@@ -164,9 +163,6 @@ public class shiro extends Actor
     public void animate(){
             
             if(!isLeft){
-                    
-            
-                   
                    getImage().mirrorVertically();
                    setImage(imagini[animatePos]);
                }else{
@@ -255,7 +251,6 @@ public class shiro extends Actor
         idk.x=getX();
         idk.y=getY();
         getWorld().addObject(idk, this.getX(), this.getY()  );
-        fart.setLocation(fart.getX(), fart.getY());
         timer = 20;
         onGround=false;
         vSpeed = vSpeed - jumpStrength;
