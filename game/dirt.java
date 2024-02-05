@@ -14,6 +14,7 @@ public class dirt extends platform
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
+
     }
 }

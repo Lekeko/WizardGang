@@ -59,6 +59,7 @@ public class shiro extends Actor
     }
     public void act()
     {
+        System.out.print(getX());
         //move
         if(Greenfoot.isKeyDown("right"))
         {
@@ -140,13 +141,7 @@ public class shiro extends Actor
         }
         
         if(timer > 0)
-            timer--;
-            
-        
-        
-        
-        
-       
+            timer--;       
         if(jumping){
             
             if(timer > 0){
@@ -256,8 +251,10 @@ public class shiro extends Actor
     }
     public void jump()
     {
-        
-        getWorld().addObject(fart, this.getX(), this.getY()  );
+        entity idk=(entity)fart;
+        idk.x=getX();
+        idk.y=getY();
+        getWorld().addObject(idk, this.getX(), this.getY()  );
         fart.setLocation(fart.getX(), fart.getY());
         timer = 20;
         onGround=false;

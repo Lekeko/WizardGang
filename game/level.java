@@ -11,7 +11,6 @@ public abstract class level extends World
 {
     private int offset=0;
     private vector2[][] tileCoordinates;
-    private vector2[][] thingCoordinates;
     public String map;
     public int mapHeight;
     public int mapWidth;
@@ -66,44 +65,10 @@ public abstract class level extends World
                 player.setLocation(player.getX()-cameraSpeed*direction, player.getY());   
             }   
         }
-        for (int i=0; i<mapHeight; i++){
-            for (int j=0; j<mapWidth; j++)
-            {
-                int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
-                Actor actor = null;
-                tileCoordinates[i][j].x+=offset;
-                if (kind == 1) actor=new shiro();
-                if (kind == 2) actor = new grass();
-                if (kind == 3) actor = new dirt();
-                if (kind == 5) actor = new grass_corner_left();
-                if (kind == 6) actor = new grass_corner_right();
-                if (kind == 7) actor = new outer_grass_corner_left();
-                if (kind == 8) actor = new outer_grass_corner_right();
-                if(actor!=null){
-                    List<Actor> objectsAtLocation = getObjectsAt(tileCoordinates[i][j].x-offset, tileCoordinates[i][j].y , (Class<Actor>) actor.getClass());
-                    if(!objectsAtLocation.isEmpty()&&!locationOnScreen(tileCoordinates[i][j])){//if tile exists but is not on the screen
-                        Actor singleBrick = (Actor) objectsAtLocation.get(0);
-                        removeObject(singleBrick);
-                    }
-                    else if(!objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])&&kind!=1){//if tile exists
-                        Actor singleBrick = (Actor) objectsAtLocation.get(0);
-                        singleBrick.setLocation(tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
-                    }
-                    else if(objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//tile does not exists and is on screen then instantiate
-                        if((kind==1&&player==null)||kind!=1){//since everything is moved based on the player location, the player should not be moved
-                            addObject(actor, tileCoordinates[i][j].x, tileCoordinates[i][j].y);
-                        }
-                    }
-                    //if tile exist but is not on screen
-                }
-            }
-        }
-        List<Actor> allObjects = getObjects(Actor.class);
+        List<entity> allObjects = getObjects(entity.class);
 
-        for (Actor actor : allObjects) {
-            if(!(actor instanceof shiro)&&!(actor instanceof platform)&&!(actor instanceof border)){
-                actor.setLocation(actor.getX() + offset, actor.getY());   
-            }
+        for (entity actor : allObjects) {
+            actor.x+=offset;
         }
     }
 
@@ -135,13 +100,32 @@ public abstract class level extends World
     }
     
     private void processMap(){
-        tileCoordinates=new vector2[mapHeight][mapWidth];
         for (int i=0; i<mapHeight; i++){
             for (int j=0; j<mapWidth; j++)
             {
-                tileCoordinates[i][j]=new vector2(16 + j * 32,16 + i * 32);
                 //offset 16 pixels to counter the inferiority of the engine
+                int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
+                Actor actor = null;
+                if (kind == 1) actor=new shiro();
+                if (kind == 2) actor = new grass();
+                if (kind == 3) actor = new dirt();
+                if (kind == 5) actor = new grass_corner_left();
+                if (kind == 6) actor = new grass_corner_right();
+                if (kind == 7) actor = new outer_grass_corner_left();
+                if (kind == 8) actor = new outer_grass_corner_right();
+                if(actor!=null){
+                    if(actor instanceof entity){
+                        entity idk=(entity)actor;
+                        idk.x=16 + j * 32;
+                        idk.y=16 + i * 32;
+                        addObject(idk,16 + j * 32, 16 + i * 32);
+                    }
+                    else{
+                        addObject(actor,16 + j * 32, 16 + i * 32);   
+                    }
+                }
             }
+
         }
     }
     public void nextLevel(){}//both set individually by each lvl

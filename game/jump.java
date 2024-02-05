@@ -1,5 +1,5 @@
 import greenfoot.*;
-public class jump extends Actor
+public class jump extends entity
 {
     GreenfootImage[] imagini = {
         new GreenfootImage("jump1.png"),
@@ -26,26 +26,26 @@ public class jump extends Actor
         if(shiro.shouldAnimate == 1){
             animate++;
             if(animate == animateSpeed){
-            animate = 0;
-            setImage("jump" + i + ".png");          
-            GreenfootImage originalImage = getImage();
-            int newWidth = originalImage.getWidth() * 3;
-            int newHeight = originalImage.getHeight() * 3;
-            GreenfootImage scaledImage = new GreenfootImage(originalImage);
-            scaledImage.scale(newWidth, newHeight);
-            setImage(scaledImage);
-            i++;
+                animate = 0;
+                setImage("jump" + i + ".png");          
+                GreenfootImage originalImage = getImage();
+                int newWidth = originalImage.getWidth() * 3;
+                int newHeight = originalImage.getHeight() * 3;
+                GreenfootImage scaledImage = new GreenfootImage(originalImage);
+                scaledImage.scale(newWidth, newHeight);
+                setImage(scaledImage);
+                i++;
+                
+                if (i== 6){ 
+                     //
+                        i = 1;
+                     getWorld().removeObject(this);
+                     shiro.shouldAnimate = 0;
+                     getImage().setTransparency(0);
+                }
             
-            if (i== 6){ 
-                 //
-                    i = 1;
-                 getWorld().removeObject(this);
-                 shiro.shouldAnimate = 0;
-                 getImage().setTransparency(0);
             }
-            
         }
-    }
-    
+        super.act();
     }
 }
