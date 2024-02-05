@@ -6,10 +6,13 @@ public class shiro extends Actor
     private boolean jumping=false;
     private boolean onGround=false;
     private int jumpStrength = 20;
-    public int speed = 4;
+    public int speed = 9;
     private int animationCounter = 0;
     private int frame = 1;
-   
+    int timer = 0;
+    static int x = 0;
+    static int y = 0;
+   Actor fart = new jump();
     //the coordinates of the colider with the 00 in the left up of the sprite
     private vector2 leftUpCorner=new vector2(10,13);
     private vector2 rightUpCorner=new vector2(19,13);
@@ -22,29 +25,29 @@ public class shiro extends Actor
     GreenfootImage[] imagini = {
         new GreenfootImage("jhonnyWalk1.png"),
         new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk3.png"),
-        new GreenfootImage("jhonnyWalk4.png"),
-        new GreenfootImage("jhonnyWalk5.png"),
-        new GreenfootImage("jhonnyWalk6.png"),
-        new GreenfootImage("jhonnyWalk7.png"),
-        new GreenfootImage("jhonnyWalk8.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk1.png"),
+        new GreenfootImage("jhonnyWalk1.png"),
+        new GreenfootImage("jhonnyWalk1.png"),
     };
     
     GreenfootImage[] imaginiLeft = {
-        new GreenfootImage("jhonnyWalk1.png"),
+       new GreenfootImage("jhonnyWalk1.png"),
         new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk3.png"),
-        new GreenfootImage("jhonnyWalk4.png"),
-        new GreenfootImage("jhonnyWalk5.png"),
-        new GreenfootImage("jhonnyWalk6.png"),
-        new GreenfootImage("jhonnyWalk7.png"),
-        new GreenfootImage("jhonnyWalk8.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk2.png"),
+        new GreenfootImage("jhonnyWalk1.png"),
+        new GreenfootImage("jhonnyWalk1.png"),
+        new GreenfootImage("jhonnyWalk1.png"),
     };
     
     int animate = 0;
-    int animateSpeed = 3;
+    int animateSpeed = 5;
     int animatePos = 0;
-    
+    static int shouldAnimate = 0;
     public shiro(){
         scaleShiro(3);
         halfWidthSprite=getImage().getWidth()/2;
@@ -60,30 +63,29 @@ public class shiro extends Actor
         if(Greenfoot.isKeyDown("right"))
         {
             if(!checkRightWall()){
-               moveRight();
-               animate();
-                
                 if(isLeft){
                     
                     isLeft = false;
                }
+               moveHorizontally();
+               animate();
             }else{
             setImage("jhonnyIdle.png");
                 if(isLeft){getImage().mirrorHorizontally();}
-                scaleShiroForever(3);}
+                scaleShiroForever(3);
+            }
         }
         else
         {
             if(Greenfoot.isKeyDown("left"))
             {
                 if(!checkLeftWall()){
-                    moveLeft();
-                    animate();
-                    
                     if(!isLeft){
                         
                         isLeft = true;
                    }
+                   moveHorizontally();
+                    animate();
                 }else{
                    setImage("jhonnyIdle.png");
                 if(isLeft){getImage().mirrorHorizontally();}
@@ -114,11 +116,18 @@ public class shiro extends Actor
         if(Greenfoot.isKeyDown("up") && jumping == false)
         {
             jump();
+            
+            
+            shouldAnimate = 1;
+            //addObject(fart, getImage().getWidth(), getImage().getHeight());
         }
         //gravity logic
+        
         if(onGround())
         {
             vSpeed = 0;
+            shouldAnimate = 0;
+            
         }
         else
         {
@@ -127,6 +136,27 @@ public class shiro extends Actor
         platformAbove();//collide with the platforms above
         if(Greenfoot.isKeyDown("q")){
             ((level)getWorld()).nextLevel();
+        }
+        
+        if(timer > 0)
+            timer--;
+            
+        if(jumping){
+            
+            if(timer > 0){
+                setImage("jhonnyJum.png");
+                if(isLeft){
+                    getImage().mirrorHorizontally();
+                }
+                scaleShiroForever(3);
+            }else{
+                setImage("jhonnyFall.png");
+                if(isLeft){
+                    getImage().mirrorHorizontally();
+                }
+                scaleShiroForever(3);
+            }
+            
         }
     }
     
@@ -178,6 +208,7 @@ public class shiro extends Actor
         if(!onGround){
             
         }
+        
         int spriteHeight = getImage().getHeight();
         Actor ground1 = getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.getX(), -halfHeightSprite+leftDownCorner.getY()+8, platform.class);
         Actor ground2 = getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.getX(), -halfHeightSprite+rightDownCorner.getY()+8, platform.class);
@@ -209,16 +240,20 @@ public class shiro extends Actor
         setLocation(getX(), newY);
         jumping = false;
     }
-    public void moveLeft()
-    {
-        setLocation(getX()-speed, getY());
-    }
-    public void moveRight()
-    {
-        setLocation(getX()+speed, getY());
+    public void moveHorizontally(){
+        if(isLeft){
+            setLocation(getX()-speed, getY());
+        }
+        else{
+            setLocation(getX()+speed, getY());
+        }
     }
     public void jump()
     {
+        
+        getWorld().addObject(fart, this.getX(), this.getY()  );
+        fart.setLocation(fart.getX(), fart.getY());
+        timer = 20;
         onGround=false;
         vSpeed = vSpeed - jumpStrength;
         jumping = true;
@@ -277,7 +312,6 @@ public class shiro extends Actor
         rightDownCorner=rightDownCorner.multiply(scalar);
         rightDownCorner.x+=(scalar-1);
     }
-    
     
     public void scaleShiroForever(int scalar){
         //scalse only the sprite

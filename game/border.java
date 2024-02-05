@@ -15,5 +15,7 @@ public class border extends Actor
     public void act()
     {
         // Add your action code here.
+        Actor border = new border();
+        
     }
 }

@@ -1,5 +1,5 @@
 import greenfoot.*;
-public class bricks extends platform
+public class thing extends vector2
 {
     public void act()
     {
