@@ -39,10 +39,10 @@ public abstract class level extends World
         
         player = (shiro) getObjects(shiro.class).get(0);
         cameraLocation.x=player.getX();
-        if (cameraLocation.getX()>halfWidth){
+        if (cameraLocation.x>halfWidth){
             moveCamera(1);
         }
-        else if (cameraLocation.getX()<halfWidth){
+        else if (cameraLocation.x<halfWidth){
             moveCamera(-1);
         }
         
@@ -50,7 +50,7 @@ public abstract class level extends World
     
     
     private boolean locationOnScreen(vector2 location){//true of the location is on screen else false
-        if(location.x>cameraLocation.getX()-halfWidth&&location.x<cameraLocation.getX()+halfWidth){
+        if(location.x>cameraLocation.x-halfWidth&&location.x<cameraLocation.x+halfWidth){
             return true;
         }
         return false;
@@ -58,9 +58,9 @@ public abstract class level extends World
     private void moveCamera(int direction){//1 right -1 left 0 just render
         offset=-cameraSpeed *direction;
         if(player!=null){
-            if((cameraLocation.getX()>halfWidth&&cameraLocation.getX()+offset<halfWidth)||(cameraLocation.getX()<halfWidth&&cameraLocation.getX()+offset>halfWidth)){
+            if((cameraLocation.x>halfWidth&&cameraLocation.x+offset<halfWidth)||(cameraLocation.x<halfWidth&&cameraLocation.x+offset>halfWidth)){
                 player.setLocation(halfWidth,player.getY());
-                offset=halfWidth-cameraLocation.getX()+offset;
+                offset=halfWidth-cameraLocation.x;
             }
             else{
                 player.setLocation(player.getX()-cameraSpeed*direction, player.getY());   

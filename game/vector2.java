@@ -13,14 +13,6 @@ public class vector2 extends Actor
         this.x = x;
         this.y = y;
     }
-    @Override
-    public int getX() {
-        return x;
-    }
-    @Override
-    public int getY() {
-        return y;
-    }
     //vector addition
     public vector2 add(vector2 other) {
         return new vector2(this.x + other.x, this.y + other.y);

@@ -1,14 +1,5 @@
 #Greenfoot project file
 class.border.image=border.png
-<<<<<<< HEAD
-class.bricks.image=Wall.png
-class.bricks1.image=bricks1.png
-<<<<<<< HEAD
-class.crate.image=crate.png
-=======
-class.lvl1.image=sandstone.jpg
->>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
-=======
 class.dirt.image=dirt.png
 class.grass.image=grass.png
 class.grass_corner_left.image=grass_corner_left.png
@@ -17,7 +8,6 @@ class.jump.image=jhonnyIdle.png
 class.lvl1.image=Sprite-0004.png
 class.outer_grass_corner_left.image=outer_grass_corner_left.png
 class.outer_grass_corner_right.image=outer_grass_corner_right.png
->>>>>>> 73aef9c9279a528a452ae515d271b03801b8f062
 class.shiro.image=jhonnyIdle.png
 dependency1.from=level
 dependency1.to=shiro
@@ -58,40 +48,19 @@ dependency6.type=UsesDependency
 dependency7.from=level
 dependency7.to=outer_grass_corner_left
 dependency7.type=UsesDependency
-<<<<<<< HEAD
-<<<<<<< HEAD
+dependency8.from=level
+dependency8.to=outer_grass_corner_right
+dependency8.type=UsesDependency
+dependency9.from=level
+dependency9.to=border
+dependency9.type=UsesDependency
 editor.fx.0.height=1056
 editor.fx.0.width=1936
 editor.fx.0.x=-8
 editor.fx.0.y=-8
 height=1056
-package.numDependencies=7
-package.numTargets=11
-=======
-dependency8.from=shiro
-dependency8.to=level
-=======
-dependency8.from=level
-dependency8.to=outer_grass_corner_right
->>>>>>> 73aef9c9279a528a452ae515d271b03801b8f062
-dependency8.type=UsesDependency
-dependency9.from=level
-dependency9.to=border
-dependency9.type=UsesDependency
-editor.fx.0.height=1407
-editor.fx.0.width=2636
-editor.fx.0.x=-7
-editor.fx.0.y=0
-<<<<<<< HEAD
-height=1001
-package.numDependencies=9
-package.numTargets=10
->>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
-=======
-height=1056
 package.numDependencies=15
 package.numTargets=16
->>>>>>> 73aef9c9279a528a452ae515d271b03801b8f062
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -120,18 +89,6 @@ target10.type=ClassTarget
 target10.width=120
 target10.x=0
 target10.y=0
-<<<<<<< HEAD
-<<<<<<< HEAD
-target11.height=70
-target11.name=bricks1
-target11.showInterface=false
-target11.type=ClassTarget
-target11.width=120
-target11.x=0
-target11.y=0
-=======
->>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
-=======
 target11.height=70
 target11.name=outer_grass_corner_left
 target11.showInterface=false
@@ -174,7 +131,6 @@ target16.type=ClassTarget
 target16.width=120
 target16.x=0
 target16.y=0
->>>>>>> 73aef9c9279a528a452ae515d271b03801b8f062
 target2.height=70
 target2.name=grass_corner_left
 target2.showInterface=false
@@ -211,33 +167,21 @@ target6.width=120
 target6.x=0
 target6.y=0
 target7.height=70
-<<<<<<< HEAD
-target7.name=crate
-=======
 target7.name=grass_corner_right
->>>>>>> 73aef9c9279a528a452ae515d271b03801b8f062
 target7.showInterface=false
 target7.type=ClassTarget
 target7.width=120
 target7.x=0
 target7.y=0
 target8.height=70
-target8.name=lvl1
+target8.name=vector2
 target8.showInterface=false
 target8.type=ClassTarget
 target8.width=120
 target8.x=0
 target8.y=0
 target9.height=70
-<<<<<<< HEAD
-<<<<<<< HEAD
-target9.name=vector2
-=======
-target9.name=bricks1
->>>>>>> 2af18b58c0b62d1cf32e2388a5371af09961767c
-=======
 target9.name=platform
->>>>>>> 73aef9c9279a528a452ae515d271b03801b8f062
 target9.showInterface=false
 target9.type=ClassTarget
 target9.width=120
@@ -247,4 +191,4 @@ version=3.1.0
 width=1936
 world.lastInstantiated=lvl1
 xPosition=0
-yPosition=984
+yPosition=0
