@@ -38,12 +38,12 @@ public class shiro extends collision
     public static int shouldAnimate = 0;
     public shiro(){
         leftUpCorner=new vector2(3,1);
-        rightUpCorner=new vector2(29,1);
+        rightUpCorner=new vector2(28,1);
         leftDownCorner=new vector2(3,31);
-        rightDownCorner=new vector2(29,31);
+        rightDownCorner=new vector2(28,31);
+        scaleShiro(3);
         image=getImage();
         spriteHeight=getImage().getHeight();
-        scaleShiro(3);
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
         for(int i = 0; i < 8; i++){
@@ -56,45 +56,55 @@ public class shiro extends collision
         //move
         if(Greenfoot.isKeyDown("right"))
         {
-            if(!checkRightWall()){
-                setImage("jhonnyIdle.png");
-                if(!isLeft){getImage().mirrorHorizontally();}
-                scaleShiroForever(3);
-                moveRight();
-                animate();
-
-                if(isLeft){ 
-                isLeft = false;
-               }
-            }else{
+            moveHorizontally(1);
             setImage("jhonnyIdle.png");
-            if(isLeft){getImage().mirrorHorizontally();}
-            scaleShiroForever(3);}
+            if(!isLeft){
+                getImage().mirrorHorizontally();
+            }
+            scaleShiroForever(3);
+            moveHorizontally(1);
+            animate();
+            if(isLeft){ 
+                isLeft = false;
+            }
+            else{
+                setImage("jhonnyIdle.png");
+                if(isLeft){
+                    getImage().mirrorHorizontally();
+                }
+                scaleShiroForever(3);
+            }
         }
         else
         {
             if(Greenfoot.isKeyDown("left"))
             {
-            if(!checkLeftWall()){
                 setImage("jhonnyIdle.png");
-                if(isLeft){getImage().mirrorHorizontally();}
+                if(isLeft){
+                    getImage().mirrorHorizontally();
+                }
                 scaleShiroForever(3);
-                moveLeft();
+                moveHorizontally(-1);
                 animate();
                         
                 if(!isLeft){         
                     isLeft = true;
                 }
-            }
-            else{
-                   setImage("jhonnyIdle.png");
-                if(isLeft){getImage().mirrorHorizontally();}
-                scaleShiroForever(3);} 
+                else{
+                    setImage("jhonnyIdle.png");
+                    if(isLeft){
+                        getImage().mirrorHorizontally();
+                    }
+                    scaleShiroForever(3);
+                } 
             }
             else
             {
+                hSpeed=0;
                 setImage("jhonnyIdle.png");
-                if(isLeft){getImage().mirrorHorizontally();}
+                if(isLeft){
+                    getImage().mirrorHorizontally();
+                }
                 scaleShiroForever(3);
             }
         }
@@ -102,37 +112,35 @@ public class shiro extends collision
             animate++;
         }
         else
-        {animate = 0;
+        {
+            animate = 0;
             if(animatePos < imagini.length-1){
                 animatePos++;
             }
             else
-            {animatePos = 0;}
+            {
+                animatePos = 0;
+            }
         }
         //gravity logic
         
         if(onGround())
         {
             jumping=false;
-            vSpeed = 0;
             shouldAnimate = 0;
             
         }
         else
         {
             jumping=true;
-            fall();
         }
         //jump
         if(Greenfoot.isKeyDown("up") && jumping == false)
         {
             jump();
-            
-            
             shouldAnimate = 1;
             //addObject(fart, getImage().getWidth(), getImage().getHeight());
         }
-        super.act();
         if(Greenfoot.isKeyDown("q")){
             ((level)getWorld()).nextLevel();
         }
@@ -156,30 +164,24 @@ public class shiro extends collision
             }
             
         }
+        super.act();
     }
     
     public void animate(){
-            
-            if(!isLeft){
-                   getImage().mirrorVertically();
-                   setImage(imagini[animatePos]);
-               }else{
-                   
-                   getImage().mirrorVertically();
+        if(!isLeft){
+               getImage().mirrorVertically();
+               setImage(imagini[animatePos]);
+        }
+        else{  
+            getImage().mirrorVertically();
+            setImage(imaginiLeft[animatePos]);
+        }
                 
-                setImage(imaginiLeft[animatePos]);
-            }
-                    
-            scaleShiroForever(3);
+        scaleShiroForever(3);
     }
-    public void moveLeft()
+    public void moveHorizontally(int direction)
     {
-        x-=speed;
-
-    }
-    public void moveRight()
-    {
-        x+=speed;
+        hSpeed=speed*direction;
     }
     public void jump()
     {
@@ -189,9 +191,8 @@ public class shiro extends collision
         getWorld().addObject(idk, this.getX(), this.getY()  );
         timer = 20;
         onGround=false;
-        vSpeed = vSpeed - jumpStrength;
+        vSpeed =-jumpStrength;
         jumping = true;
-        fall();
     }
     
     public void scaleShiro(int scalar){
