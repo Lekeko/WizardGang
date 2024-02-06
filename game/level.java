@@ -10,17 +10,17 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public abstract class level extends World
 {
     private int offset=0;
-    private vector2[][] tileCoordinates;
-    public String map;
-    public int mapHeight;
-    public int mapWidth;
-    public shiro player = null;
-    public File jsonFile;
     private int cameraSpeed=9;
     private int halfWidth=getWidth()/2;
     private int halfHeight=getHeight()/2;
-    vector2 cameraLocation=new vector2(halfWidth,halfHeight);
+    private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
+    private vector2[][] tileCoordinates;
     private Actor border = new border();
+    private String map;
+    private int mapHeight;
+    private int mapWidth;
+    private shiro player = null;
+    public File jsonFile;
     public level()
     {
         super(800, 800, 1);
@@ -62,7 +62,7 @@ public abstract class level extends World
                 offset=halfWidth-cameraLocation.x;
             }
             else{
-                player.setLocation(player.getX()-cameraSpeed*direction, player.getY());   
+                player.setLocation(player.getX()+offset, player.getY());   
             }   
         }
         List<entity> allObjects = getObjects(entity.class);
@@ -103,7 +103,6 @@ public abstract class level extends World
         for (int i=0; i<mapHeight; i++){
             for (int j=0; j<mapWidth; j++)
             {
-                //offset 16 pixels to counter the inferiority of the engine
                 int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
                 Actor actor = null;
                 if (kind == 1) actor=new shiro();
@@ -119,7 +118,7 @@ public abstract class level extends World
                         idk.x=16 + j * 32;
                         idk.y=16 + i * 32;
                         addObject(idk,16 + j * 32, 16 + i * 32);
-                    }
+                    }//offset 16 pixels to counter the inferiority of the engine
                     else{
                         addObject(actor,16 + j * 32, 16 + i * 32);   
                     }

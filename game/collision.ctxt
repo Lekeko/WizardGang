@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=collision
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=boolean\ platformAbove()
+numComments=3

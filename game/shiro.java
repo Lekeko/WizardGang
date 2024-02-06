@@ -1,27 +1,19 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-public class shiro extends Actor
+import greenfoot.*;
+public class shiro extends collision
 {
-    private int vSpeed=0;
     private int acceleration = 1;
     private boolean jumping=false;
-    private boolean onGround=false;
     private int jumpStrength = 20;
-    public int speed = 9;
     private int animationCounter = 0;
     private int frame = 1;
-    int timer = 0;
-    static int x = 0;
-    static int y = 0;
-   Actor fart = new jump();
+    private int timer = 0;
+    private Actor fart = new jumpParticles();
+    public int speed = 9;
     //the coordinates of the colider with the 00 in the left up of the sprite
-    private vector2 leftUpCorner=new vector2(10,13);
-    private vector2 rightUpCorner=new vector2(19,13);
-    private vector2 leftDownCorner=new vector2(10,31);
-    private vector2 rightDownCorner=new vector2(19,31);
     private int halfWidthSprite;
     private int halfHeightSprite;
     private int maxFallAcceleration=19;
-    boolean isLeft = false; //if the player is facing left
+    private boolean isLeft = false; //if the player is facing left
     GreenfootImage[] imagini = {
         new GreenfootImage("jhonnyWalk1.png"),
         new GreenfootImage("jhonnyWalk2.png"),
@@ -44,11 +36,16 @@ public class shiro extends Actor
         new GreenfootImage("jhonnyWalk1.png"),
     };
     
-    int animate = 0;
-    int animateSpeed = 5;
-    int animatePos = 0;
-    static int shouldAnimate = 0;
+    private int animate = 0;
+    private int animateSpeed = 5;
+    private int animatePos = 0;
+    public static int shouldAnimate = 0;
     public shiro(){
+        leftUpCorner=new vector2(10,13);
+        rightUpCorner=new vector2(19,13);
+        leftDownCorner=new vector2(10,31);
+        rightDownCorner=new vector2(19,31);
+        spriteHeight=getImage().getHeight();
         scaleShiro(3);
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
@@ -100,8 +97,6 @@ public class shiro extends Actor
                 scaleShiroForever(3);
             }
         }
-        
-        
         if(animate < animateSpeed){
             animate++;
         }
@@ -174,23 +169,6 @@ public class shiro extends Actor
                     
             scaleShiroForever(3);
     }
-    public boolean platformAbove()//prevents the player from no clipping through the ceiling
-    {
-        int spriteHeight = getImage().getHeight();
-        Actor ceiling1 = getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x,-halfHeightSprite+leftUpCorner.y-8, platform.class);
-        Actor ceiling2 = getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x,-halfHeightSprite+rightUpCorner.y-8, platform.class);
-        if(ceiling1 == null && ceiling2 == null&& getY()-halfHeightSprite+leftUpCorner.y > 0)
-        {
-            return false;
-        }
-        else
-        {
-            if (vSpeed<0){
-                vSpeed = -vSpeed/2;   
-            }
-            return true;
-        }
-    }
     public void fall()//guess what this does
     {
         setLocation(getX(), getY() + vSpeed);
@@ -202,10 +180,6 @@ public class shiro extends Actor
     }
     public boolean onGround()//true if on ground and false otherwise (also helps the player to not go to the backrooms)
     {
-        if(!onGround){
-            
-        }
-        
         int spriteHeight = getImage().getHeight();
         Actor ground1 = getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.x, -halfHeightSprite+leftDownCorner.y+8, platform.class);
         Actor ground2 = getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.x, -halfHeightSprite+rightDownCorner.y+8, platform.class);

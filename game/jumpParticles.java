@@ -1,7 +1,7 @@
 import greenfoot.*;
-public class jump extends entity
+public class jumpParticles extends entity
 {
-    GreenfootImage[] imagini = {
+    private GreenfootImage[] imagini = {
         new GreenfootImage("jump1.png"),
         new GreenfootImage("jump2.png"),
         new GreenfootImage("jump3.png"),
@@ -15,7 +15,7 @@ public class jump extends entity
     private int animatePos = 0;
     
     
-    public jump(){
+    public jumpParticles(){
             
         setImage((GreenfootImage)null);
     }
