@@ -45,6 +45,7 @@ public class shiro extends collision
         rightUpCorner=new vector2(19,13);
         leftDownCorner=new vector2(10,31);
         rightDownCorner=new vector2(19,31);
+        image=getImage();
         spriteHeight=getImage().getHeight();
         scaleShiro(3);
         halfWidthSprite=getImage().getWidth()/2;
@@ -108,15 +109,6 @@ public class shiro extends collision
             else
             {animatePos = 0;}
         }
-        //jump
-        if(Greenfoot.isKeyDown("up") && jumping == false)
-        {
-            jump();
-            
-            
-            shouldAnimate = 1;
-            //addObject(fart, getImage().getWidth(), getImage().getHeight());
-        }
         //gravity logic
         
         if(onGround())
@@ -128,6 +120,15 @@ public class shiro extends collision
         else
         {
             fall();
+        }
+        //jump
+        if(Greenfoot.isKeyDown("up") && jumping == false)
+        {
+            jump();
+            
+            
+            shouldAnimate = 1;
+            //addObject(fart, getImage().getWidth(), getImage().getHeight());
         }
         platformAbove();//collide with the platforms above
         if(Greenfoot.isKeyDown("q")){
@@ -153,6 +154,7 @@ public class shiro extends collision
             }
             
         }
+        super.act();
     }
     
     public void animate(){
@@ -171,7 +173,7 @@ public class shiro extends collision
     }
     public void fall()//guess what this does
     {
-        setLocation(getX(), getY() + vSpeed);
+        y+= vSpeed;
         if(vSpeed <=maxFallAcceleration)
         {
             vSpeed = vSpeed + acceleration;
@@ -207,17 +209,17 @@ public class shiro extends collision
     public void moveOnGround(Actor ground)//this happens while the player moves on the ground (also helps to not go through walls)
     {
         int groundHeight = ground.getImage().getHeight();
-        int newY = ground.getY() - (groundHeight + getImage().getHeight())/2;
-        setLocation(getX(), newY);
+        y = ground.getY() - (groundHeight + getImage().getHeight())/2;
         jumping = false;
     }
     public void moveLeft()
     {
-        setLocation(getX()-speed, getY());
+        x-=speed;
+
     }
     public void moveRight()
     {
-        setLocation(getX()+speed, getY());
+        x+=speed;
     }
     public void jump()
     {
@@ -284,7 +286,22 @@ public class shiro extends collision
         rightDownCorner=rightDownCorner.multiply(scalar);
         rightDownCorner.x+=(scalar-1);
     }
-    
+    public boolean platformAbove()//prevents the player from no clipping through the ceiling
+    {
+        Actor ceiling1 = getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x,-halfHeightSprite+leftUpCorner.y-8, platform.class);
+        Actor ceiling2 = getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x,-halfHeightSprite+rightUpCorner.y-8, platform.class);
+        if(ceiling1 == null && ceiling2 == null&& getY()-halfHeightSprite+leftUpCorner.y > 0)
+        {
+            return false;
+        }
+        else
+        {
+            if (vSpeed<0){
+                vSpeed = -vSpeed/2;   
+            }
+            return true;
+        }
+    }
     
     public void scaleShiroForever(int scalar){
         //scalse only the sprite
