@@ -176,6 +176,7 @@ public class shiro extends collision
             getImage().mirrorVertically();
             setImage(imaginiLeft[animatePos]);
         }
+        //setImage(new GreenfootImage("jhonnyWalk3.png"));
                 
         scaleShiroForever(3);
     }
