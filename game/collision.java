@@ -35,7 +35,7 @@ public abstract class collision extends entity
             hSpeed=0;
             stayOnLeftWall(currenLeftWall);
         }
-        moveHorizontally();
+        moveOnX();
         super.act();
     }
     public boolean platformAbove()//prevents the player from no clipping through the ceiling
@@ -158,7 +158,7 @@ public abstract class collision extends entity
             vSpeed = vSpeed + acceleration;
         }
     }
-    public void moveHorizontally(){
+    public void moveOnX(){
         x+=hSpeed;
     }
 }

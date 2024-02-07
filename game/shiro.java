@@ -56,24 +56,18 @@ public class shiro extends collision
         //move
         if(Greenfoot.isKeyDown("right"))
         {
-            moveHorizontally(1);
-            setImage("jhonnyIdle.png");
-            if(!isLeft){
-                getImage().mirrorHorizontally();
-            }
-            scaleShiroForever(3);
-            moveHorizontally(1);
-            animate();
-            if(isLeft){ 
-                isLeft = false;
-            }
-            else{
-                setImage("jhonnyIdle.png");
+            if(!checkRightWall()){
+               moveHorizontally(1);
+               animate();
+                
                 if(isLeft){
-                    getImage().mirrorHorizontally();
-                }
-                scaleShiroForever(3);
-            }
+                    
+                    isLeft = false;
+               }
+            }else{
+            setImage("jhonnyIdle.png");
+                if(isLeft){getImage().mirrorHorizontally();}
+                scaleShiroForever(3);}
         }
         else
         {
