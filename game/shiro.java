@@ -64,33 +64,37 @@ public class shiro extends collision
                     
                     isLeft = false;
                }
-            }else{
+            }
+            else
+            {
             setImage("jhonnyIdle.png");
-                if(isLeft){getImage().mirrorHorizontally();}
-                scaleShiroForever(3);}
+                if(isLeft){
+                    getImage().mirrorHorizontally();
+                }
+                scaleShiroForever(3);
+            }
         }
         else
         {
             if(Greenfoot.isKeyDown("left"))
             {
-                setImage("jhonnyIdle.png");
-                if(isLeft){
-                    getImage().mirrorHorizontally();
-                }
-                scaleShiroForever(3);
                 moveHorizontally(-1);
-                animate();
-                        
-                if(!isLeft){         
-                    isLeft = true;
+                if(!checkLeftWall()){
+                    animate();
+                    
+                    if(!isLeft){
+                        isLeft = true;
+                   }
                 }
-                else{
+                else
+                {
                     setImage("jhonnyIdle.png");
                     if(isLeft){
                         getImage().mirrorHorizontally();
                     }
                     scaleShiroForever(3);
-                } 
+                }
+                
             }
             else
             {
