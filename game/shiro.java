@@ -132,7 +132,7 @@ public class shiro extends collision
             jumping=true;
         }
         //jump
-        if(Greenfoot.isKeyDown("up") && jumping == false)
+        if(Greenfoot.isKeyDown("up") && jumping == false&&vSpeed>=0)
         {
             jump();
             shouldAnimate = 1;
