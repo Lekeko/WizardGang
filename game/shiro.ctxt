@@ -14,4 +14,6 @@ comment6.params=scalar
 comment6.target=void\ scaleShiro(int)
 comment7.params=scalar
 comment7.target=void\ scaleShiroForever(int)
-numComments=8
+comment8.params=
+comment8.target=void\ flipCollider()
+numComments=9

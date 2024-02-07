@@ -16,7 +16,7 @@ public abstract class level extends World
     private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
     private vector2[][] tileCoordinates;
     private Actor border = new border();
-    private String map;
+    List<Integer> map = new ArrayList<>();
     private int mapHeight;
     private int mapWidth;
     private shiro player = null;
@@ -76,24 +76,25 @@ public abstract class level extends World
     {
         File jsonFile = new File("untitled.json");
         try {
+            // create an ObjectMapper instance to read JSON
             ObjectMapper objectMapper = new ObjectMapper();
+            // read the JSON file and parse it into a JsonNode
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
-            //extract the "width" and "height" values from the root JSON object
+            // extract the "width" and "height" values from the root JSON object
             mapWidth = jsonNode.get("width").asInt();
             mapHeight = jsonNode.get("height").asInt();
-
-            //extract the "layers" array from the root JSON object
+            // extract the "layers" array from the root JSON object
             JsonNode layersNode = jsonNode.get("layers");
-            //extract the "data" array from the first layer in the "layers" array
+            // get the "data" array from the first layer in the "layers" array
             JsonNode dataNode = layersNode.get(0).get("data");
-            //extract and concatenate the numbers from the "data" array
-            StringBuilder numbersStringBuilder = new StringBuilder();
-            for (JsonNode numberNode : dataNode) {
-                numbersStringBuilder.append(numberNode.asText());
+            // convert the "data" array to a String
+            String layersData = dataNode.toString();
+            // remove square brackets and split the string by commas
+            String[] numbersArray = layersData.replaceAll("[\\[\\]]", "").split(",");
+            // parse each number string as an integer and add it to the list
+            for (String numStr : numbersArray) {
+                map.add(Integer.parseInt(numStr.trim()));
             }
-            //convert the "data" array to a String
-            map = numbersStringBuilder.toString();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,15 +104,44 @@ public abstract class level extends World
         for (int i=0; i<mapHeight; i++){
             for (int j=0; j<mapWidth; j++)
             {
-                int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
+                int kind = map.get(i*mapWidth+j);
                 Actor actor = null;
-                if (kind == 1) actor=new shiro();
-                if (kind == 2) actor = new grass();
-                if (kind == 3) actor = new dirt();
-                if (kind == 5) actor = new grass_corner_left();
-                if (kind == 6) actor = new grass_corner_right();
-                if (kind == 7) actor = new outer_grass_corner_left();
-                if (kind == 8) actor = new outer_grass_corner_right();
+                switch (kind){
+                    case -1:
+                        break;
+                    case 0:
+                        break;
+                    case 1:
+                        actor=new shiro();
+                        break;
+                    case 2:
+                        actor = new grass();
+                        break;
+                    case 3:
+                        actor = new dirt();
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        actor = new grass_corner_left();
+                        break;
+                    case 6:
+                        actor = new grass_corner_right();
+                        break;
+                    case 7:
+                        actor = new outer_grass_corner_left();
+                        break;
+                    case 8:
+                        actor = new outer_grass_corner_right();
+                        break;
+                    case 9:
+                        actor = new enemy();
+                        break;
+                    case 13:
+                        actor = new enemy();
+                        break;
+
+                }
                 if(actor!=null){
                     if(actor instanceof entity){
                         entity idk=(entity)actor;

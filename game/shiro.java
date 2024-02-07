@@ -37,17 +37,16 @@ public class shiro extends collision
     private int animatePos = 0;
     public static int shouldAnimate = 0;
     public shiro(){
-        leftUpCorner=new vector2(3,1);
-        rightUpCorner=new vector2(28,1);
-        leftDownCorner=new vector2(3,31);
-        rightDownCorner=new vector2(28,31);
+        leftUpCorner=new vector2(4,2);
+        rightUpCorner=new vector2(29,2);
+        leftDownCorner=new vector2(4,32);
+        rightDownCorner=new vector2(29,32);
         scaleShiro(3);
         image=getImage();
         spriteHeight=getImage().getHeight();
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
         for(int i = 0; i < 8; i++){
-            
             imaginiLeft[i].mirrorHorizontally();
         }
     }
@@ -98,7 +97,7 @@ public class shiro extends collision
             }
             else
             {
-                hSpeed=0;
+                moveHorizontally(0);
                 setImage("jhonnyIdle.png");
                 if(isLeft){
                     getImage().mirrorHorizontally();
@@ -137,12 +136,7 @@ public class shiro extends collision
         {
             jump();
             shouldAnimate = 1;
-            //addObject(fart, getImage().getWidth(), getImage().getHeight());
-        }
-        if(Greenfoot.isKeyDown("q")){
-            ((level)getWorld()).nextLevel();
-        }
-        
+        }     
         if(timer > 0)
             timer--;       
         if(jumping){
@@ -166,15 +160,13 @@ public class shiro extends collision
     }
     
     public void animate(){
+        getImage().mirrorVertically();
         if(!isLeft){
-               getImage().mirrorVertically();
                setImage(imagini[animatePos]);
         }
         else{  
-            getImage().mirrorVertically();
             setImage(imaginiLeft[animatePos]);
         }
-        //setImage(new GreenfootImage("jhonnyWalk3.png"));
                 
         scaleShiroForever(3);
     }
@@ -220,5 +212,13 @@ public class shiro extends collision
         scaledImage.scale(newWidth, newHeight);
         setImage(scaledImage);
         
+    }
+    public void flipCollider(){
+        int leftDistance = image.getWidth() - rightUpCorner.x;
+        int rightDistance = image.getWidth() - leftUpCorner.x;
+        leftUpCorner=new vector2(leftDistance,2);
+        rightUpCorner=new vector2(rightDistance,2);
+        leftDownCorner=new vector2(leftDistance,32);
+        rightDownCorner=new vector2(rightDistance,32);
     }
 }

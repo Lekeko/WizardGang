@@ -60,7 +60,7 @@ public abstract class collision extends entity
     public boolean checkRightWall(){//wall right-true   no wall right-false
         int spriteWidth = image.getWidth();
         int checkUp=-halfHeightSprite+rightUpCorner.y;
-        int checkDown=-halfHeightSprite+rightDownCorner.y;
+        int checkDown=-halfHeightSprite+rightDownCorner.y-1;
         entity rightWall1 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 16, checkUp, platform.class);
         entity rightWall2 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 16,(checkUp+checkDown)/2, platform.class);
         entity rightWall3 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.x + 16, checkDown, platform.class);
@@ -84,7 +84,7 @@ public abstract class collision extends entity
     public boolean checkLeftWall(){//wall left-true   no wall left-false (also helps to not go through walls)
         int spriteWidth = image.getWidth();
         int checkUp=-halfHeightSprite+leftUpCorner.y;
-        int checkDown=-halfHeightSprite+leftDownCorner.y;
+        int checkDown=-halfHeightSprite+leftDownCorner.y-1;
         entity leftWall1 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 16, checkUp, platform.class);
         entity leftWall2 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 16,(checkUp+checkDown)/2, platform.class);
         entity leftWall3 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.x - 16, checkDown, platform.class);
