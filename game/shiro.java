@@ -56,8 +56,8 @@ public class shiro extends collision
         //move
         if(Greenfoot.isKeyDown("right"))
         {
+            moveHorizontally(1);
             if(!checkRightWall()){
-               moveHorizontally(1);
                animate();
                 
                 if(isLeft){
