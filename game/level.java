@@ -10,133 +10,134 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public abstract class level extends World
 {
     private int offset=0;
+    private int cameraSpeed=9;
+    private int halfWidth=getWidth()/2;
+    private int halfHeight=getHeight()/2;
+    private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
     private vector2[][] tileCoordinates;
-    public String map;
-    public int mapHeight;
-    public int mapWidth;
-    public shiro player = null;
+    private Actor border = new border();
+    List<Integer> map = new ArrayList<>();
+    private int mapHeight;
+    private int mapWidth;
+    private shiro player = null;
     public File jsonFile;
-     
-    
     public level()
     {
         super(800, 800, 1);
         
-        setMap();
-        setFields();
-        tileCoordinates=new vector2[mapHeight][mapWidth];
-        vector2 playerCoordinates=new vector2();
-        Actor player = null;
-        
-        for (int i=0; i<mapHeight; i++){
-            for (int j=0; j<mapWidth; j++)
-            {
-                int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
-                int tileX = 16 + j * 32;
-                int tileY = 16 + i * 32;
-                if (kind == 1){//player is 2
-                    playerCoordinates=new vector2(tileX, tileY);
-                    player=new shiro();
-                }
-                tileCoordinates[i][j]=new vector2(tileX,tileY);
-                Actor actor = null;
-                if (kind == 3) actor = new dirt();
-                if (kind == 2) actor = new grass();
-                if (kind == 5) actor = new grass_corner_left();
-                if (kind == 6) actor = new grass_corner_right();
-                if (kind == 7) actor = new outer_grass_corner_left();
-                if (kind == 8) actor = new outer_grass_corner_right();
-                if(actor!=null){
-                    addObject(actor, tileX, tileY);   
-                }
-                //offset 16 pixels to counter the inferiority of the engine
-            }
-        }
-        addObject(player, playerCoordinates.x, playerCoordinates.y);
-        //
-        addObject(border,border.getImage().getWidth()/2,getHeight()/2);
+        setMap();//chose what map should be played
+        setFields();//read the map specifics and structure
+        processMap();//saving the default location of all objects and tiles and instantiating them
+        moveCamera(0);
+
+        addObject(border,halfWidth,halfHeight);
     }
-    Actor border = new border();
     public void act(){
         
-        setPaintOrder(border.class);
+        setPaintOrder(border.class,shiro.class);
         
         player = (shiro) getObjects(shiro.class).get(0);
-        if (player.getX()>getWidth()/2){
+        cameraLocation.x=player.getX();
+        if (cameraLocation.x>halfWidth){
             moveCamera(1);
         }
-        else if (player.getX()<getWidth()/2){
+        else if (cameraLocation.x<halfWidth){
             moveCamera(-1);
         }
         
     }
-    private boolean locationOnScreen(vector2 location){
-        if(location.x>player.getX()-getWidth()/2&&location.x<player.getX()+getWidth()/2){
+    
+    
+    private boolean locationOnScreen(vector2 location){//true of the location is on screen else false
+        if(location.x>cameraLocation.x-halfWidth&&location.x<cameraLocation.x+halfWidth){
             return true;
         }
         return false;
     }
-    private void moveCamera(int direction){//1 right -1 left
-        player.setLocation(player.getX()-player.speed*direction, player.getY());
-        offset=-player.speed *direction;
-        for (int i=0; i<mapHeight; i++){
-                for (int j=0; j<mapWidth; j++)
-                {
-                    int kind = "012345678".indexOf(""+map.charAt(i*mapWidth+j));
-                    Actor actor = null;
-                    tileCoordinates[i][j].x+=offset;
-                    if (kind == 3) actor = new dirt();
-                    if (kind == 2) actor = new grass();
-                    if (kind == 5) actor = new grass_corner_left();
-                    if (kind == 6) actor = new grass_corner_right();
-                    if (kind == 7) actor = new outer_grass_corner_left();
-                    if (kind == 8) actor = new outer_grass_corner_right();
-                    if(actor!=null){
-                        List<Actor> objectsAtLocation = getObjectsAt(tileCoordinates[i][j].x, tileCoordinates[i][j].y , (Class<Actor>) actor.getClass());
-                        if(!objectsAtLocation.isEmpty()&&!locationOnScreen(tileCoordinates[i][j])){//if tile exists but is not on the screen
-                            platform singleBrick = (platform) objectsAtLocation.get(0);
-                            removeObject(singleBrick);
-                        }
-                        else if(!objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//if tile exists
-                            platform singleBrick = (platform) objectsAtLocation.get(0);
-                            singleBrick.setLocation(tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
-                        }
-                        else if(objectsAtLocation.isEmpty()&&locationOnScreen(tileCoordinates[i][j])){//tile does not exists and is on screen then instantiate
-                            addObject(actor, tileCoordinates[i][j].x, tileCoordinates[i][j].y); 
-                        }
-                        //if tile exist but is not on screen
-                    }
-                }
+    private void moveCamera(int direction){//1 right -1 left 0 just render
+        offset=-cameraSpeed *direction;
+        if(player!=null){
+            if((cameraLocation.x>halfWidth&&cameraLocation.x+offset<halfWidth)||(cameraLocation.x<halfWidth&&cameraLocation.x+offset>halfWidth)){
+                player.setLocation(halfWidth,player.getY());
+                offset=halfWidth-cameraLocation.x;
             }
+            else{
+                player.setLocation(player.getX()+offset, player.getY());   
+            }   
+        }
+        List<entity> allObjects = getObjects(entity.class);
+
+        for (entity actor : allObjects) {
+            actor.x+=offset;
+        }
     }
 
     public void setFields()
     {
-        File jsonFile = new File("untitled.json");
+        
         try {
+            // create an ObjectMapper instance to read JSON
             ObjectMapper objectMapper = new ObjectMapper();
+            // read the JSON file and parse it into a JsonNode
             JsonNode jsonNode = objectMapper.readTree(jsonFile);
-            //extract the "width" and "height" values from the root JSON object
+            // extract the "width" and "height" values from the root JSON object
             mapWidth = jsonNode.get("width").asInt();
             mapHeight = jsonNode.get("height").asInt();
-
-            //extract the "layers" array from the root JSON object
+            // extract the "layers" array from the root JSON object
             JsonNode layersNode = jsonNode.get("layers");
-            //extract the "data" array from the first layer in the "layers" array
+            // get the "data" array from the first layer in the "layers" array
             JsonNode dataNode = layersNode.get(0).get("data");
-            //extract and concatenate the numbers from the "data" array
-            StringBuilder numbersStringBuilder = new StringBuilder();
-            for (JsonNode numberNode : dataNode) {
-                numbersStringBuilder.append(numberNode.asText());
+            // convert the "data" array to a String
+            String layersData = dataNode.toString();
+            // remove square brackets and split the string by commas
+            String[] numbersArray = layersData.replaceAll("[\\[\\]]", "").split(",");
+            // parse each number string as an integer and add it to the list
+            for (String numStr : numbersArray) {
+                map.add(Integer.parseInt(numStr.trim()));
             }
-            // Convert the "data" array to a String
-            map = numbersStringBuilder.toString();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    int nivel = 0;
+    private void processMap(){
+        for (int i=0; i<mapHeight; i++){
+            for (int j=0; j<mapWidth; j++)
+            {
+                int kind = map.get(i*mapWidth+j);
+                Actor actor = null;
+                
+                
+                switch (kind){
+                    
+                    case 1 ->  {actor = new shiro(); }
+                    case 2 ->  {actor = new grass_corner_right();}
+                    case 3 ->  {actor = new grass_left();}
+                    case 4 ->  {actor = new outer_grass_corner_right();}
+                    case 5 ->  {actor = new enemy();}
+                    case 6 ->  {actor = new dirt();}
+                    case 7 ->  {actor = new grass_right();}
+                    case 8 ->  {actor = new grass();}
+                    case 9 ->  {actor = new stone();}
+                    case 10 -> {actor = new outer_grass_corner_left();}
+                    case 11 -> {actor = new grass_corner_left();}
+                    }
+                
+                if(actor!=null){
+                    if(actor instanceof entity){
+                        entity idk=(entity)actor;
+                        idk.x=16 + j * 32;
+                        idk.y=16 + i * 32;
+                        addObject(idk,16 + j * 32, 16 + i * 32);
+                    }//offset 16 pixels to counter the inferiority of the engine
+                    else{
+                        addObject(actor,16 + j * 32, 16 + i * 32);   
+                    }
+                }
+            }
 
-    public void nextLevel() {}
+        }
+    }
+    public void nextLevel(){}//both set individually by each lvl
     public void setMap(){}
 }

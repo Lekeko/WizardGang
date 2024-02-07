@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=collision
+comment1.params=
+comment1.target=void\ act()
+comment10.params=
+comment10.target=void\ moveOnX()
+comment2.params=
+comment2.target=boolean\ platformAbove()
+comment3.params=
+comment3.target=boolean\ checkRightWall()
+comment4.params=
+comment4.target=boolean\ checkLeftWall()
+comment5.params=
+comment5.target=boolean\ onGround()
+comment6.params=ground
+comment6.target=void\ stayOnGround(entity)
+comment7.params=Wall
+comment7.target=void\ stayOnLeftWall(entity)
+comment8.params=Wall
+comment8.target=void\ stayOnRightWall(entity)
+comment9.params=
+comment9.target=void\ fall()
+numComments=11

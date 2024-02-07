@@ -12,7 +12,47 @@
         "": {
             "scaleInDock": 1
         },
+        "Dirt.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Grass.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Grass_corner_Left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Grass_corner_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Outer_Left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Outer_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Stone.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Wall.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "arrow.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "betaGANGSTER.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -35,11 +75,11 @@
             "scaleInEditor": 1
         },
         "untitled.json": {
-            "scale": 0.75,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 622,
-                "y": 417.33333333333326
+                "x": 415.5,
+                "y": 74
             }
         },
         "untitled.xml": {
@@ -59,16 +99,29 @@
         "Wall.tsx",
         "untitled.json",
         "jhonnyIdle.tsx",
-        "crate.tsx"
+        "Dirt.tsx",
+        "Grass.tsx",
+        "Grass_corner_Left.tsx",
+        "Grass_corner_right.tsx",
+        "Outer_Left.tsx",
+        "Outer_right.tsx",
+        "Stone.tsx",
+        "arrow.tsx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
         "Wall.tsx",
-        "crate.tsx",
+        "arrow.tsx",
+        "Stone.tsx",
+        "Outer_right.tsx",
+        "Outer_Left.tsx",
+        "Grass_corner_right.tsx",
+        "Grass_corner_Left.tsx",
+        "Grass.tsx",
+        "Dirt.tsx",
         "jhonnyIdle.tsx",
         "untitled.json",
-        "idk.tsx",
-        "untitled.xml"
+        "betaGANGSTER.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

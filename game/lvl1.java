@@ -8,6 +8,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public class lvl1 extends level
 {
     public void setMap(){
-        jsonFile = new File("untitled.json");
+        jsonFile = new File("level1.json");
     }//25,25 map will fit 800 800
 }
