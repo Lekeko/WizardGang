@@ -48,9 +48,9 @@ public abstract class collision extends entity
     {
         int checkLeft=-halfWidthSprite+leftUpCorner.x;
         int checkRight=-halfWidthSprite+rightUpCorner.x;
-        entity ceiling1 = (entity)getOneObjectAtOffset(checkLeft,-halfHeightSprite+leftUpCorner.y-7, platform.class);
-        entity ceiling2 = (entity)getOneObjectAtOffset((checkLeft+checkRight)/2,-halfHeightSprite+leftUpCorner.y-7, platform.class);
-        entity ceiling3 = (entity)getOneObjectAtOffset(checkRight,-halfHeightSprite+rightUpCorner.y-7, platform.class);
+        entity ceiling1 = (entity)getOneObjectAtOffset(checkLeft,-halfHeightSprite+leftUpCorner.y-19, platform.class);
+        entity ceiling2 = (entity)getOneObjectAtOffset((checkLeft+checkRight)/2,-halfHeightSprite+leftUpCorner.y-19, platform.class);
+        entity ceiling3 = (entity)getOneObjectAtOffset(checkRight,-halfHeightSprite+rightUpCorner.y-19, platform.class);
         //why -7? idk. i have no idea what im doing
         if(ceiling1 == null && ceiling2 == null&&ceiling3 == null)
         {
