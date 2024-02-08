@@ -18,6 +18,7 @@ public abstract class collision extends entity
     public int groundHeight;
     public entity currenRightWall;
     public entity currenLeftWall;
+    boolean shouldFall = true;
     public void act()
     {
         platformAbove();
@@ -159,10 +160,12 @@ public abstract class collision extends entity
     }
     public void fall()//guess what this does
     {
-        y+= vSpeed;
-        if(vSpeed <=maxFallAcceleration)
-        {
-            vSpeed = vSpeed + acceleration;
+        if(shouldFall){
+            y+= vSpeed;
+            if(vSpeed <=maxFallAcceleration)
+            {
+                vSpeed = vSpeed + acceleration;
+            }
         }
     }
     public void moveOnX(){

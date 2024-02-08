@@ -9,7 +9,7 @@ public class shiro extends collision
     private Actor fart = new jumpParticles();
     public int speed = 9;
     //the coordinates of the colider with the 00 in the left up of the sprite
-    private boolean isLeft = false; //if the player is facing left
+    public static boolean isLeft = false; //if the player is facing left
     GreenfootImage[] imagini = {
         new GreenfootImage("jhonnyWalk1.png"),
         new GreenfootImage("jhonnyWalk2.png"),
@@ -36,6 +36,18 @@ public class shiro extends collision
     private int animateSpeed = 5;
     private int animatePos = 0;
     public static int shouldAnimate = 0;
+    
+    Actor[] bulletAmmo = {
+            new GunShowcase(),
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase()
+        };
+    
     public shiro(){
         leftUpCorner=new vector2(4,2);
         rightUpCorner=new vector2(28,2);
@@ -43,6 +55,9 @@ public class shiro extends collision
         rightDownCorner=new vector2(28,32);
         scaleShiro(3);
         image=getImage();
+        Actor bulletShowcase = new bulletShowcase();
+        
+        
         spriteHeight=getImage().getHeight();
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
@@ -50,6 +65,13 @@ public class shiro extends collision
             imaginiLeft[i].mirrorHorizontally();
         }
     }
+    int gunCooldown = 20;
+    int offsetBullet = 0;
+    int offsetGun = 0;
+    int ammo = 7;
+    int timerShowGun = -1;
+    boolean hasGun = true;
+    Actor gun = new Gun();
     public void act()
     {
         //move
@@ -68,6 +90,7 @@ public class shiro extends collision
             setImage("jhonnyIdle.png");
                 if(isLeft){
                     getImage().mirrorHorizontally();
+                    
                 }
                 scaleShiroForever(3);
             }
@@ -104,6 +127,8 @@ public class shiro extends collision
                 scaleShiroForever(3);
             }
         }
+        
+        
         if(animate < animateSpeed){
             animate++;
         }
@@ -142,19 +167,75 @@ public class shiro extends collision
             
             if(timer > 0){
                 setImage("jhonnyJum.png");
-                if(isLeft){
-                    getImage().mirrorHorizontally();
-                }
-                scaleShiroForever(3);
             }else{
                 setImage("jhonnyFall.png");
-                if(isLeft){
-                    getImage().mirrorHorizontally();
-                }
-                scaleShiroForever(3);
             }
+            if(isLeft){
+                    getImage().mirrorHorizontally();
+            }
+             scaleShiroForever(3);
             
         }
+        
+        gunCooldown--;
+        timerShowGun--;
+        
+        
+
+        try{
+            if(((shiro)this).isLeft){
+                gun.setLocation(329, this.getY());
+                gun.setImage("gunL.png");
+            }else{
+                gun.setLocation(474, this.getY());
+                gun.setImage("gun.png");
+            }
+            if(timerShowGun > 0){
+                gun.getImage().setTransparency(255);
+            }
+            if(Greenfoot.isKeyDown("space") && hasGun){
+                if (gunCooldown < 0 && ammo > 0){
+                    ammo--;
+                    for(int i  = 7; i >= ammo + 1; i--){
+                        bulletAmmo[i].getImage().setTransparency(0);
+                    }
+                    gun.getImage().setTransparency(255);
+                    gunCooldown = 20;
+                    timerShowGun = 20;
+                    Actor bullet;
+                    if(((shiro)this).isLeft){
+                        bullet = new bulletL();
+                        offsetBullet =  - 60;
+                    }else{
+                        bullet = new bullet();
+                        offsetBullet =   60;
+                        
+                    }
+                    entity glont = (entity)bullet;
+                    glont.x = getX();
+                    glont.y = getY();
+                    getWorld().addObject(glont, getX() + offsetBullet, getY());
+                }
+                if (ammo == 0 && gunCooldown < 0){
+                    gunCooldown = 600;
+                    hasGun = false;
+                    Actor thrownGun;
+                    if(((shiro)this).isLeft){
+                        thrownGun = new thrownGunLeft();
+                        offsetBullet =  - 60;
+                    }else{
+                        thrownGun = new thrownGun();
+                        offsetBullet =   60;
+                        
+                    }
+                    getWorld().addObject(thrownGun, this.getX() + offsetBullet, this.getY());
+                    bulletAmmo[0].getImage().setTransparency(0);
+                    ammo = 7;
+                }
+        }else{
+            if(timerShowGun < 0)gun.getImage().setTransparency(0);
+        }
+        }catch(Exception e){}
         super.act();
     }
     

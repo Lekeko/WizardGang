@@ -22,6 +22,17 @@ public abstract class level extends World
     private shiro player = null;
     public File jsonFile;
     int curentLevel = 2;
+    Actor gun = new Gun();
+    Actor[] bulletAmmo = {
+            new GunShowcase(),
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase(), 
+            new bulletShowcase()
+        };
     public level()
     {
         super(800, 800, 1);
@@ -32,12 +43,23 @@ public abstract class level extends World
         moveCamera(0);
 
         addObject(border,halfWidth,halfHeight);
-    }
-    public void act(){
         
+        
+    
+        for (int i = 0; i < 8; i++){
+            if(i == 0){
+                addObject(bulletAmmo[i], 25 + ((i + 1) * 50), 80);
+            }else
+            addObject(bulletAmmo[i], 35 + ((i + 1) * 50), 80);
+            
+        };
+    }
+    
+    public void act(){
         setPaintOrder(border.class,shiro.class);
         
         player = (shiro) getObjects(shiro.class).get(0);
+        
         cameraLocation.x=player.getX();
         if (cameraLocation.x>halfWidth){
             moveCamera(1);
