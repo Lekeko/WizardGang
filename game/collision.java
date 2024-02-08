@@ -9,12 +9,13 @@ public abstract class collision extends entity
     public int halfWidthSprite;
     public int halfHeightSprite;
     public int vSpeed=9;
-    public int hSpeed=9;
+    public int hSpeed=0;
     public int spriteHeight;
     public GreenfootImage image;
     private int maxFallAcceleration=19;
     private int acceleration = 1;
     public entity currentGround;
+    public int groundHeight;
     public entity currenRightWall;
     public entity currenLeftWall;
     public void act()
@@ -26,6 +27,11 @@ public abstract class collision extends entity
         }
         else{
             fall();
+            super.act();
+            if (onGround()&&vSpeed>=0){
+                vSpeed = 0;
+                stayOnGround(currentGround);
+            }
         }
         if(checkRightWall()&&hSpeed>0){
             hSpeed=0;
@@ -42,9 +48,10 @@ public abstract class collision extends entity
     {
         int checkLeft=-halfWidthSprite+leftUpCorner.x;
         int checkRight=-halfWidthSprite+rightUpCorner.x;
-        entity ceiling1 = (entity)getOneObjectAtOffset(checkLeft,-halfHeightSprite+leftUpCorner.y-8, platform.class);
-        entity ceiling2 = (entity)getOneObjectAtOffset((checkLeft+checkRight)/2,-halfHeightSprite+leftUpCorner.y-8, platform.class);
-        entity ceiling3 = (entity)getOneObjectAtOffset(checkRight,-halfHeightSprite+rightUpCorner.y-8, platform.class);
+        entity ceiling1 = (entity)getOneObjectAtOffset(checkLeft,-halfHeightSprite+leftUpCorner.y-7, platform.class);
+        entity ceiling2 = (entity)getOneObjectAtOffset((checkLeft+checkRight)/2,-halfHeightSprite+leftUpCorner.y-7, platform.class);
+        entity ceiling3 = (entity)getOneObjectAtOffset(checkRight,-halfHeightSprite+rightUpCorner.y-7, platform.class);
+        //why -7? idk. i have no idea what im doing
         if(ceiling1 == null && ceiling2 == null&&ceiling3 == null)
         {
             return false;
@@ -137,13 +144,13 @@ public abstract class collision extends entity
     }
     public void stayOnGround(entity ground)//this happens while the player moves on the ground (also helps to not go through walls)
     {
-        int groundHeight = ground.getImage().getHeight();
+        groundHeight = ground.getImage().getHeight();
         y = ground.getY() - (groundHeight + getImage().getHeight())/2;
     }
     public void stayOnLeftWall(entity Wall)//does the same thing as the one above but for walls
     {
         int wallHalfWidth = Wall.getImage().getWidth()/2;
-        x =Wall.x+wallHalfWidth+halfWidthSprite-leftDownCorner.x;
+        x =Wall.x+wallHalfWidth+halfWidthSprite;
     }
     public void stayOnRightWall(entity Wall)//does the same thing as the one above but for other walls
     {

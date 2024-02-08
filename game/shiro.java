@@ -38,9 +38,9 @@ public class shiro extends collision
     public static int shouldAnimate = 0;
     public shiro(){
         leftUpCorner=new vector2(4,2);
-        rightUpCorner=new vector2(29,2);
+        rightUpCorner=new vector2(28,2);
         leftDownCorner=new vector2(4,32);
-        rightDownCorner=new vector2(29,32);
+        rightDownCorner=new vector2(28,32);
         scaleShiro(3);
         image=getImage();
         spriteHeight=getImage().getHeight();
@@ -60,7 +60,6 @@ public class shiro extends collision
                animate();
                 
                 if(isLeft){
-                    
                     isLeft = false;
                }
             }
@@ -179,7 +178,7 @@ public class shiro extends collision
         entity idk=(entity)fart;
         idk.x=getX();
         idk.y=getY();
-        getWorld().addObject(idk, this.getX(), this.getY()  );
+        getWorld().addObject(idk, this.getX(),this.getY());
         timer = 20;
         onGround=false;
         vSpeed =-jumpStrength;
@@ -214,8 +213,8 @@ public class shiro extends collision
         
     }
     public void flipCollider(){
-        int leftDistance = image.getWidth() - rightUpCorner.x;
-        int rightDistance = image.getWidth() - leftUpCorner.x;
+        int leftDistance = getImage().getWidth() - rightUpCorner.x;
+        int rightDistance = getImage().getWidth() - leftUpCorner.x;
         leftUpCorner=new vector2(leftDistance,2);
         rightUpCorner=new vector2(rightDistance,2);
         leftDownCorner=new vector2(leftDistance,32);

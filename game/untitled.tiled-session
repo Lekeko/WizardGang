@@ -60,6 +60,15 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "enemy1.tsx": {
+            "dynamicWrapping": false
+        },
+        "grass_left.tsx": {
+            "scaleInDock": 1
+        },
+        "grass_right.tsx": {
+            "scaleInDock": 1
+        },
         "idk.tsx": {
             "dynamicWrapping": true,
             "scaleInDock": 1,
@@ -74,12 +83,20 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "level1.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -1014,
+                "y": -460
+            }
+        },
         "untitled.json": {
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 415.5,
-                "y": 74
+                "x": 673.5,
+                "y": 860
             }
         },
         "untitled.xml": {
@@ -110,6 +127,8 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "level1.json",
+        "untitled.json",
         "Wall.tsx",
         "arrow.tsx",
         "Stone.tsx",
@@ -119,9 +138,7 @@
         "Grass_corner_Left.tsx",
         "Grass.tsx",
         "Dirt.tsx",
-        "jhonnyIdle.tsx",
-        "untitled.json",
-        "betaGANGSTER.tsx"
+        "jhonnyIdle.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
