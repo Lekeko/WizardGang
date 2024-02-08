@@ -21,6 +21,7 @@ public abstract class level extends World
     private int mapWidth;
     private shiro player = null;
     public File jsonFile;
+    int curentLevel = 2;
     public level()
     {
         super(800, 800, 1);
@@ -121,7 +122,23 @@ public abstract class level extends World
                     case 9 ->  {actor = new stone();}
                     case 10 -> {actor = new outer_grass_corner_left();}
                     case 11 -> {actor = new grass_corner_left();}
+                    case 12 ->  {actor = new brick_corner_left(); }
+                    case 13 ->  {actor = new enemy2(); }
+                    case 14 ->  {actor = new brick_down(); }
+                    case 15 ->  {actor = new brick(); }
+                    case 16 ->  {actor = new brick_side_right(); }
+                    case 17 ->  {actor = new brick_corner_right(); }
+                    case 18 ->  {actor = new brick_ground(); }
+                    case 19 ->  {actor = new brick_out_Dright(); }
+                    case 21 ->  {actor = new brick_corner_Dright(); }
+                    case 20 ->  {actor = new brick_corner_Dleft(); }
+                    case 22 ->  {actor = new brick_out_right(); }
+                    case 23 ->  {actor = new brick_out_left(); }
+                    case 24 ->  {actor = new brick_side_left(); }
+                    case 25 ->  {actor = new brick_out_Dleft(); }
+                    
                     }
+                
                 
                 if(actor!=null){
                     if(actor instanceof entity){
