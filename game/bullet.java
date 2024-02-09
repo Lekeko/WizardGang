@@ -31,13 +31,9 @@ public class bullet extends collision
         super.act();
         if(this.isTouching(platform.class)){
             entity boom = new Boom();
-            entity idk=(entity)boom;
-            idk.x=getX();
-            idk.y=getY();
-            getWorld().addObject(idk, this.getX(),this.getY());
+            boom.location(x,y);
+            getWorld().addObject(boom, this.getX(),this.getY());
             getWorld().removeObject(this);
-            
-            
         }
         
     }

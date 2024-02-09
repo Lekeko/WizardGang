@@ -12,12 +12,23 @@ public class Gun extends entity
     }
     public void shoot(){
         bullet glont=new bullet();
-        glont.location(x, y);
+        glont.location(x+offsetBullet*direction, y+offsetY);
         if(direction>0){
             getWorld().addObject(glont, x + offsetBullet*direction, offsetY);
         }
         else{
             getWorld().addObject(glont, x + offsetBullet*direction, offsetY);
+            glont.flip();
+        }
+    }
+    public void throww(){
+        thrownGun glont=new thrownGun();
+        glont.location(x, y);
+        if(direction>0){
+            getWorld().addObject(glont, x, y);
+        }
+        else{
+            getWorld().addObject(glont, x, y);
             glont.flip();
         }
     }

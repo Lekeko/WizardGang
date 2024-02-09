@@ -14,4 +14,12 @@ public abstract class entity extends vector2
     {
         setLocation(this.x, this.y);
     }
+    public GreenfootImage scaleSprite(GreenfootImage image, int scalar){
+        int newWidth = image.getWidth() * scalar;
+        int newHeight = image.getHeight() * scalar;
+        GreenfootImage scaledImage = new GreenfootImage(image);
+        scaledImage.scale(newWidth, newHeight);
+        return scaledImage;
+        
+    }
 }

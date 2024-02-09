@@ -108,16 +108,7 @@ public class shiro extends collision
                 if (ammo == 0 && gunCooldown < 0){
                     gunCooldown = 600;
                     hasGun = false;
-                    entity thrownGun;
-                    if(isLeft){
-                        thrownGun = new thrownGunLeft();
-                        offsetBullet =  - 77;
-                    }else{
-                        thrownGun = new thrownGun();
-                        offsetBullet =   77;
-                        
-                    }
-                    getWorld().addObject(thrownGun, x + offsetBullet, y);
+                    gun.throww();
                     lvl.bulletAmmo[0].getImage().setTransparency(0);
                     ammo = 7;
                 }
@@ -144,7 +135,7 @@ public class shiro extends collision
         else if(vSpeed>0){
             setImage("jhonnyFall.png");
         }
-        scaleSprite(3);
+        setImage(scaleSprite(getImage(),3));
         if(isLeft){
             getImage().mirrorHorizontally();   
         }
@@ -175,13 +166,7 @@ public class shiro extends collision
     }
     
     public void scaleShiro(int scalar){
-        //scalse sprite
-        GreenfootImage originalImage = getImage();
-        int newWidth = originalImage.getWidth() * scalar;
-        int newHeight = originalImage.getHeight() * scalar;
-        GreenfootImage scaledImage = new GreenfootImage(originalImage);
-        scaledImage.scale(newWidth, newHeight);
-        setImage(scaledImage);
+        setImage(scaleSprite(getImage(),3));
         //scale collider
         leftUpCorner=leftUpCorner.multiply(scalar);
         rightUpCorner=rightUpCorner.multiply(scalar);
@@ -189,17 +174,6 @@ public class shiro extends collision
         leftDownCorner.x+=(scalar-1);
         rightDownCorner=rightDownCorner.multiply(scalar);
         rightDownCorner.x+=(scalar-1);
-    }
-    
-    public void scaleSprite(int scalar){
-        //scalse only the sprite
-        GreenfootImage originalImage = getImage();
-        int newWidth = originalImage.getWidth() * scalar;
-        int newHeight = originalImage.getHeight() * scalar;
-        GreenfootImage scaledImage = new GreenfootImage(originalImage);
-        scaledImage.scale(newWidth, newHeight);
-        setImage(scaledImage);
-        
     }
     /*public void flipCollider(){//creazy IT DOSENT WORK WTF SHADOW WIZZARD MONEy GANG
         int leftDistance = getImage().getWidth() - rightUpCorner.x;

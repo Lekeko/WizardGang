@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=void\ flip()
 comment3.params=
 comment3.target=void\ shoot()
-numComments=4
+comment4.params=
+comment4.target=void\ throww()
+numComments=5

@@ -6,4 +6,6 @@ comment2.params=x\ y
 comment2.target=entity(int,\ int)
 comment3.params=
 comment3.target=void\ act()
-numComments=4
+comment4.params=image\ scalar
+comment4.target=greenfoot.GreenfootImage\ scaleSprite(greenfoot.GreenfootImage,\ int)
+numComments=5
