@@ -14,10 +14,10 @@ public class bullet extends collision
      */
     
     public bullet(){
-        leftUpCorner=new vector2(0,0);
-        rightUpCorner=new vector2(0,0);
-        leftDownCorner=new vector2(0,0);
-        rightDownCorner=new vector2(0,0);
+        leftUpCorner=new vector2(16,16);
+        rightUpCorner=new vector2(16,16);
+        leftDownCorner=new vector2(16,16);
+        rightDownCorner=new vector2(16,16);
         image=getImage();
         spriteHeight=getImage().getHeight();
         halfWidthSprite=getImage().getWidth()/2;
@@ -28,7 +28,7 @@ public class bullet extends collision
     public void act()
     {
         // Add your action code here.
-        hSpeed = 40;
+        hSpeed = 25;
         
         super.act();
         if(this.isTouching(platform.class)){

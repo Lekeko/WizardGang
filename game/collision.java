@@ -36,11 +36,11 @@ public abstract class collision extends entity
         }
         if(checkRightWall()&&hSpeed>0){
             hSpeed=0;
-            stayOnRightWall(currenRightWall);
+            //stayOnRightWall(currenRightWall);
         }
         if(checkLeftWall()&&hSpeed<0){
             hSpeed=0;
-            stayOnLeftWall(currenLeftWall);
+            //stayOnLeftWall(currenLeftWall);
         }
         moveOnX();
         super.act();

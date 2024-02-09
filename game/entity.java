@@ -2,6 +2,7 @@ import greenfoot.*;
 
 public abstract class entity extends vector2
 {
+    public boolean isOnScreen;
     public entity(){
 
     }

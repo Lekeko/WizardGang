@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=scalar
 comment3.target=void\ scaleShiro(int)
-numComments=4
+comment4.params=
+comment4.target=void\ goombaWalk()
+numComments=5

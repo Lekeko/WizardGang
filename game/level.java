@@ -21,8 +21,7 @@ public abstract class level extends World
     private int mapWidth;
     private shiro player = null;
     public File jsonFile;
-    int curentLevel = 2;
-    Actor gun = new Gun();
+    int curentLevel = 1;
     Actor[] bulletAmmo = {
             new GunShowcase(),
             new bulletShowcase(), 
@@ -41,11 +40,7 @@ public abstract class level extends World
         setFields();//read the map specifics and structure
         processMap();//saving the default location of all objects and tiles and instantiating them
         moveCamera(0);
-
-        addObject(border,halfWidth,halfHeight);
         
-        
-    
         for (int i = 0; i < 8; i++){
             if(i == 0){
                 addObject(bulletAmmo[i], 25 + ((i + 1) * 50), 80);
@@ -53,10 +48,12 @@ public abstract class level extends World
             addObject(bulletAmmo[i], 35 + ((i + 1) * 50), 80);
             
         };
+
+        addObject(border,halfWidth,halfHeight);
     }
     
     public void act(){
-        setPaintOrder(border.class,shiro.class);
+        setPaintOrder(bulletShowcase.class,GunShowcase.class,border.class,Gun.class,shiro.class,Boom.class,platform.class);
         
         player = (shiro) getObjects(shiro.class).get(0);
         
@@ -92,6 +89,12 @@ public abstract class level extends World
 
         for (entity actor : allObjects) {
             actor.x+=offset;
+            if(locationOnScreen(new vector2(actor.x,actor.y))){
+                actor.isOnScreen=true;
+            }
+            else{
+                actor.isOnScreen=false;
+            }
         }
     }
 

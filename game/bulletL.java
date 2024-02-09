@@ -1,26 +1,48 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class bulletL here.
+ * Write a description of class bullet here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class bulletL extends entity
+public class bulletL extends collision
 {
     /**
-     * Act - do whatever the bulletL wants to do. This method is called whenever
+     * Act - do whatever the bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    public bulletL(){
+        leftUpCorner=new vector2(16,16);
+        rightUpCorner=new vector2(16,16);
+        leftDownCorner=new vector2(16,16);
+        rightDownCorner=new vector2(16,16);
+        image=getImage();
+        spriteHeight=getImage().getHeight();
+        halfWidthSprite=getImage().getWidth()/2;
+        halfHeightSprite=getImage().getHeight()/2;
+        shouldFall = false;
+    }
+    
     public void act()
     {
         // Add your action code here.
-        move(-40);
-        if(this.isTouching(platform.class)){
+        hSpeed = -25;
         
-            Actor boom = new Boom();
-            getWorld().addObject(boom, this.getX(), this.getY());
+        super.act();
+        if(this.isTouching(platform.class)){
+            entity boom = new Boom();
+            entity idk=(entity)boom;
+            idk.x=getX();
+            idk.y=getY();
+            getWorld().addObject(idk, this.getX(),this.getY());
             getWorld().removeObject(this);
+            
+            
         }
+        
     }
+    
+    
 }
