@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 public abstract class level extends World
-{
+{//:)
     private int offset=0;
     private int cameraSpeed=9;
     private int halfWidth=getWidth()/2;
