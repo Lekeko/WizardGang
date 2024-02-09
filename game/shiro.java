@@ -32,6 +32,8 @@ public class shiro extends collision
     boolean hasGun = true;
     Gun gun = new Gun();
     level lvl;
+    
+    int reloadTimer = 70;
     public shiro(){
         
         leftUpCorner=new vector2(4,2);
@@ -56,6 +58,14 @@ public class shiro extends collision
     public void act()
     {
         //move
+        if(!hasGun){
+            reloadTimer--;
+        }
+        
+        if(reloadTimer < 0){
+            reloadGun();
+        }
+        
         if(Greenfoot.isKeyDown("right"))
         {//press right and push shiro right
             hSpeed=speed;
@@ -106,11 +116,11 @@ public class shiro extends collision
                     gun.shoot();
                 }
                 if (ammo == 0 && gunCooldown < 0){
-                    gunCooldown = 600;
+                    gunCooldown = 70;
                     hasGun = false;
                     gun.throww();
                     lvl.bulletAmmo[0].getImage().setTransparency(0);
-                    ammo = 7;
+                    ;
                 }
             }else{
                 if(timerShowGun < 0)gun.getImage().setTransparency(0);
@@ -183,4 +193,13 @@ public class shiro extends collision
         leftDownCorner=new vector2(leftDistance,32);
         rightDownCorner=new vector2(rightDistance,32);
     }*/
+    
+    public void reloadGun(){
+        for(int i  = 7; i >= 0; i--){
+            lvl.bulletAmmo[i].getImage().setTransparency(255);
+        }
+        reloadTimer = 70;
+        ammo = 7;
+        hasGun = true;
+    }
 }

@@ -28,14 +28,20 @@ public class bullet extends collision
     
     public void act()
     {        
+        try{
         super.act();
         if(this.isTouching(platform.class)){
             entity boom = new Boom();
             boom.location(x,y);
             getWorld().addObject(boom, this.getX(),this.getY());
             getWorld().removeObject(this);
+            Boom.shouldAnimate = true;
         }
-        
+        Actor otherObject = getOneIntersectingObject(enemy.class);
+        if(otherObject != null&& otherObject.getX() < 799 && otherObject.getX() > 2){
+            this.getWorld().removeObject(otherObject);
+        }
+        }catch (Exception e){}
     }
     public void flip(){
         getImage().mirrorHorizontally();

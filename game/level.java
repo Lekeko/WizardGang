@@ -43,7 +43,7 @@ public abstract class level extends World
         
         for (int i = 0; i < 8; i++){
             if(i == 0){
-                addObject(bulletAmmo[i], 25 + ((i + 1) * 50), 80);
+                addObject(bulletAmmo[i], 35 + ((i + 1) * 50), 80);
             }else
             addObject(bulletAmmo[i], 35 + ((i + 1) * 50), 80);
             
@@ -161,6 +161,7 @@ public abstract class level extends World
                     case 23 ->  {actor = new brick_out_left(); }
                     case 24 ->  {actor = new brick_side_left(); }
                     case 25 ->  {actor = new brick_out_Dleft(); }
+                    
                     
                     }
                 

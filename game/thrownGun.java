@@ -6,10 +6,12 @@ public class thrownGun extends bullet
     }
     public void act()
     {
-        getImage().rotate(30);
-        if(this.isTouching(platform.class)){
-            getWorld().removeObject(this);
-        }
-        super.act();
+        try{
+            getImage().rotate(30);
+            if(this.isTouching(platform.class)){
+                getWorld().removeObject(this);  
+            }
+            super.act();
+        }catch(Exception e){}
     }
 }

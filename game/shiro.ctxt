@@ -14,4 +14,7 @@ comment6.params=
 comment6.target=void\ jump()
 comment7.params=scalar
 comment7.target=void\ scaleShiro(int)
-numComments=8
+comment8.params=
+comment8.target=void\ reloadGun()
+comment8.text=public\ void\ flipCollider(){//creazy\ IT\ DOSENT\ WORK\ WTF\ SHADOW\ WIZZARD\ MONEy\ GANG\r\n\ \ \ \ \ \ \ \ int\ leftDistance\ \=\ getImage().getWidth()\ -\ rightUpCorner.x;\r\n\ \ \ \ \ \ \ \ int\ rightDistance\ \=\ getImage().getWidth()\ -\ leftUpCorner.x;\r\n\ \ \ \ \ \ \ \ leftUpCorner\=new\ vector2(leftDistance,2);\r\n\ \ \ \ \ \ \ \ rightUpCorner\=new\ vector2(rightDistance,2);\r\n\ \ \ \ \ \ \ \ leftDownCorner\=new\ vector2(leftDistance,32);\r\n\ \ \ \ \ \ \ \ rightDownCorner\=new\ vector2(rightDistance,32);\r\n}
+numComments=9

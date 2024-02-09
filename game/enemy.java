@@ -2,6 +2,8 @@ import greenfoot.*;
 import java.util.Random;
 public class enemy extends collision
 {
+    boolean isMoving = false;
+    int movingCooldown = 0;
     public enemy(){
         leftUpCorner=new vector2(0,0);
         rightUpCorner=new vector2(32,0);
@@ -27,9 +29,30 @@ public class enemy extends collision
         if (!isOnScreen){
             hSpeed=0;
         }
+        if(x < 798 && x > 2 && !isMoving){
+            wonderAround();
+        }
+        
+        if(movingCooldown <= 0){
+            isMoving = false;
+        }
+        movingCooldown--;
         //jumpOverWall();
         super.act();
     }
+    
+    
+    
+    public void wonderAround(){
+        Random random= new Random();
+        int option = random.nextInt(3) + 1 - 2;
+        int distance = random.nextInt(40) + 1;
+        hSpeed = option * 10 ;
+        isMoving = true;
+        movingCooldown = distance * 2;
+    }
+    
+    
     public void scaleShiro(int scalar){
         //scalse sprite
         GreenfootImage originalImage = getImage();
