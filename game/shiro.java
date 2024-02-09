@@ -5,20 +5,9 @@ public class shiro extends collision
     private int animationCounter = 0;
     private int frame = 1;
     private int timer = 0;
-    private Actor fart = new jumpParticles();
     public int speed = 9;
     //the coordinates of the colider with the 00 in the left up of the sprite
     public static boolean isLeft = false; //if the player is facing left
-    GreenfootImage[] imagini = {
-        new GreenfootImage("jhonnyWalk1.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk1.png"),
-        new GreenfootImage("jhonnyWalk1.png"),
-        new GreenfootImage("jhonnyWalk1.png"),
-    };
     
     private int timeSinceLastFrame = 0;
     private int animateSpeed = 2;
@@ -50,6 +39,28 @@ public class shiro extends collision
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
         
+        animate=true;
+        imagini = new GreenfootImage[][]{ 
+            {
+                new GreenfootImage("jhonnyWalk1.png"),
+                new GreenfootImage("jhonnyWalk2.png"),
+                new GreenfootImage("jhonnyWalk2.png"),
+                new GreenfootImage("jhonnyWalk2.png"),
+                new GreenfootImage("jhonnyWalk2.png"),
+                new GreenfootImage("jhonnyWalk1.png"),
+                new GreenfootImage("jhonnyWalk1.png"),
+                new GreenfootImage("jhonnyWalk1.png"),
+            },
+            {
+                new GreenfootImage("jhonnyIdle.png"),
+            },
+            {
+                new GreenfootImage("jhonnyJum.png"),
+            },
+            {
+                new GreenfootImage("jhonnyFall.png"),
+            },
+        };
     }
     public void addedToWorld(World world) {
         lvl=((level)getWorld());
@@ -69,7 +80,6 @@ public class shiro extends collision
         if(Greenfoot.isKeyDown("right"))
         {//press right and push shiro right
             hSpeed=speed;
-            processFrame();
             if(isLeft){
                 gun.flip();
                 isLeft = false;
@@ -78,7 +88,6 @@ public class shiro extends collision
         else if(Greenfoot.isKeyDown("left"))
         {//press left and push shiro left
             hSpeed=-speed;
-            processFrame();
             if(!isLeft){
                 gun.flip();
                 isLeft = true;
@@ -88,7 +97,7 @@ public class shiro extends collision
         {//press nothing and do nothing
             hSpeed=0;
         }
-        if(Greenfoot.isKeyDown("up") &&onGround())
+        if(Greenfoot.isKeyDown("up") &&onGround()&&vSpeed>=0)
         {//press up and push shiro up
             jump();
         }  
@@ -98,77 +107,59 @@ public class shiro extends collision
         
         gunCooldown--;
         timerShowGun--;
-        
-        try{
-            gun.location(x,y);
-            if(timerShowGun > 0){
+        gun.location(x,y);
+        if(timerShowGun > 0){
+            gun.getImage().setTransparency(255);
+        }
+        if(Greenfoot.isKeyDown("z") && hasGun){
+            if (gunCooldown < 0 && ammo > 0){
+                ammo--;
+                for(int i  = 7; i >= ammo + 1; i--){
+                    lvl.bulletAmmo[i].getImage().setTransparency(0);
+                }
                 gun.getImage().setTransparency(255);
+                gunCooldown = 20;
+                timerShowGun = 20;
+                gun.shoot();
             }
-            if(Greenfoot.isKeyDown("z") && hasGun){
-                if (gunCooldown < 0 && ammo > 0){
-                    ammo--;
-                    for(int i  = 7; i >= ammo + 1; i--){
-                        lvl.bulletAmmo[i].getImage().setTransparency(0);
-                    }
-                    gun.getImage().setTransparency(255);
-                    gunCooldown = 20;
-                    timerShowGun = 20;
-                    gun.shoot();
-                }
-                if (ammo == 0 && gunCooldown < 0){
-                    gunCooldown = 70;
-                    hasGun = false;
-                    gun.throww();
-                    lvl.bulletAmmo[0].getImage().setTransparency(0);
-                    ;
-                }
-            }else{
-                if(timerShowGun < 0)gun.getImage().setTransparency(0);
+            if (ammo == 0 && gunCooldown < 0){
+                gunCooldown = 70;
+                hasGun = false;
+                gun.throww();
+                lvl.bulletAmmo[0].getImage().setTransparency(0);
+                ;
             }
-        }catch(Exception e){}
+        }else{
+            if(timerShowGun < 0)gun.getImage().setTransparency(0);
+        }
         super.act();
     }
     
     public void animate(){
-        if(hSpeed>0){
-            setImage(imagini[currentFrame]);
-        }
-        else if(hSpeed<0){
-            setImage(imagini[currentFrame]);
-        }
-        else{
-            setImage("jhonnyIdle.png");
-        }
         if(vSpeed<0){
-            setImage("jhonnyJum.png");
+            changeAnimation(2);//jump
         }
         else if(vSpeed>0){
-            setImage("jhonnyFall.png");
+            changeAnimation(3);//fall
         }
-        setImage(scaleSprite(getImage(),3));
+        else{
+            if(hSpeed!=0){
+                changeAnimation(0);//walk
+            }
+            else{
+                changeAnimation(1);//idle
+            }   
+        }
         if(isLeft){
-            getImage().mirrorHorizontally();   
+            direction=-1;
         }
-    }
-    public void processFrame(){
-        if(timeSinceLastFrame < animateSpeed){
-            timeSinceLastFrame++;
-        }
-        else
-        {
-            timeSinceLastFrame = 0;
-            if(currentFrame < imagini.length-1){
-                currentFrame++;
-            }
-            else
-            {
-                currentFrame = 0;
-            }
+        else{
+            direction=1;
         }
     }
     public void jump()
     {
-        entity idk=(entity)fart;
+        jumpParticles idk=new jumpParticles();
         idk.location(x,y);
         getWorld().addObject(idk, this.getX(),this.getY());
         timer = 20;

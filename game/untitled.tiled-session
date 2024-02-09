@@ -84,19 +84,19 @@
             "scaleInEditor": 1
         },
         "level1.json": {
-            "scale": 0.25,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -1014,
-                "y": -460
+                "x": 4239.5,
+                "y": 688
             }
         },
         "untitled.json": {
             "scale": 0.5,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 497,
-                "y": -482
+                "x": 491,
+                "y": -166
             }
         },
         "untitled.xml": {

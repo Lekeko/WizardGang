@@ -16,13 +16,13 @@ public abstract class level extends World
     private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
     private vector2[][] tileCoordinates;
     private Actor border = new border();
-    List<Integer> map = new ArrayList<>();
+    private List<List<Integer>> map = new ArrayList<>();
     private int mapHeight;
     private int mapWidth;
     private shiro player = null;
     public File jsonFile;
-    int curentLevel = 1;
-    Actor[] bulletAmmo = {
+    private int curentLevel = 1;
+    public Actor[] bulletAmmo = {
             new GunShowcase(),
             new bulletShowcase(), 
             new bulletShowcase(), 
@@ -53,7 +53,7 @@ public abstract class level extends World
     }
     
     public void act(){
-        setPaintOrder(bulletShowcase.class,GunShowcase.class,border.class,Gun.class,shiro.class,Boom.class,platform.class);
+        setPaintOrder(bulletShowcase.class,GunShowcase.class,border.class,Gun.class,shiro.class,Boom.class,jumpParticles.class,collision.class,platform.class,backgroundTiles.class);
         
         player = (shiro) getObjects(shiro.class).get(0);
         
@@ -111,15 +111,19 @@ public abstract class level extends World
             mapHeight = jsonNode.get("height").asInt();
             // extract the "layers" array from the root JSON object
             JsonNode layersNode = jsonNode.get("layers");
-            // get the "data" array from the first layer in the "layers" array
-            JsonNode dataNode = layersNode.get(0).get("data");
-            // convert the "data" array to a String
-            String layersData = dataNode.toString();
-            // remove square brackets and split the string by commas
-            String[] numbersArray = layersData.replaceAll("[\\[\\]]", "").split(",");
-            // parse each number string as an integer and add it to the list
-            for (String numStr : numbersArray) {
-                map.add(Integer.parseInt(numStr.trim()));
+            for(int i=0;i<layersNode.size();i++){
+                // get the "data" array from the first layer in the "layers" array
+                JsonNode dataNode = layersNode.get(i).get("data");
+                // convert the "data" array to a String
+                String layersData = dataNode.toString();
+                // remove square brackets and split the string by commas
+                String[] numbersArray = layersData.replaceAll("[\\[\\]]", "").split(",");
+                // parse each number string as an integer and add it to the list
+                List<Integer> layer = new ArrayList<>();
+                for (String numStr : numbersArray) {
+                    layer.add(Integer.parseInt(numStr.trim()));
+                }
+                map.add(layer);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,58 +131,59 @@ public abstract class level extends World
     }
     int nivel = 0;
     private void processMap(){
-        for (int i=0; i<mapHeight; i++){
-            for (int j=0; j<mapWidth; j++)
-            {
-                int kind = map.get(i*mapWidth+j);
-                Actor actor = null;
-                
-                
-                switch (kind){
-                    
+        for (List<Integer> innerList : map){
+            System.out.print(" "+map.size()+" ");
+            for (int i=0; i<mapHeight; i++){
+                for (int j=0; j<mapWidth; j++)
+                {
+                    int kind = innerList.get(i*mapWidth+j);
+                    Actor actor = null;
+                    switch (kind){ 
                     case 1 ->  {actor = new shiro(); }
-                    case 2 ->  {actor = new grass_corner_right();}
-                    case 3 ->  {actor = new grass_left();}
-                    case 4 ->  {actor = new outer_grass_corner_right();}
-                    case 5 ->  {actor = new enemy();}
-                    case 6 ->  {actor = new dirt();}
-                    case 7 ->  {actor = new grass_right();}
-                    case 8 ->  {actor = new grass();}
-                    case 9 ->  {actor = new stone();}
-                    case 10 -> {actor = new outer_grass_corner_left();}
-                    case 11 -> {actor = new grass_corner_left();}
-                    case 12 ->  {actor = new brick_corner_left(); }
-                    case 13 ->  {actor = new enemy2(); }
-                    case 14 ->  {actor = new brick_down(); }
-                    case 15 ->  {actor = new brick(); }
-                    case 16 ->  {actor = new brick_side_right(); }
-                    case 17 ->  {actor = new brick_corner_right(); }
-                    case 18 ->  {actor = new brick_ground(); }
-                    case 19 ->  {actor = new brick_out_Dright(); }
-                    case 21 ->  {actor = new brick_corner_Dright(); }
-                    case 20 ->  {actor = new brick_corner_Dleft(); }
-                    case 22 ->  {actor = new brick_out_right(); }
-                    case 23 ->  {actor = new brick_out_left(); }
-                    case 24 ->  {actor = new brick_side_left(); }
-                    case 25 ->  {actor = new brick_out_Dleft(); }
-                    
-                    
+                    case 2 ->  {actor = new grass_corner_right(); }
+                    case 3 ->  {actor = new grass_left(); }
+                    case 4 ->  {actor = new outer_grass_corner_right(); }
+                    case 5 ->  {actor = new enemy(); }
+                    case 6 ->  {actor = new dirt(); }
+                    case 7 ->  {actor = new grass_right(); }
+                    case 8 ->  {actor = new grass(); }
+                    case 9 ->  {actor = new stone(); }
+                    case 10 ->  {actor = new outer_grass_corner_left(); }
+                    case 11 ->  {actor = new grass_corner_left(); }
+                    //case 12 ->  {actor = new arrow(); }
+                    case 13 ->  {actor = new shiro(); }
+                    case 14 ->  {actor = new shiro(); }
+                    case 15 ->  {actor = new shiro(); }
+                    case 16 ->  {actor = new log(); }
+                    case 17 ->  {actor = new plank(); }
+                    case 18 ->  {actor = new all_wood(); }
+                    case 19 ->  {actor = new plank_back(); }
+                    case 20 ->  {actor = new log_back(); }
+                    case 21 ->  {actor = new log2(); }
+                    case 22 ->  {actor = new log2_back(); }
+                    case 23 ->  {actor = new plank2_back(); }
+                    case 24 ->  {actor = new all_wood2(); }
+                    case 25 ->  {actor = new plank2(); }
+                    case 26 ->  {actor = new fence(); }
+                    case 27 ->  {actor = new window(); }
+                    case 28 ->  {actor = new tree1(); }
+                    case 29 ->  {actor = new tree2(); }
+                    case 30 ->  {actor = new grassLand(); }
                     }
-                
-                
-                if(actor!=null){
-                    if(actor instanceof entity){
-                        entity idk=(entity)actor;
-                        idk.x=16 + j * 32;
-                        idk.y=16 + i * 32;
-                        addObject(idk,16 + j * 32, 16 + i * 32);
-                    }//offset 16 pixels to counter the inferiority of the engine
-                    else{
-                        addObject(actor,16 + j * 32, 16 + i * 32);   
+                    if(actor!=null){
+                        if(actor instanceof entity){
+                            entity idk=(entity)actor;
+                            idk.x=16 + j * 32;
+                            idk.y=16 + i * 32;
+                            addObject(idk,16 + j * 32, 16 + i * 32);
+                        }//offset 16 pixels to counter the inferiority of the engine
+                        else{
+                            addObject(actor,16 + j * 32, 16 + i * 32);   
+                        }
                     }
                 }
+    
             }
-
         }
     }
     public void nextLevel(){}//both set individually by each lvl

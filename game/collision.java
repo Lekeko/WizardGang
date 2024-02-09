@@ -1,5 +1,5 @@
 import greenfoot.*; 
-public abstract class collision extends entity
+public abstract class collision extends animatedEntity
 {
     public boolean onGround=false;
     public vector2 leftUpCorner;
@@ -52,7 +52,7 @@ public abstract class collision extends entity
         entity ceiling1 = (entity)getOneObjectAtOffset(checkLeft,-halfHeightSprite+leftUpCorner.y-19, platform.class);
         entity ceiling2 = (entity)getOneObjectAtOffset((checkLeft+checkRight)/2,-halfHeightSprite+leftUpCorner.y-19, platform.class);
         entity ceiling3 = (entity)getOneObjectAtOffset(checkRight,-halfHeightSprite+rightUpCorner.y-19, platform.class);
-        //why -7? idk. i have no idea what im doing
+        //why -19? idk. i have no idea what im doing. maybe it 
         if(ceiling1 == null && ceiling2 == null&&ceiling3 == null)
         {
             return false;

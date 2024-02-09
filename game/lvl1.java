@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public class lvl1 extends level
 {
     public void setMap(){
-        jsonFile = new File("level1.json");
+        jsonFile = new File("lvls/level1.json");
     }//25,25 map will fit 800 800
     public void nextLevel(){
         Greenfoot.setWorld(new lvl2());
