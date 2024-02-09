@@ -3,8 +3,9 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "untitled.json",
+    "activeFile": "lvls/level3.json",
     "expandedProjectPaths": [
+        "lvls",
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -35,10 +36,12 @@
             "scaleInEditor": 1
         },
         "Outer_right.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Stone.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -61,7 +64,8 @@
             "scaleInEditor": 1
         },
         "enemy1.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 1
         },
         "grass_left.tsx": {
             "scaleInDock": 1
@@ -84,12 +88,230 @@
             "scaleInEditor": 1
         },
         "level1.json": {
-            "scale": 1,
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1033,
+                "y": 410
+            }
+        },
+        "lvls/Brick_corner_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Brivk.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/CasaAlbaMare.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Dirt.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Grass_corner_Left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Grass_corner_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Outer_Left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Outer_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/Stone.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/WhiteHouse.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/all_wood.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/all_wood2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/arrow.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick)corner_left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_dleft_corner.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_down.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_dright_corner.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_ground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_out_left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_out_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_outer_Dleft.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/brick_outer_Dright.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/briick_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/colored.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/door.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/enemy1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/enemy2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/fence.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/grass_left.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/grass_right.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/grassgreass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/jhonnyIdle.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/level1.json": {
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4239.5,
-                "y": 688
+                "x": 4284.848484848485,
+                "y": 1016.6666666666666
             }
+        },
+        "lvls/level2.json": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4240,
+                "y": 687
+            }
+        },
+        "lvls/level3.json": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2132.6666666666665,
+                "y": 530.6666666666667
+            }
+        },
+        "lvls/lof2_back.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/log.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/log2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/log_back.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/pillar.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/plank.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/plank2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/plank2_back.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/plank_back.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/tree1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/tree2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/wall_house.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/white_block.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvls/window.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "untitled.json": {
             "scale": 0.5,
@@ -113,32 +335,26 @@
     "map.lastUsedFormat": "json",
     "map.width": 77,
     "openFiles": [
-        "Wall.tsx",
-        "untitled.json",
-        "jhonnyIdle.tsx",
-        "Dirt.tsx",
-        "Grass.tsx",
-        "Grass_corner_Left.tsx",
-        "Grass_corner_right.tsx",
-        "Outer_Left.tsx",
-        "Outer_right.tsx",
-        "Stone.tsx",
-        "arrow.tsx"
+        "lvls/level1.json",
+        "lvls/window.tsx",
+        "lvls/tree2.tsx",
+        "lvls/level2.json",
+        "lvls/level3.json"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "level1.json",
-        "untitled.json",
-        "Wall.tsx",
-        "arrow.tsx",
-        "Stone.tsx",
-        "Outer_right.tsx",
-        "Outer_Left.tsx",
-        "Grass_corner_right.tsx",
-        "Grass_corner_Left.tsx",
-        "Grass.tsx",
-        "Dirt.tsx",
-        "jhonnyIdle.tsx"
+        "lvls/level1.json",
+        "lvls/window.tsx",
+        "lvls/tree2.tsx",
+        "lvls/level2.json",
+        "lvls/level3.json",
+        "lvls/colored.tsx",
+        "lvls/door.tsx",
+        "lvls/white_block.tsx",
+        "lvls/wall_house.tsx",
+        "lvls/pillar.tsx",
+        "lvls/CasaAlbaMare.tsx",
+        "lvls/WhiteHouse.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
