@@ -6,4 +6,6 @@ comment1.target=bullet()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ bullet\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=
 comment2.target=void\ act()
-numComments=3
+comment3.params=
+comment3.target=void\ flip()
+numComments=4

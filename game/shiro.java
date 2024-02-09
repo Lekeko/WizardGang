@@ -1,7 +1,6 @@
 import greenfoot.*;
 public class shiro extends collision
 {
-    private boolean jumping=false;
     private int jumpStrength = 20;
     private int animationCounter = 0;
     private int frame = 1;
@@ -21,21 +20,9 @@ public class shiro extends collision
         new GreenfootImage("jhonnyWalk1.png"),
     };
     
-    GreenfootImage[] imaginiLeft = {
-       new GreenfootImage("jhonnyWalk1.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk2.png"),
-        new GreenfootImage("jhonnyWalk1.png"),
-        new GreenfootImage("jhonnyWalk1.png"),
-        new GreenfootImage("jhonnyWalk1.png"),
-    };
-    
-    private int animate = 0;
-    private int animateSpeed = 5;
-    private int animatePos = 0;
-    public static int shouldAnimate = 0;
+    private int timeSinceLastFrame = 0;
+    private int animateSpeed = 2;
+    private int currentFrame = 0;
     
     int gunCooldown = 20;
     int offsetBullet = 0;
@@ -43,13 +30,15 @@ public class shiro extends collision
     int ammo = 7;
     int timerShowGun = -1;
     boolean hasGun = true;
-    entity gun = new Gun();
+    Gun gun = new Gun();
     level lvl;
     public shiro(){
+        
         leftUpCorner=new vector2(4,2);
         rightUpCorner=new vector2(28,2);
         leftDownCorner=new vector2(4,32);
         rightDownCorner=new vector2(28,32);
+        isLeft = false;//"but you already initialized that" yea sure if i move left and restart the game, shiro will face left even it its initialized right why? idk greenfot inferior engine
         scaleShiro(3);
         image=getImage();
         Actor bulletShowcase = new bulletShowcase();
@@ -59,10 +48,6 @@ public class shiro extends collision
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
         
-        
-        for(int i = 0; i < 8; i++){
-            imaginiLeft[i].mirrorHorizontally();
-        }
     }
     public void addedToWorld(World world) {
         lvl=((level)getWorld());
@@ -72,124 +57,44 @@ public class shiro extends collision
     {
         //move
         if(Greenfoot.isKeyDown("right"))
-        {
+        {//press right and push shiro right
             hSpeed=speed;
-            if(!checkRightWall()){
-               animate();
-                
-                if(isLeft){
-                    isLeft = false;
-               }
+            processFrame();
+            if(isLeft){
+                gun.flip();
+                isLeft = false;
             }
-            else
-            {
-            setImage("jhonnyIdle.png");
-                if(isLeft){
-                    getImage().mirrorHorizontally();
-                    
-                }
-                scaleShiroForever(3);
+        }
+        else if(Greenfoot.isKeyDown("left"))
+        {//press left and push shiro left
+            hSpeed=-speed;
+            processFrame();
+            if(!isLeft){
+                gun.flip();
+                isLeft = true;
             }
         }
         else
-        {
-            if(Greenfoot.isKeyDown("left"))
-            {
-                hSpeed=-speed;
-                if(!checkLeftWall()){
-                    animate();
-                    
-                    if(!isLeft){
-                        isLeft = true;
-                   }
-                }
-                else
-                {
-                    setImage("jhonnyIdle.png");
-                    if(isLeft){
-                        getImage().mirrorHorizontally();
-                    }
-                    scaleShiroForever(3);
-                }
-                
-            }
-            else
-            {
-                hSpeed=0;
-                setImage("jhonnyIdle.png");
-                if(isLeft){
-                    getImage().mirrorHorizontally();
-                }
-                scaleShiroForever(3);
-            }
+        {//press nothing and do nothing
+            hSpeed=0;
         }
-        
-        
-        if(animate < animateSpeed){
-            animate++;
-        }
-        else
-        {
-            animate = 0;
-            if(animatePos < imagini.length-1){
-                animatePos++;
-            }
-            else
-            {
-                animatePos = 0;
-            }
-        }
-        //gravity logic
-        
-        if(onGround())
-        {
-            jumping=false;
-            shouldAnimate = 0;
-            
-        }
-        else
-        {
-            jumping=true;
-        }
-        //jump
-        if(Greenfoot.isKeyDown("up") && jumping == false&&vSpeed>=0)
-        {
+        if(Greenfoot.isKeyDown("up") &&onGround())
+        {//press up and push shiro up
             jump();
-            shouldAnimate = 1;
-        }     
+        }  
+        animate();//move shiro based on where you pushed her (left right up dow)
         if(timer > 0)
             timer--;       
-        if(jumping){
-            
-            if(timer > 0){
-                setImage("jhonnyJum.png");
-            }else{
-                setImage("jhonnyFall.png");
-            }
-            if(isLeft){
-                    getImage().mirrorHorizontally();
-            }
-             scaleShiroForever(3);
-            
-        }
         
         gunCooldown--;
         timerShowGun--;
         
-        
-
         try{
-            if(isLeft){
-                gun.setLocation(x-72, this.getY()-2);
-                gun.setImage("gunL.png");
-            }else{
-                gun.setLocation(x+72, this.getY()-2);
-                gun.setImage("gun.png");
-            }
+            gun.location(x,y);
             if(timerShowGun > 0){
                 gun.getImage().setTransparency(255);
             }
-            if(Greenfoot.isKeyDown("space") && hasGun){
+            if(Greenfoot.isKeyDown("z") && hasGun){
                 if (gunCooldown < 0 && ammo > 0){
                     ammo--;
                     for(int i  = 7; i >= ammo + 1; i--){
@@ -198,19 +103,7 @@ public class shiro extends collision
                     gun.getImage().setTransparency(255);
                     gunCooldown = 20;
                     timerShowGun = 20;
-                    entity bullet;
-                    if(isLeft){
-                        bullet = new bulletL();
-                        offsetBullet =  - 70;
-                    }else{
-                        bullet = new bullet();
-                        offsetBullet =   70;
-                        
-                    }
-                    entity glont = (entity)bullet;
-                    glont.x = getX()+ offsetBullet;
-                    glont.y = getY();
-                    getWorld().addObject(glont, getX() + offsetBullet, getY());
+                    gun.shoot();
                 }
                 if (ammo == 0 && gunCooldown < 0){
                     gunCooldown = 600;
@@ -236,26 +129,49 @@ public class shiro extends collision
     }
     
     public void animate(){
-        getImage().mirrorVertically();
-        if(!isLeft){
-               setImage(imagini[animatePos]);
+        if(hSpeed>0){
+            setImage(imagini[currentFrame]);
         }
-        else{  
-            setImage(imaginiLeft[animatePos]);
+        else if(hSpeed<0){
+            setImage(imagini[currentFrame]);
         }
-                
-        scaleShiroForever(3);
+        else{
+            setImage("jhonnyIdle.png");
+        }
+        if(vSpeed<0){
+            setImage("jhonnyJum.png");
+        }
+        else if(vSpeed>0){
+            setImage("jhonnyFall.png");
+        }
+        scaleSprite(3);
+        if(isLeft){
+            getImage().mirrorHorizontally();   
+        }
+    }
+    public void processFrame(){
+        if(timeSinceLastFrame < animateSpeed){
+            timeSinceLastFrame++;
+        }
+        else
+        {
+            timeSinceLastFrame = 0;
+            if(currentFrame < imagini.length-1){
+                currentFrame++;
+            }
+            else
+            {
+                currentFrame = 0;
+            }
+        }
     }
     public void jump()
     {
         entity idk=(entity)fart;
-        idk.x=getX();
-        idk.y=getY();
+        idk.location(x,y);
         getWorld().addObject(idk, this.getX(),this.getY());
         timer = 20;
-        onGround=false;
         vSpeed =-jumpStrength;
-        jumping = true;
     }
     
     public void scaleShiro(int scalar){
@@ -275,7 +191,7 @@ public class shiro extends collision
         rightDownCorner.x+=(scalar-1);
     }
     
-    public void scaleShiroForever(int scalar){
+    public void scaleSprite(int scalar){
         //scalse only the sprite
         GreenfootImage originalImage = getImage();
         int newWidth = originalImage.getWidth() * scalar;
@@ -285,12 +201,12 @@ public class shiro extends collision
         setImage(scaledImage);
         
     }
-    public void flipCollider(){
+    /*public void flipCollider(){//creazy IT DOSENT WORK WTF SHADOW WIZZARD MONEy GANG
         int leftDistance = getImage().getWidth() - rightUpCorner.x;
         int rightDistance = getImage().getWidth() - leftUpCorner.x;
         leftUpCorner=new vector2(leftDistance,2);
         rightUpCorner=new vector2(rightDistance,2);
         leftDownCorner=new vector2(leftDistance,32);
         rightDownCorner=new vector2(rightDistance,32);
-    }
+    }*/
 }

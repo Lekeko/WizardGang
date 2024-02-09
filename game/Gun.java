@@ -1,19 +1,24 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class Gun here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import greenfoot.*;
 public class Gun extends entity
 {
-    /**
-     * Act - do whatever the Gun wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    int offsetX=72, offsetY=-2,direction=1,offsetBullet=70;
     public void act()
     {
-        
+        setLocation(x+offsetX*direction, y+offsetY);        
+    }
+    public void flip(){
+        direction*=-1;
+        getImage().mirrorHorizontally();
+    }
+    public void shoot(){
+        bullet glont=new bullet();
+        glont.location(x, y);
+        if(direction>0){
+            getWorld().addObject(glont, x + offsetBullet*direction, offsetY);
+        }
+        else{
+            getWorld().addObject(glont, x + offsetBullet*direction, offsetY);
+            glont.flip();
+        }
     }
 }

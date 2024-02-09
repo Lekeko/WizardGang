@@ -8,10 +8,17 @@ public class vector2 extends Actor
     public vector2() {
         this(0, 0);
     }
-
     public vector2(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+    public void location(vector2 other){
+        this.x=other.x;
+        this.y=other.y;
+    }
+    public void location(int x, int y){
+        this.x=x;
+        this.y=y;
     }
     //vector addition
     public vector2 add(vector2 other) {

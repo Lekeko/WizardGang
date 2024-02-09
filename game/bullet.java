@@ -23,13 +23,11 @@ public class bullet extends collision
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
         shouldFall = false;
+        hSpeed = 30;
     }
     
     public void act()
-    {
-        // Add your action code here.
-        hSpeed = 25;
-        
+    {        
         super.act();
         if(this.isTouching(platform.class)){
             entity boom = new Boom();
@@ -42,6 +40,10 @@ public class bullet extends collision
             
         }
         
+    }
+    public void flip(){
+        getImage().mirrorHorizontally();
+        hSpeed*=-1;
     }
     
     

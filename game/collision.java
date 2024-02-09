@@ -8,7 +8,7 @@ public abstract class collision extends entity
     public vector2 rightDownCorner;
     public int halfWidthSprite;
     public int halfHeightSprite;
-    public int vSpeed=9;
+    public int vSpeed=0;
     public int hSpeed=0;
     public int spriteHeight;
     public GreenfootImage image;

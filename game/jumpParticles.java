@@ -22,30 +22,23 @@ public class jumpParticles extends entity
     
     public void act()
     {
+        animate = 0;
+        setImage("jump" + i + ".png");          
+        GreenfootImage originalImage = getImage();
+        int newWidth = originalImage.getWidth() * 3;
+        int newHeight = originalImage.getHeight() * 3;
+        GreenfootImage scaledImage = new GreenfootImage(originalImage);
+        scaledImage.scale(newWidth, newHeight);
+        setImage(scaledImage);
+        i++;
         
-        if(shiro.shouldAnimate == 1){
-            animate++;
-            if(animate == animateSpeed){
-                animate = 0;
-                setImage("jump" + i + ".png");          
-                GreenfootImage originalImage = getImage();
-                int newWidth = originalImage.getWidth() * 3;
-                int newHeight = originalImage.getHeight() * 3;
-                GreenfootImage scaledImage = new GreenfootImage(originalImage);
-                scaledImage.scale(newWidth, newHeight);
-                setImage(scaledImage);
-                i++;
-                
-                if (i== 6){ 
-                     //
-                        i = 1;
-                     getWorld().removeObject(this);
-                     shiro.shouldAnimate = 0;
-                     getImage().setTransparency(0);
-                }
-            
-            }
+        if (i== 6){ 
+             //
+                i = 1;
+             getWorld().removeObject(this);
+             getImage().setTransparency(0);
         }
+    
         super.act();
     }
 }
