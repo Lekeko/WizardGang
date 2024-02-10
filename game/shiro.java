@@ -19,7 +19,9 @@ public class shiro extends collision
     private int timerShowGun = -1;
     private int reloadTimer = 70;
     private Gun gun = new Gun();
+    private knife knife = new knife();
     private level lvl;
+    private boolean usesKnife = false;
     public shiro(){
         
         leftUpCorner=new vector2(4,2);
@@ -60,12 +62,19 @@ public class shiro extends collision
     public void addedToWorld(World world) {
         lvl=((level)getWorld());
         getWorld().addObject(gun, x+72, y-2);
+        getWorld().addObject(knife, x+72, y-2);
     }
+    int knifeCooldown = 20;
+    int damageCooldown = 0;
     public void act()
     {
-        if(isKeyJustPressed("q")){
+        damageCooldown--;
+        knifeCooldown--;
+        if(damageCooldown <= 0 && isTouching(enemies.class) && hp > 0){
             takeDmg();
+            damageCooldown =100;
         }
+        
         //move
         if(!hasGun){
             reloadTimer--;
@@ -80,6 +89,7 @@ public class shiro extends collision
             hSpeed=speed;
             if(isLeft){
                 gun.flip();
+                knife.flip();
                 isLeft = false;
             }
         }
@@ -88,6 +98,7 @@ public class shiro extends collision
             hSpeed=-speed;
             if(!isLeft){
                 gun.flip();
+                knife.flip();
                 isLeft = true;
             }
         }
@@ -105,10 +116,25 @@ public class shiro extends collision
         gunCooldown--;
         timerShowGun--;
         gun.location(x,y);
+        knife.location(x, y);
         if(timerShowGun > 0){
             gun.getImage().setTransparency(255);
         }
-        if(Greenfoot.isKeyDown("z") && hasGun){
+        if(knifeCooldown < 0)
+            usesKnife = false;
+            
+        if(Greenfoot.isKeyDown("x") && knifeCooldown < 0){
+            knife.getImage().setTransparency(255);
+            getWorld().addObject(knife, x+72*direction, y-2);
+            knife.resetAnimation();
+            knifeCooldown = 20;
+            usesKnife = true;
+            if(checkRightWall() || checkLeftWall()){
+                vSpeed = -17;
+            }
+        }
+        
+        if(Greenfoot.isKeyDown("z") && hasGun && !usesKnife){
             if (gunCooldown < 0 && ammo > 0){
                 ammo--;
                 for(int i  = 7; i >= ammo + 1; i--){
@@ -124,7 +150,7 @@ public class shiro extends collision
                 hasGun = false;
                 gun.throww();
                 lvl.bulletAmmo[0].getImage().setTransparency(0);
-                ;
+                
             }
         }else{
             if(timerShowGun < 0)gun.getImage().setTransparency(0);

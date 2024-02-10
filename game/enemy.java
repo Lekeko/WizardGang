@@ -1,9 +1,10 @@
 import greenfoot.*;
 import java.util.Random;
-public class enemy extends collision
+public class enemy extends enemies
 {
     boolean isMoving = false;
     int movingCooldown = 0;
+    int hp = 3;
     public enemy(){
         leftUpCorner=new vector2(0,0);
         rightUpCorner=new vector2(32,0);
@@ -25,12 +26,25 @@ public class enemy extends collision
     }
     public void act()
     {
+        
         //goombaWalk();
+        super.act();
         if (!isOnScreen){
             hSpeed=0;
         }
         if(x < 798 && x > 2 && !isMoving){
-            wonderAround();
+            followPlayer();
+            
+    
+        }
+        if(isMoving && vSpeed < 0){
+            if(this.getX() > 400){
+                direction = -1;
+            }else direction = 1;
+            if(this.getX() == 0){
+                direction = 0;
+            }
+            hSpeed = 4 * direction; 
         }
         
         if(movingCooldown <= 0){
@@ -43,13 +57,30 @@ public class enemy extends collision
     
     
     
-    public void wonderAround(){
+    public void followPlayer(){
         Random random= new Random();
-        int option = random.nextInt(3) + 1 - 2;
-        int distance = random.nextInt(40) + 1;
-        hSpeed = option * 10 ;
+        int direction = 0;
+        
+        
+        if(this.getX() > 400){
+            direction = -1;
+        }else direction = 1;
+        if(this.getX() == 0){
+            direction = 0;
+        }
+       
+        if(random.nextInt(300) + 1 > 50){
+            vSpeed = -15;
+            hSpeed = 4 * direction;
+        }
+        
+        
+        
+    
+        
+        hSpeed = 4 * direction;
         isMoving = true;
-        movingCooldown = distance * 2;
+        movingCooldown = 55;
     }
     
     

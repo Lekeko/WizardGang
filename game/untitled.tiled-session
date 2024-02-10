@@ -5,355 +5,710 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
-        "lvls",
-        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1
         },
-        "Dirt.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Grass.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Grass_corner_Left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Grass_corner_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Outer_Left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Outer_right.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Stone.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Wall.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "arrow.tsx": {
-            "dynamicWrapping": true,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "betaGANGSTER.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "crate.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "enemy1.tsx": {
-            "dynamicWrapping": false,
+        "C:/Users/andre/Desktop/Brick_corner_right.tsx": {
             "scaleInDock": 1
         },
-        "grass_left.tsx": {
+        "C:/Users/andre/Desktop/Brivk.tsx": {
             "scaleInDock": 1
         },
-        "grass_right.tsx": {
+        "C:/Users/andre/Desktop/Dirt.tsx": {
             "scaleInDock": 1
         },
-        "idk.tsx": {
-            "dynamicWrapping": true,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "images/Wall.tsx": {
-            "dynamicWrapping": false,
+        "C:/Users/andre/Desktop/Grass.tsx": {
             "scaleInDock": 1
         },
-        "jhonnyIdle.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+        "C:/Users/andre/Desktop/Grass_corner_Left.tsx": {
+            "scaleInDock": 1
         },
-        "level1.json": {
-            "scale": 0.5,
-            "selectedLayer": 1,
+        "C:/Users/andre/Desktop/Grass_corner_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/Outer_Left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/Outer_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/Stone.tsx": {
+            "scaleInDock": 0.75
+        },
+        "C:/Users/andre/Desktop/all_wood.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/all_wood2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick)corner_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_dleft_corner.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_down.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_dright_corner.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_ground.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_out_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_out_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_outer_Dleft.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/brick_outer_Dright.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/briick_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Brick_corner_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Brivk.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/CasaAlbaMare.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Dirt.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Grass.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Grass_corner_Left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Grass_corner_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Outer_Left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Outer_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/Stone.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/WhiteHouse.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/allTheLevels.json": {
+            "scale": 0.33,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1033,
-                "y": 410
+                "x": 5184.848484848485,
+                "y": 62.12121212121201
             }
         },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/all_wood.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/all_wood2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/arrow.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick)corner_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_dleft_corner.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_down.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_dright_corner.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_ground.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_out_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_out_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_outer_Dleft.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/brick_outer_Dright.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/briick_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/colored.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/door.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/enemy1.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/enemy2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/fence.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/grass_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/grass_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/grassgreass.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/jhonnyIdle.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/level1.json": {
+            "scale": 0.32689858490566037,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4242.906100068541,
+                "y": 689.8163846903069
+            }
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/level2.json": {
+            "scale": 0.32689858490566037,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4242.906100068541,
+                "y": 689.8163846903069
+            }
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/level3.json": {
+            "scale": 0.5870703125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2241.6394969725197,
+                "y": 641.3201144454056
+            }
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/lof2_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/log.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/log2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/log_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/pillar.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/plank.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/plank2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/plank2_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/plank_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/tree1.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/tree2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/wall_house.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/white_block.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/window.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/colored.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/door.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/enemy1.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/enemy2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/fence.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/grass_left.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/grass_right.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/grassgreass.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/jhonnyIdle.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/level1.json": {
+            "scale": 0.28876041666666663,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4803.289924605896,
+                "y": 801.7026802784893
+            }
+        },
+        "C:/Users/andre/Desktop/level3.json": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2426,
+                "y": 797
+            }
+        },
+        "C:/Users/andre/Desktop/lof2_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/log.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/log2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/log_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/pillar.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/plank.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/plank2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/plank2_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/plank_back.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/standed_light.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/tree1.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/tree2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/wall_house.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/white_block.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/andre/Desktop/window.tsx": {
+            "scaleInDock": 1
+        },
         "lvls/Brick_corner_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Brivk.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/CasaAlbaMare.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Dirt.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Grass.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Grass_corner_Left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Grass_corner_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Outer_Left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Outer_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/Stone.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/WhiteHouse.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
+        },
+        "lvls/allTheLevels.json": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4281.818181818182,
+                "y": 1125.757575757576
+            }
         },
         "lvls/all_wood.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/all_wood2.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/arrow.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/boss.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "lvls/brick)corner_left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_dleft_corner.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_down.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_dright_corner.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_ground.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_out_left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_out_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_outer_Dleft.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/brick_outer_Dright.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/briick_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Brick_corner_right.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Brivk.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Dirt.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Grass.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Grass_corner_Left.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Grass_corner_right.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Outer_Left.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Outer_right.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/Stone.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/all_wood.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/all_wood2.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/boss.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick)corner_left.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_dleft_corner.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_down.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_dright_corner.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_ground.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_left.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_out_left.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_out_right.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_outer_Dleft.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/brick_outer_Dright.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/briick_right.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/colored.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/door.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/enemy1.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/enemy2.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/fence.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/grass_left.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/grass_right.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/grassgreass.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/jhonnyIdle.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/lof2_back.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/log.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/log2.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/log_back.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/pillar.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/plank.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/plank2.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/plank2_back.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/plank_back.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/standed_light.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/tree1.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/tree2.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/wall_house.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/walled_light.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/white_block.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/bullshits/matei/WizardGang/game/lvls/window.tsx": {
+            "scaleInDock": 1
         },
         "lvls/colored.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/door.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/enemy1.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/enemy2.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/fence.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/grass_left.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/grass_right.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/grassgreass.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/jhonnyIdle.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/level1.json": {
-            "scale": 0.33,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 6201.515151515152,
-                "y": 1375.7575757575755
+                "x": 1573.5,
+                "y": 365.75
             }
         },
         "lvls/level2.json": {
-            "scale": 0.5,
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 3824.242424242424,
+                "y": 737.8787878787879
+            }
+        },
+        "lvls/level2json.json": {
+            "scale": 0.25,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1489,
-                "y": 1110
+                "x": 4168,
+                "y": 978
             }
         },
         "lvls/level3.json": {
-            "scale": 0.75,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 2128.6666666666665,
-                "y": 527.9999999999999
+                "x": 3334,
+                "y": -113
             }
         },
         "lvls/lof2_back.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/log.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/log2.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/log_back.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/miniBoss.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "lvls/pillar.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/plank.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/plank2.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/plank2_back.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/plank_back.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
+        },
+        "lvls/standed_light.tsx": {
+            "scaleInDock": 1
         },
         "lvls/tree1.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/tree2.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/wall_house.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/walled_light.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "lvls/white_block.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "lvls/window.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "untitled.json": {
-            "scale": 0.5,
-            "selectedLayer": 1,
-            "viewCenter": {
-                "x": 491,
-                "y": -166
-            }
-        },
-        "untitled.xml": {
-            "scale": 0.5918222402597403,
-            "selectedLayer": 0,
-            "viewCenter": {
-                "x": 1232.6336362077832,
-                "y": 400.45808331904675
-            }
+            "scaleInDock": 1
         }
     },
-    "last.imagePath": "E:/greenfoot/WizardGang/game/images",
-    "map.height": 25,
+    "last.imagePath": "C:/Users/andre/Desktop/bullshits/matei/WizardGang/game/images",
+    "map.height": 50,
     "map.lastUsedFormat": "json",
-    "map.width": 77,
+    "map.width": 300,
     "openFiles": [
     ],
-    "project": "untitled.tiled-project",
+    "project": "",
     "recentFiles": [
-        "lvls/level3.json",
-        "lvls/level2.json",
-        "lvls/tree2.tsx",
-        "lvls/window.tsx",
         "lvls/level1.json",
-        "lvls/colored.tsx",
-        "lvls/door.tsx",
-        "lvls/white_block.tsx",
-        "lvls/wall_house.tsx",
-        "lvls/pillar.tsx",
-        "lvls/CasaAlbaMare.tsx",
-        "lvls/WhiteHouse.tsx"
+        "lvls/walled_light.tsx",
+        "lvls/level3.json",
+        "lvls/allTheLevels.json",
+        "lvls/level2.json",
+        "C:/Users/andre/Desktop/level1.json",
+        "C:/Users/andre/Desktop/level3.json",
+        "lvls/boss.tsx",
+        "lvls/miniBoss.tsx",
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/level3.json",
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/level2.json",
+        "C:/Users/andre/Desktop/bullshits/WizardGang/game/lvls/level1.json"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 32,
-        "width": 32
+        "height": 64,
+        "width": 64
     }
 }

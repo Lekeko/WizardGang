@@ -8,6 +8,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public class lvl2 extends level
 {
     public void setMap(){
-        jsonFile = new File("level2.json");
+        jsonFile = new File("lvls/level2.json");
     }
 }

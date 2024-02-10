@@ -24,7 +24,26 @@ public class bullet extends collision
             getWorld().addObject(boom, this.getX(),this.getY());
             getWorld().removeObject(this);
         }
-        
+        try{
+            if(this.isTouching(enemy.class)){
+                removeTouching(enemy.class);
+                entity boom = new Boom();
+                boom.location(x,y);
+                getWorld().addObject(boom, this.getX(),this.getY());
+                getWorld().removeObject(this);
+            }
+            if(this.isTouching(enemy2.class)){
+                enemy2 inamic = (enemy2)getOneIntersectingObject(enemy2.class);
+                if(inamic.hp == 0){
+                    getWorld().removeObject(inamic);
+                }else inamic.hp--;
+                entity boom = new Boom();
+                boom.location(x,y);
+                getWorld().addObject(boom, this.getX(),this.getY());
+                getWorld().removeObject(this);
+
+            }
+        }catch(Exception e){}
     }
     public void flip(){
         getImage().mirrorHorizontally();
