@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvls/level3.json",
+    "activeFile": "",
     "expandedProjectPaths": [
         "lvls",
         "."
@@ -236,24 +236,24 @@
             "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4284.848484848485,
-                "y": 1016.6666666666666
+                "x": 6201.515151515152,
+                "y": 1375.7575757575755
             }
         },
         "lvls/level2.json": {
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4240,
-                "y": 687
+                "x": 1489,
+                "y": 1110
             }
         },
         "lvls/level3.json": {
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 2132.6666666666665,
-                "y": 530.6666666666667
+                "x": 2128.6666666666665,
+                "y": 527.9999999999999
             }
         },
         "lvls/lof2_back.tsx": {
@@ -335,19 +335,14 @@
     "map.lastUsedFormat": "json",
     "map.width": 77,
     "openFiles": [
-        "lvls/level1.json",
-        "lvls/window.tsx",
-        "lvls/tree2.tsx",
-        "lvls/level2.json",
-        "lvls/level3.json"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "lvls/level1.json",
-        "lvls/window.tsx",
-        "lvls/tree2.tsx",
-        "lvls/level2.json",
         "lvls/level3.json",
+        "lvls/level2.json",
+        "lvls/tree2.tsx",
+        "lvls/window.tsx",
+        "lvls/level1.json",
         "lvls/colored.tsx",
         "lvls/door.tsx",
         "lvls/white_block.tsx",

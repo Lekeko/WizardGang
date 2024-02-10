@@ -13,15 +13,15 @@ public abstract class level extends World
     private int cameraSpeed=9;
     private int halfWidth=getWidth()/2;
     private int halfHeight=getHeight()/2;
-    private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
-    private vector2[][] tileCoordinates;
-    private Actor border = new border();
-    private List<List<Integer>> map = new ArrayList<>();
     private int mapHeight;
     private int mapWidth;
-    private shiro player = null;
-    public File jsonFile;
     private int curentLevel = 1;
+    private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
+    private vector2[][] tileCoordinates;
+    private List<List<Integer>> map = new ArrayList<>();
+    private shiro player = null;
+    public Actor border = new border();
+    public File jsonFile;
     public Actor[] bulletAmmo = {
             new GunShowcase(),
             new bulletShowcase(), 
@@ -48,7 +48,6 @@ public abstract class level extends World
             addObject(bulletAmmo[i], 35 + ((i + 1) * 50), 80);
             
         };
-
         addObject(border,halfWidth,halfHeight);
     }
     
@@ -132,7 +131,6 @@ public abstract class level extends World
     int nivel = 0;
     private void processMap(){
         for (List<Integer> innerList : map){
-            System.out.print(" "+map.size()+" ");
             for (int i=0; i<mapHeight; i++){
                 for (int j=0; j<mapWidth; j++)
                 {

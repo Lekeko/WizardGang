@@ -4,11 +4,13 @@ public class animatedEntity extends entity
     public GreenfootImage[][] imagini={};
     public boolean animate=false;
     public boolean crazyAnimation=false;
+    public boolean interactible=true;
     public int currentFrame = 0;
     public int animateSpeed = 5;//the lower the faster the animation
     public int timeSinceLastFrame = 0;
     public int currentAnimation=0;
     public int direction=1;//1 right -1 left
+    public int scalar;
     public animatedEntity(){
     }
     public void act()
@@ -24,15 +26,12 @@ public class animatedEntity extends entity
                 }
             }
             else{
-                setImage(imagini[currentAnimation][currentFrame]);
-                setImage(scaleSprite(getImage(),3));
-                if(direction==-1){//rotate if left
-                    getImage().mirrorHorizontally();
-                }
-                super.act();   
+                nextFrame();
             }
         }
-        super.act();
+        if(interactible){
+            super.act();
+        }
     }
     private void processFrame(){
         if(timeSinceLastFrame < animateSpeed){
@@ -54,7 +53,19 @@ public class animatedEntity extends entity
         if(animation!=currentAnimation){
             currentAnimation=animation;
             timeSinceLastFrame = 0;
-            currentFrame = 0;   
+            currentFrame = 0;
+        }
+    }
+    public void resetAnimation(){
+        timeSinceLastFrame = 0;
+        currentFrame = 0;
+        nextFrame();
+    }
+    private void nextFrame(){
+        setImage(imagini[currentAnimation][currentFrame]);
+        setImage(scaleSprite(getImage(),scalar));
+        if(direction==-1){//rotate if left
+            getImage().mirrorHorizontally();
         }
     }
 }

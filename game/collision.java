@@ -1,46 +1,51 @@
 import greenfoot.*; 
 public abstract class collision extends animatedEntity
 {
-    public boolean onGround=false;
+    //the coordinates of the colider with the 00 in the left up of the sprite
     public vector2 leftUpCorner;
     public vector2 rightUpCorner;
     public vector2 leftDownCorner;
     public vector2 rightDownCorner;
+    
+    private int maxFallAcceleration=19;
+    private int acceleration = 1;
+    public boolean onGround=false;
+    public boolean shouldFall = true;
+    public boolean shouldCollide=true;
     public int halfWidthSprite;
     public int halfHeightSprite;
     public int vSpeed=0;
     public int hSpeed=0;
     public int spriteHeight;
-    public GreenfootImage image;
-    private int maxFallAcceleration=19;
-    private int acceleration = 1;
-    public entity currentGround;
     public int groundHeight;
+    public GreenfootImage image;
+    public entity currentGround;
     public entity currenRightWall;
     public entity currenLeftWall;
-    boolean shouldFall = true;
     public void act()
     {
-        platformAbove();
-        if (onGround()&&vSpeed>=0){
-            vSpeed = 0;
-            stayOnGround(currentGround);
-        }
-        else{
-            fall();
-            super.act();
+        if(shouldCollide){
+            platformAbove();
             if (onGround()&&vSpeed>=0){
                 vSpeed = 0;
                 stayOnGround(currentGround);
             }
-        }
-        if(checkRightWall()&&hSpeed>0){
-            hSpeed=0;
-            //stayOnRightWall(currenRightWall);
-        }
-        if(checkLeftWall()&&hSpeed<0){
-            hSpeed=0;
-            //stayOnLeftWall(currenLeftWall);
+            else{
+                fall();
+                super.act();
+                if (onGround()&&vSpeed>=0){
+                    vSpeed = 0;
+                    stayOnGround(currentGround);
+                }
+            }
+            if(checkRightWall()&&hSpeed>0){
+                hSpeed=0;
+                //stayOnRightWall(currenRightWall);
+            }
+            if(checkLeftWall()&&hSpeed<0){
+                hSpeed=0;
+                //stayOnLeftWall(currenLeftWall);
+            }
         }
         moveOnX();
         super.act();

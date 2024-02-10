@@ -2,6 +2,7 @@ import greenfoot.*;
 public class jumpParticles extends animatedEntity
 {
     public jumpParticles(){
+        scalar=3;
         crazyAnimation=true;
         imagini = new GreenfootImage[][] {
                 {

@@ -4,6 +4,7 @@ public class Boom extends animatedEntity
     public Boom(){
         crazyAnimation=true;
         animateSpeed=1;
+        scalar=3;
         imagini = new GreenfootImage[][] {
             {
                 new GreenfootImage("bullet1.png"),

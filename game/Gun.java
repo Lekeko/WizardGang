@@ -14,10 +14,10 @@ public class Gun extends entity
         bullet glont=new bullet();
         glont.location(x+offsetBullet*direction, y+offsetY);
         if(direction>0){
-            getWorld().addObject(glont, x + offsetBullet*direction, y);
+            getWorld().addObject(glont, x + offsetBullet*direction, y+offsetY);
         }
         else{
-            getWorld().addObject(glont, x + offsetBullet*direction, y);
+            getWorld().addObject(glont, x + offsetBullet*direction, y+offsetY);
             glont.flip();
         }
     }

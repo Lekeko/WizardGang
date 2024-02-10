@@ -11,6 +11,7 @@ public class bullet extends collision
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
         shouldFall = false;
+        shouldCollide=false;
         hSpeed = 30;
     }
     
