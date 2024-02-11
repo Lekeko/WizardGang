@@ -4,7 +4,7 @@ public class trump extends enemies
 {
     private boolean isMoving = false;
     private int movingCooldown = 0;
-    private int hp = 3;
+    private int hp = 15;
     private boolean isLeft=false;
     private int speed=4;
     private int jumpForce=19;
@@ -85,7 +85,7 @@ public class trump extends enemies
                 else if(lvl.player.x<x-300){
                     followPlayer(-1);
                 }
-            if (shootTimer>277&&shootTimer<777){
+            if (shootTimer>277&&shootTimer<700){
                 if(bulletTimer>=4){
                     SHOOT=true;
                     trumpBullet blt=new trumpBullet();
@@ -117,7 +117,7 @@ public class trump extends enemies
                     damageCooldown=20;
                 }
         }
-        if(eagleTimer>=200){
+        if(eagleTimer>=457){
             eagleTimer=0;
             eagle idk = new eagle();
 

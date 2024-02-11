@@ -108,11 +108,6 @@ public class miniBoss extends enemies{
                         aimGun(-1);
                     }   
                 }
-            
-                if(hp<=0){
-                    lvl.nextLevel();
-                    getWorld().removeObject(this);
-                }  
             }
         }
         else{
@@ -132,6 +127,10 @@ public class miniBoss extends enemies{
         knifeParticles particles = new knifeParticles();
         particles.location(x, y);
         getWorld().addObject(particles, x, y);
+        if(hp<=0){
+            lvl.activateDoor=true;
+            getWorld().removeObject(this);
+        }
     }
     private void animate(){
         if(vSpeed<0){

@@ -22,6 +22,9 @@ public abstract class level extends World
     public Actor border = new border();
     public File jsonFile;
     public static World lastMap= new lvl1();
+    
+    public boolean activateDoor=false;
+    
     public Actor[] bulletAmmo = {
             new GunShowcase(),
             new bulletShowcase(), 
@@ -204,12 +207,12 @@ public abstract class level extends World
                     case 44 ->  {actor = new brick_out_Dright(); }
                     case 45 ->  {actor = new brick_side_left(); }
                     case 46 ->  {actor = new white_block(); }
-                    case 47 ->  {actor = new brick_corner_Dright(); }
-                    case 48 ->  {actor = new brick_corner_Dleft(); }
+                    case 47 ->  {actor = new brick_corner_Dleft(); }
+                    case 48 ->  {actor = new brick_corner_Dright(); }
                     case 49 ->  {actor = new pillar(); }
                     case 50 ->  {actor = new brick_ground();}
                     case 51 ->  {actor = new brick(); }
-                    case 52 ->  {actor = new brick_corner_Dleft(); }
+                    case 52 ->  {actor = new brick_out_Dleft(); }
                     case 53 ->  {actor = new brick_side_right(); }
                     case 54 ->  {actor = new brick_down(); }
                     case 55 ->  {actor = new miniBoss(); }

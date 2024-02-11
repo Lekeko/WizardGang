@@ -228,6 +228,7 @@ public class shiro extends collision
         }
         else{
             if(hSpeed!=0){
+                
                 changeAnimation(0);//walk
                 ((border)lvl.border).animate=true;
                 
