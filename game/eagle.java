@@ -3,6 +3,7 @@ public class eagle extends collision
 {
     level lvl;
     int timer=0;
+    GreenfootSound sound = new GreenfootSound("step.mp3");
     public eagle(){
         leftUpCorner=new vector2(16,16);
         rightUpCorner=new vector2(16,16);
@@ -15,7 +16,8 @@ public class eagle extends collision
         shouldFall = false;
         shouldCollide=false;
         hSpeed = 10;
-        GreenfootSound sound = new GreenfootSound("eagle.mp3");
+        sound = new GreenfootSound("eagle.mp3");
+        sound.setVolume(20);
         sound.play();
         //setImage(scaleSprite(getImage(),2));
     }

@@ -2,6 +2,7 @@ import greenfoot.*;
 import java.util.Random;
 public class trump extends enemies
 {
+    private GreenfootSound sound = new GreenfootSound("hurt.mp3");
     private boolean isMoving = false;
     private int movingCooldown = 0;
     private int hp = 15;
@@ -13,6 +14,7 @@ public class trump extends enemies
     private int bulletTimer=0;
     private int eagleTimer=0;
     public trump(){
+        sound.setVolume(20);
         leftUpCorner=new vector2(8,1);
         rightUpCorner=new vector2(25,1);
         leftDownCorner=new vector2(8,32);
@@ -133,6 +135,10 @@ public class trump extends enemies
             getWorld().addObject(idk, (getWorld().getWidth()+100)*((int)Math.random() * 2 - 1),lvl.player.y+21);
         }
     }
+    if(hp<=0){
+        getWorld().removeObject(this);
+        sound.play();
+    } 
     else{
         getImage().setTransparency(0);
     }

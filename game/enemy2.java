@@ -9,7 +9,9 @@ public class enemy2 extends enemies{
     private int jumpForce=21;
     private int shootTimer=0;
     private boolean SHOOT=false;
+    GreenfootSound sound = new GreenfootSound("hurt.mp3");
     public enemy2(){
+        sound.setVolume(20);
         leftUpCorner=new vector2(8,1);
         rightUpCorner=new vector2(25,1);
         leftDownCorner=new vector2(8,32);
@@ -109,6 +111,7 @@ public class enemy2 extends enemies{
             
             if(hp<=0){
                 getWorld().removeObject(this);
+                sound.play();
             }   
         }
     }
@@ -131,6 +134,7 @@ public class enemy2 extends enemies{
         knifeParticles particles = new knifeParticles();
         particles.location(x, y);
         getWorld().addObject(particles, x, y);
+        
     }
     private void animate(){
         if(vSpeed<0){

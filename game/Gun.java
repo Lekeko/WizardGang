@@ -1,7 +1,11 @@
 import greenfoot.*;
 public class Gun extends entity
 {
+    GreenfootSound sound = new GreenfootSound("gun_shot.mp3");
     int offsetX=72, offsetY=-2,direction=1,offsetBullet=70;
+    public Gun(){
+        sound.setVolume(20);
+    }
     public void act()
     {
         setLocation(x+offsetX*direction, y+offsetY);        
@@ -11,6 +15,7 @@ public class Gun extends entity
         getImage().mirrorHorizontally();
     }
     public void shoot(){
+        sound.play();
         bullet glont=new playerBullet();
         glont.location(x+offsetBullet*direction, y+offsetY);
         if(direction>0){
@@ -22,6 +27,7 @@ public class Gun extends entity
         }
     }
     public void throww(){
+        sound.play();
         thrownGun glont=new thrownGun();
         glont.location(x, y);
         if(direction>0){

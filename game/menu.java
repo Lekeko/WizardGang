@@ -1,8 +1,12 @@
 import greenfoot.*;
 public class menu extends idk
 {
+    GreenfootSound sound ;
     public menu()
     {
+        sound=new GreenfootSound("level2.mp3");
+        sound.setVolume(20);
+        sound.play();
         playButton playbutton=new playButton();
         quitButton quitbutton=new quitButton();
         continueButton continuebutton=new continueButton();

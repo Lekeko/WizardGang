@@ -2,6 +2,7 @@ import greenfoot.*;
 import java.util.Random;
 public class enemy extends enemies
 {
+    GreenfootSound sound = new GreenfootSound("hurt.mp3");
     private boolean isMoving = false;
     private int movingCooldown = 0;
     private int hp = 7;
@@ -11,6 +12,7 @@ public class enemy extends enemies
     private int shootTimer=0;
     private boolean SHOOT=false;
     public enemy(){
+        sound.setVolume(20);
         leftUpCorner=new vector2(8,1);
         rightUpCorner=new vector2(25,1);
         leftDownCorner=new vector2(8,32);
@@ -112,6 +114,7 @@ public class enemy extends enemies
                 }
             
             if(hp<=0){
+                sound.play();
                 getWorld().removeObject(this);
             }   
         }

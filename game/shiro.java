@@ -23,8 +23,10 @@ public class shiro extends collision
     private boolean usesKnife = false;
     private boolean usesGun = false;
     private boolean knockedUp=false;
+    GreenfootSound sound = new GreenfootSound("step.mp3");
+    GreenfootSound sound2 = new GreenfootSound("enemy_death.mp3");
     public shiro(){
-        
+        sound2.setVolume(20);
         leftUpCorner=new vector2(4,2);
         rightUpCorner=new vector2(28,2);
         leftDownCorner=new vector2(4,32);
@@ -59,6 +61,9 @@ public class shiro extends collision
             {
                 new GreenfootImage("jhonnyFall.png"),
             },
+            {
+                new GreenfootImage("jhonnyDeath.png"),
+            },
         };
     }
     public void addedToWorld(World world) {
@@ -74,7 +79,6 @@ public class shiro extends collision
         knifeCooldown--;
         gunCooldown--;
         timerShowGun--;
-        
         //move
         if(!hasGun){
             reloadTimer--;
@@ -126,6 +130,7 @@ public class shiro extends collision
                 vSpeed=-12;
                 takeDmg();
                 knockedUp=true;
+                sound2.play();
             }
             else if(isTouching(slashEffect.class)){
                 if(checkLeftWall(slashEffect.class)){
@@ -137,6 +142,7 @@ public class shiro extends collision
                 vSpeed=-12;
                 takeDmg();
                 knockedUp=true;
+                sound2.play();
             }
             else if(isTouching(dash.class)){
                 if(checkLeftWall(dash.class)){
@@ -159,6 +165,7 @@ public class shiro extends collision
                 vSpeed=-17;
                 takeDmg();
                 knockedUp=true;
+                sound2.play();
             }
             else if(isTouching(eagle.class)){
                 if(checkLeftWall(eagle.class)){
@@ -170,6 +177,7 @@ public class shiro extends collision
                 vSpeed=-2;
                 takeDmg();
                 knockedUp=true;
+                sound2.play();
             }
         }
         gun.location(x,y);
@@ -228,10 +236,11 @@ public class shiro extends collision
         }
         else{
             if(hSpeed!=0){
-                
                 changeAnimation(0);//walk
                 ((border)lvl.border).animate=true;
-                
+                if(onGround()){
+                    sound.play();
+                }
             }
             else{
                 changeAnimation(1);//idle

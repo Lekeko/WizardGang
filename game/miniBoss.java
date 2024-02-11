@@ -1,6 +1,7 @@
 import greenfoot.*;
 import java.util.Random;
 public class miniBoss extends enemies{
+    GreenfootSound sound = new GreenfootSound("hurt.mp3");
     private boolean isMoving = false;
     private int movingCooldown = 0;
     private int hp = 9;
@@ -11,6 +12,7 @@ public class miniBoss extends enemies{
     private boolean SHOOT=false;
     private boolean attack1=true;
     public miniBoss(){
+        sound.setVolume(20);
         leftUpCorner=new vector2(8,1);
         rightUpCorner=new vector2(25,1);
         leftDownCorner=new vector2(8,32);
@@ -109,6 +111,10 @@ public class miniBoss extends enemies{
                     }   
                 }
             }
+            if(hp<=0){
+                getWorld().removeObject(this);
+                sound.play();
+            } 
         }
         else{
             getImage().setTransparency(0);
@@ -128,7 +134,7 @@ public class miniBoss extends enemies{
         particles.location(x, y);
         getWorld().addObject(particles, x, y);
         if(hp<=0){
-            lvl.activateDoor=true;
+            lvl.activateDoor=true;;
             getWorld().removeObject(this);
         }
     }

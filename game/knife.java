@@ -4,7 +4,9 @@ public class knife extends animatedEntity
 {
     public boolean active=false;
     int offsetX=82, offsetY=-2;
+    GreenfootSound sound = new GreenfootSound("swish.mp3");
     public knife(){
+        sound.setVolume(20);
         animateSpeed=0;
         scalar=4;
         imagini = new GreenfootImage[][] {
@@ -37,6 +39,7 @@ public class knife extends animatedEntity
         getImage().mirrorHorizontally();
     }
     public void swing(){
+        sound.play();
         oneTimeAnimation=true;
         getImage().setTransparency(255);
     }

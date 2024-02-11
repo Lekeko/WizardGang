@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 
 public abstract class level extends World
 {//:)
+    GreenfootSound sound;
     private int offset=0;
     private int cameraSpeed=15;
     private int halfWidth=getWidth()/2;
@@ -118,7 +119,9 @@ public abstract class level extends World
             else{
                 actor.isOnScreen=false;
             }
-            
+            if(activateDoor&&actor instanceof barier){
+                removeObject(actor);
+            }
         }
     }
 
