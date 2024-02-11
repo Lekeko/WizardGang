@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=trump
+comment1.params=
+comment1.target=trump()
+comment2.params=world
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=idk
+comment4.target=void\ followPlayer(int)
+comment5.params=dmg
+comment5.target=void\ takeDmg(int)
+comment6.params=
+comment6.target=void\ animate()
+comment7.params=idk
+comment7.target=void\ aimGun(int)
+numComments=8

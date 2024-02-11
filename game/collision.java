@@ -78,13 +78,13 @@ public abstract class collision extends animatedEntity
             return true;
         }
     }
-    public boolean checkRightWall(){//wall right-true   no wall right-false
+    public boolean checkRightWall(Class<?> clazz){//wall right-true   no wall right-false
         int spriteWidth = image.getWidth();
         int checkUp=-halfHeightSprite+rightUpCorner.y;
         int checkDown=-halfHeightSprite+rightDownCorner.y-1;
-        entity rightWall1 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 16, checkUp, platform.class);
-        entity rightWall2 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 16,(checkUp+checkDown)/2, platform.class);
-        entity rightWall3 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.x + 16, checkDown, platform.class);
+        entity rightWall1 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 16, checkUp, clazz);
+        entity rightWall2 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightUpCorner.x + 16,(checkUp+checkDown)/2, clazz);
+        entity rightWall3 = (entity)getOneObjectAtOffset(-halfWidthSprite+rightDownCorner.x + 16, checkDown, clazz);
         if(rightWall1 != null || rightWall2!=null|| rightWall3!=null){
             if(rightWall1!=null){
                 currenRightWall=rightWall1;
@@ -102,13 +102,16 @@ public abstract class collision extends animatedEntity
             return false;
         }
     }
-    public boolean checkLeftWall(){//wall left-true   no wall left-false (also helps to not go through walls)
+    public boolean checkRightWall() {
+        return checkRightWall(platform.class); // Assuming platform is the default class
+    }
+    public boolean checkLeftWall(Class<?> clazz){//wall left-true   no wall left-false (also helps to not go through walls)
         int spriteWidth = image.getWidth();
         int checkUp=-halfHeightSprite+leftUpCorner.y;
         int checkDown=-halfHeightSprite+leftDownCorner.y-1;
-        entity leftWall1 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 16, checkUp, platform.class);
-        entity leftWall2 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 16,(checkUp+checkDown)/2, platform.class);
-        entity leftWall3 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.x - 16, checkDown, platform.class);
+        entity leftWall1 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 16, checkUp, clazz);
+        entity leftWall2 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftUpCorner.x - 16,(checkUp+checkDown)/2, clazz);
+        entity leftWall3 = (entity)getOneObjectAtOffset(-halfWidthSprite+leftDownCorner.x - 16, checkDown, clazz);
         if(leftWall1 != null || leftWall2!=null || leftWall3!=null){
             if(leftWall1!=null){
                 currenLeftWall=leftWall1;
@@ -125,6 +128,9 @@ public abstract class collision extends animatedEntity
         {
             return false;
         }
+    }
+    public boolean checkLeftWall() {
+        return checkLeftWall(platform.class); // Assuming platform is the default class
     }
     public boolean onGround()//true if on ground and false otherwise (also helps the player to not go to the backrooms)
     {

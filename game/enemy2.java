@@ -9,7 +9,6 @@ public class enemy2 extends enemies{
     private int jumpForce=21;
     private int shootTimer=0;
     private boolean SHOOT=false;
-    private boolean attack1=true;
     public enemy2(){
         leftUpCorner=new vector2(8,1);
         rightUpCorner=new vector2(25,1);
@@ -50,13 +49,13 @@ public class enemy2 extends enemies{
             },
         };
 
-    }
-    public void addedToWorld(World world) {
+    }public void addedToWorld(World world) {
         lvl=((level)getWorld());
     }
     public void act()
     {
         if(isOnScreen){
+            getImage().setTransparency(255);
             if(lvl.player.x<x&&!isLeft){
                 isLeft=true;
             }
@@ -65,9 +64,15 @@ public class enemy2 extends enemies{
             }
             super.act();
             animate();
-            if(this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg&&damageCooldown <= 0){
-                takeDmg();
-                damageCooldown=20;
+            if(damageCooldown <= 0){
+                if((this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg)){
+                    takeDmg(2);
+                    damageCooldown=27;
+                }
+                else if(this.isTouching(playerBoom.class)){
+                    takeDmg(1);
+                    damageCooldown=27;
+                }
             }
             movingCooldown--;
             if(movingCooldown >0){
@@ -78,7 +83,7 @@ public class enemy2 extends enemies{
                     followPlayer(-1);
                 }
                 hSpeed=speed*direction;
-                if(((checkLeftWall()||checkRightWall())||lvl.player.y<y-200)){
+                if(((checkLeftWall()||checkRightWall())||lvl.player.y<y-200)&&onGround()){
                     vSpeed=-jumpForce;
                 }
             }
@@ -98,10 +103,13 @@ public class enemy2 extends enemies{
                     }   
                 }
             
-            if(hp==0){
+            if(hp<=0){
                 getWorld().removeObject(this);
             }   
         }
+    }
+    else{
+        getImage().setTransparency(0);
     }
 }
     
@@ -114,8 +122,11 @@ public class enemy2 extends enemies{
         isMoving = true;
         movingCooldown = idk2;   
     }
-    private void takeDmg(){
-        hp--;
+    private void takeDmg(int dmg){
+        hp-=dmg;
+        knifeParticles particles = new knifeParticles();
+        particles.location(x, y);
+        getWorld().addObject(particles, x, y);
     }
     private void animate(){
         if(vSpeed<0){
@@ -142,13 +153,12 @@ public class enemy2 extends enemies{
                 if(SHOOT&&currentAnimation!=3){
                     changeAnimation(3);
                     oneTimeAnimation=true;
-                    
                     slashEnemy blt=new slashEnemy();
-                    blt.location(x+27*direction, y-10);
-                    if(direction<0){
-                        blt.flip();
-                    }
-                    getWorld().addObject(blt, x+27*direction, y-10);
+                        blt.location(x+27*direction, y-10);
+                        if(direction<0){
+                            blt.flip();
+                        }
+                        getWorld().addObject(blt, x+27*direction, y-10);
                 }
                 if(finishedAnimating){
                     finishedAnimating=false;

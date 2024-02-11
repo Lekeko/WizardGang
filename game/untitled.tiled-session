@@ -4,20 +4,37 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "lvls/Brivk.tsx": {
+            "dynamicWrapping": false
+        },
+        "lvls/allBlocksLevel.json": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4746.333333333333,
+                "y": 739.3333333333333
+            }
+        },
+        "lvls/carpet.tsx": {
+            "dynamicWrapping": true
+        },
+        "lvls/colored.tsx": {
+            "dynamicWrapping": false
+        },
         "lvls/level1.json": {
-            "scale": 0.125,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 2668,
-                "y": 176
+                "x": 1703,
+                "y": 150
             }
         },
         "lvls/level2.json": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 6981,
-                "y": 622
+                "x": 4016.5,
+                "y": 111
             }
         },
         "lvls/level2json.json": {
@@ -32,8 +49,8 @@
             "scale": 0.11231770833333332,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4803.338743334107,
-                "y": 801.2984001854857
+                "x": 3886.297240899606,
+                "y": -649.9420357060053
             }
         },
         "lvls/tutoriaMove.tsx": {
@@ -56,6 +73,7 @@
         }
     },
     "last.imagePath": "E:/greenfoot/WizardGang/game/images",
+    "map.lastUsedFormat": "json",
     "openFiles": [
     ],
     "project": "untitled.tiled-project",

@@ -10,14 +10,13 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public abstract class level extends World
 {//:)
     private int offset=0;
-    private int cameraSpeed=5;
+    private int cameraSpeed=7;
     private int halfWidth=getWidth()/2;
     private int halfHeight=getHeight()/2;
     private int mapHeight;
     private int mapWidth;
     public int curentLevel = 1;
     private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
-    private vector2[][] tileCoordinates;
     private List<List<Integer>> map = new ArrayList<>();
     public shiro player = null;
     public Actor border = new border();
@@ -54,31 +53,15 @@ public abstract class level extends World
     }
     
     public void act(){
-        if(Greenfoot.isKeyDown("e")){
-            curentLevel++;
-            setMap();//chose what map should be played
-            setFields();//read the map specifics and structure
-            processMap();//saving the default location of all objects and tiles and instantiating them
-            moveCamera(0);
-            Greenfoot.setWorld(new lvl2());
-        }
-        
-        if(Greenfoot.isKeyDown("q")){
-            curentLevel--;
-            setMap();//chose what map should be played
-            setFields();//read the map specifics and structure
-            processMap();//saving the default location of all objects and tiles and instantiating them
-            moveCamera(0);
-            Greenfoot.setWorld(new lvl1());
-        }
         setPaintOrder(
             bulletShowcase.class,
             GunShowcase.class,
             border.class,
             knife.class,
             Gun.class,
-            shiro.class,
             Boom.class,
+            bullet.class,
+            shiro.class,
             jumpParticles.class,
             collision.class,
             platform.class,
@@ -87,7 +70,7 @@ public abstract class level extends World
         );
         //setPaintOrder(knife.class);
         
-        cameraLocation.x=player.getX();
+        cameraLocation.x=player.x;
         if (cameraLocation.x>halfWidth){
             moveCamera(1);
         }
@@ -110,11 +93,11 @@ public abstract class level extends World
         offset=-cameraSpeed *direction;
         if(player!=null){
             if((cameraLocation.x>halfWidth&&cameraLocation.x+offset<halfWidth)||(cameraLocation.x<halfWidth&&cameraLocation.x+offset>halfWidth)){
-                player.setLocation(halfWidth,player.getY());
+                player.setLocation(halfWidth,player.y);
                 offset=halfWidth-cameraLocation.x;
             }
             else{
-                player.setLocation(player.getX()+offset, player.getY());   
+                player.setLocation(player.x+offset, player.y);   
             }   
         }
         List<entity> allObjects = getObjects(entity.class);
@@ -218,13 +201,14 @@ public abstract class level extends World
                     case 43 ->  {actor = new brick_ground(); }
                     case 44 ->  {actor = new brick_corner_Dleft(); }
                     case 45 ->  {actor = new brick_out_Dright(); }
+                    case 47 ->  {actor = new enemy2(); }
                     case 49 ->  {actor = new tutorial1(); }
-                    case 46 ->  {actor = new enemy2(); }
+                    //case 50 ->  {actor = new miniBoss();}
                     case 51 ->  {actor = new tutorialZ(); }
                     case 56 ->  {actor = new tutorialGun(); }
-                    case 53 ->  {actor = new red(); }
-                    case 54 ->  {actor = new tutorialMove(); }
-                    case 55 ->  {actor = new tutorialX(); }
+                    case 54 ->  {actor = new red(); }
+                    case 53 ->  {actor = new tutorialMove(); }
+                    case 55 ->  {actor = new trump(); }
                    
                     
                     

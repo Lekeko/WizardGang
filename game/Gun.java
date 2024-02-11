@@ -11,7 +11,7 @@ public class Gun extends entity
         getImage().mirrorHorizontally();
     }
     public void shoot(){
-        bullet glont=new bullet();
+        bullet glont=new playerBullet();
         glont.location(x+offsetBullet*direction, y+offsetY);
         if(direction>0){
             getWorld().addObject(glont, x + offsetBullet*direction, y+offsetY);

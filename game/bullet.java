@@ -1,6 +1,7 @@
 import greenfoot.*;
 public class bullet extends collision
 {
+    Class<?> enemyClass=enemies.class;
     entity boom;
     public bullet(){
         leftUpCorner=new vector2(16,16);
@@ -20,7 +21,7 @@ public class bullet extends collision
     public void act()
     {        
         super.act();
-        if(this.isTouching(platform.class)){
+        if(this.isTouching(enemyClass)||this.isTouching(enemyClass)||this.isTouching(platform.class)||this.isTouching(platform.class)){
             
             boom.location(x,y);
             getWorld().addObject(boom, this.getX(),this.getY());

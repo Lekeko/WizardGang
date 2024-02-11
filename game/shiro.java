@@ -22,6 +22,7 @@ public class shiro extends collision
     private level lvl;
     private boolean usesKnife = false;
     private boolean usesGun = false;
+    private boolean knockedUp=false;
     public shiro(){
         
         leftUpCorner=new vector2(4,2);
@@ -66,10 +67,13 @@ public class shiro extends collision
         getWorld().addObject(gun, x+72, y-2);
         getWorld().addObject(knifee, x+82, y-2);
     }
-    int knifeCooldown = 20;
+    int knifeCooldown = 40;
     public void act()
     {
+        damageCooldown--;
         knifeCooldown--;
+        gunCooldown--;
+        timerShowGun--;
         
         //move
         if(!hasGun){
@@ -80,35 +84,72 @@ public class shiro extends collision
             reloadGun();
         }
         animate();//move shiro based on where you pushed her (left right up dow)
-        if(Greenfoot.isKeyDown("right"))
-        {//press right and push shiro right
-            hSpeed=speed;
-            if(isLeft){
-                gun.flip();
-                knifee.flip();
-                isLeft = false;
+        if(!knockedUp){
+            if(Greenfoot.isKeyDown("right"))
+            {//press right and push shiro right
+                hSpeed=speed;
+                if(isLeft){
+                    gun.flip();
+                    knifee.flip();
+                    isLeft = false;
+                }
+            }
+            else if(Greenfoot.isKeyDown("left"))
+            {//press left and push shiro left
+                hSpeed=-speed;
+                if(!isLeft){
+                    gun.flip();
+                    knifee.flip();
+                    isLeft = true;
+                }
+            }
+            else
+            {//press nothing and do nothing
+                hSpeed=0;
+            }   
+        }
+        if(onGround()){
+            knockedUp=false;
+            if(Greenfoot.isKeyDown("up") &&vSpeed>=0)
+            {//press up and push shiro up
+                jump();
+            }     
+        }
+        if(damageCooldown <= 0 && hp > 0){
+            if(isTouching(BoomEnemy.class)){
+                if(checkLeftWall(BoomEnemy.class)){
+                    hSpeed=15;
+                }
+                else{
+                    hSpeed=-15;
+                }
+                vSpeed=-12;
+                takeDmg();
+                knockedUp=true;
+            }
+            else if(isTouching(slashEffect.class)){
+                if(checkLeftWall(slashEffect.class)){
+                    hSpeed=9;
+                }
+                else{
+                    hSpeed=-9;
+                }
+                vSpeed=-12;
+                takeDmg();
+                knockedUp=true;
+            }
+            else if(isTouching(dash.class)){
+                if(checkLeftWall(dash.class)){
+                    hSpeed=5;
+                }
+                else{
+                    hSpeed=-5;
+                }
+                vSpeed=-17;
+                takeDmg();
+                knockedUp=true;
             }
         }
-        else if(Greenfoot.isKeyDown("left"))
-        {//press left and push shiro left
-            hSpeed=-speed;
-            if(!isLeft){
-                gun.flip();
-                knifee.flip();
-                isLeft = true;
-            }
-        }
-        else
-        {//press nothing and do nothing
-            hSpeed=0;
-        }
-        if(Greenfoot.isKeyDown("up") &&onGround()&&vSpeed>=0)
-        {//press up and push shiro up
-            jump();
-        }     
-        
-        gunCooldown--;
-        timerShowGun--;
         gun.location(x,y);
         knifee.location(x, y);
         if(timerShowGun > 0){
@@ -198,12 +239,10 @@ public class shiro extends collision
         hasGun = true;
     }
     public void takeDmg(){
-        if(damageCooldown <= 0 && isTouching(enemies.class) && hp > 0){
-            damageCooldown =77;
-            hp--;
-            if(((border)lvl.border).currentAnimation<3){
-                ((border)lvl.border).currentAnimation++;   
-            }
+        damageCooldown =77;
+        hp--;
+        if(((border)lvl.border).currentAnimation<3){
+            ((border)lvl.border).currentAnimation++;   
         }
     }
     public boolean isKeyJustPressed(String key) {//fixing some of the engines inferiority
@@ -211,5 +250,8 @@ public class shiro extends collision
         boolean result = currentKeyPressed && !previousKeyPressed;
         previousKeyPressed = currentKeyPressed;
         return result;
+    }
+    private void die(){
+        
     }
 }

@@ -59,6 +59,7 @@ public class enemy extends enemies
     public void act()
     {
         if(isOnScreen){
+            getImage().setTransparency(255);
             if(lvl.player.x<x&&!isLeft){
                 isLeft=true;
             }
@@ -67,9 +68,15 @@ public class enemy extends enemies
             }
             super.act();
             animate();
-            if(this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg&&damageCooldown <= 0){
-                takeDmg();
-                damageCooldown=20;
+            if(damageCooldown <= 0){
+                if((this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg)){
+                    takeDmg(2);
+                    damageCooldown=27;
+                }
+                else if(this.isTouching(playerBoom.class)){
+                    takeDmg(1);
+                    damageCooldown=27;
+                }
             }
             movingCooldown--;
             if(movingCooldown >0){
@@ -100,10 +107,13 @@ public class enemy extends enemies
                     }   
                 }
             
-            if(hp==0){
+            if(hp<=0){
                 getWorld().removeObject(this);
             }   
         }
+    }
+    else{
+        //getImage().setTransparency(0);
     }
 }
     
@@ -116,8 +126,8 @@ public class enemy extends enemies
         isMoving = true;
         movingCooldown = idk2;   
     }
-    private void takeDmg(){
-        hp--;
+    private void takeDmg(int dmg){
+        hp-=dmg;
         knifeParticles particles = new knifeParticles();
         particles.location(x, y);
         getWorld().addObject(particles, x, y);

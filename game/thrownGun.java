@@ -3,7 +3,6 @@ public class thrownGun extends bullet
 {
     
     public thrownGun(){
-        shouldFall = true;
         boom=new BoomGun();
     }
     public void act()

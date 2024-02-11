@@ -21,4 +21,7 @@ public class Boom extends animatedEntity
     {
         super.act();
     }
+    public void flip(){
+        getImage().mirrorHorizontally();
+    }
 }
