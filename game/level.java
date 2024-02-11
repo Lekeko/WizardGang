@@ -118,6 +118,7 @@ public abstract class level extends World
             else{
                 actor.isOnScreen=false;
             }
+            
         }
     }
 
@@ -222,6 +223,7 @@ public abstract class level extends World
                     case 59 ->  {actor = new carpet(); }
                     case 60 ->  {actor = new trump(); }
                     case 61 ->  {actor = new red(); }
+                    case 62 ->  {actor = new barier(); }
                    
                     
                     
