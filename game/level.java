@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public abstract class level extends World
 {//:)
     private int offset=0;
-    private int cameraSpeed=9;
+    private int cameraSpeed=5;
     private int halfWidth=getWidth()/2;
     private int halfHeight=getHeight()/2;
     private int mapHeight;
@@ -19,7 +19,7 @@ public abstract class level extends World
     private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
     private vector2[][] tileCoordinates;
     private List<List<Integer>> map = new ArrayList<>();
-    private shiro player = null;
+    public shiro player = null;
     public Actor border = new border();
     public File jsonFile;
     public Actor[] bulletAmmo = {
@@ -72,22 +72,20 @@ public abstract class level extends World
             Greenfoot.setWorld(new lvl1());
         }
         setPaintOrder(
-                               
-                      bulletShowcase.class,
-                      GunShowcase.class,
-                      border.class,
-                      Gun.class,
-                      shiro.class,
-                      Boom.class,
-                      jumpParticles.class,
-                      collision.class,
-                      knife.class,
-                      platform.class,
-                      backgroundTiles.class
+            bulletShowcase.class,
+            GunShowcase.class,
+            border.class,
+            knife.class,
+            Gun.class,
+            shiro.class,
+            Boom.class,
+            jumpParticles.class,
+            collision.class,
+            platform.class,
+            backgroundTiles.class
 
         );
-        
-        player = (shiro) getObjects(shiro.class).get(0);
+        //setPaintOrder(knife.class);
         
         cameraLocation.x=player.getX();
         if (cameraLocation.x>halfWidth){
@@ -122,6 +120,9 @@ public abstract class level extends World
         List<entity> allObjects = getObjects(entity.class);
 
         for (entity actor : allObjects) {
+            if (actor instanceof red&&((red)actor).isOnScreen){
+                nextLevel();
+            }
             actor.x+=offset;
             if(locationOnScreen(new vector2(actor.x,actor.y))){
                 actor.isOnScreen=true;
@@ -221,7 +222,7 @@ public abstract class level extends World
                     case 46 ->  {actor = new enemy2(); }
                     case 51 ->  {actor = new tutorialZ(); }
                     case 56 ->  {actor = new tutorialGun(); }
-                    case 53 ->  {actor = new tutorialKnife(); }
+                    case 53 ->  {actor = new red(); }
                     case 54 ->  {actor = new tutorialMove(); }
                     case 55 ->  {actor = new tutorialX(); }
                    
@@ -246,12 +247,6 @@ public abstract class level extends World
         }
     }
     
-    public void nextLevel(){
-        Greenfoot.setWorld(new lvl2());
-        setMap();//chose what map should be played
-        setFields();//read the map specifics and structure
-        processMap();//saving the default location of all objects and tiles and instantiating them
-        moveCamera(0);
-    }//both set individually by each lvl
+    public void nextLevel(){}//both set individually by each lvl
     public void setMap(){}
 }

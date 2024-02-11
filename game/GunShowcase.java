@@ -1,5 +1,5 @@
 import greenfoot.*;
-public class GunShowcase extends entity
+public class GunShowcase extends showcase
 {
     public GunShowcase(){
         getImage().rotate(-45);

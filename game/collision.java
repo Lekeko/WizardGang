@@ -22,8 +22,16 @@ public abstract class collision extends animatedEntity
     public entity currentGround;
     public entity currenRightWall;
     public entity currenLeftWall;
+    int damageCooldown = 0;
+    
+    public collision(){
+    }
+    
     public void act()
     {
+        if(damageCooldown>0){
+            damageCooldown--;
+        }
         if(shouldCollide){
             platformAbove();
             if (onGround()&&vSpeed>=0){
@@ -175,5 +183,14 @@ public abstract class collision extends animatedEntity
     }
     public void moveOnX(){
         x+=hSpeed;
+    }
+    public void scaleCollider(int scalaar){
+        //scale collider
+        leftUpCorner=leftUpCorner.multiply(scalaar);
+        rightUpCorner=rightUpCorner.multiply(scalaar);
+        leftDownCorner=leftDownCorner.multiply(scalaar);
+        leftDownCorner.x+=(scalaar-1);
+        rightDownCorner=rightDownCorner.multiply(scalaar);
+        rightDownCorner.x+=(scalaar-1);
     }
 }

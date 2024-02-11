@@ -11,6 +11,6 @@ public class lvl1 extends level
         jsonFile = new File("lvls/level1.json");
     }//25,25 map will fit 800 800
     public void nextLevel(){
-        //Greenfoot.setWorld(new lvl2());
+        Greenfoot.setWorld(new lvl2());
     }
 }

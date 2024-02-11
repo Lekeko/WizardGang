@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=thrownGun
 comment1.params=
-comment1.target=void\ thrownGun()
+comment1.target=thrownGun()
 comment2.params=
 comment2.target=void\ act()
 numComments=3

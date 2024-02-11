@@ -10,4 +10,7 @@ public class lvl2 extends level
     public void setMap(){
         jsonFile = new File("lvls/level2.json");
     }
+    public void nextLevel(){
+        Greenfoot.setWorld(new lvl3());
+    }
 }

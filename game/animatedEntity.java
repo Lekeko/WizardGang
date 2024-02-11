@@ -5,21 +5,28 @@ public class animatedEntity extends entity
     public boolean animate=false;
     public boolean crazyAnimation=false;
     public boolean interactible=true;
+    public boolean oneTimeAnimation=false;
+    public boolean finishedAnimating=false;
     public int currentFrame = 0;
     public int animateSpeed = 5;//the lower the faster the animation
     public int timeSinceLastFrame = 0;
     public int currentAnimation=0;
     public int direction=1;//1 right -1 left
     public int scalar;
+    public level lvl;
     public animatedEntity(){
     }
     public void act()
     {
-        if (animate||crazyAnimation){
+        if (animate||crazyAnimation||oneTimeAnimation){
             processFrame();
             if(currentFrame== imagini[currentAnimation].length){ 
                 if(crazyAnimation){
                     getWorld().removeObject(this);
+                }
+                else if(oneTimeAnimation){
+                    oneTimeAnimation=false;
+                    finishedAnimating=true;
                 }
                 else{
                     currentFrame=0;

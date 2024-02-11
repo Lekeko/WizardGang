@@ -1,11 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 import java.util.Random;
-/**
- * Write a description of class enemy2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class mini_boss extends enemies{
     boolean isMoving = false;
     int movingCooldown = 0;
@@ -20,14 +14,6 @@ public class mini_boss extends enemies{
         spriteHeight=getImage().getHeight();
         halfWidthSprite=getImage().getWidth()/2;
         halfHeightSprite=getImage().getHeight()/2;
-        /*Random random = new Random();
-
-        // Generate a random integer (0 or 1)
-        int randomNumber = random.nextInt(2); // Generates a random integer between 0 (inclusive) and 2 (exclusive)
-
-        // Map 0 to -1 and 1 to 1
-        int result = (randomNumber == 0) ? -1 : 1;
-        hSpeed=6*result;*/
     }
     public void act()
     {

@@ -1,5 +1,5 @@
 import greenfoot.*;
-public class bulletShowcase extends entity
+public class bulletShowcase extends showcase
 {
     public bulletShowcase(){
         getImage().scale(70, 70);

@@ -7,8 +7,7 @@ public class shiro extends collision
     private int jumpStrength = 18;
     private int animationCounter = 0;
     private int frame = 1;
-    private int timer = 0;
-    private int speed = 9;
+    private int speed = 5;
     private int hp= 3;
     private int timeSinceLastFrame = 0;
     private int currentFrame = 0;
@@ -19,9 +18,10 @@ public class shiro extends collision
     private int timerShowGun = -1;
     private int reloadTimer = 70;
     private Gun gun = new Gun();
-    private knife knife = new knife();
+    public knife knifee = new knife();
     private level lvl;
     private boolean usesKnife = false;
+    private boolean usesGun = false;
     public shiro(){
         
         leftUpCorner=new vector2(4,2);
@@ -30,7 +30,8 @@ public class shiro extends collision
         rightDownCorner=new vector2(28,32);
         isLeft = false;//"but you already initialized that" yea sure if i move left and restart the game, shiro will face left even it its initialized right why? idk greenfot inferior engine
         scalar=3;
-        scaleShiro(scalar);
+        setImage(scaleSprite(getImage(), scalar));
+        scaleCollider(scalar);
         image=getImage();
         spriteHeight=getImage().getHeight();
         halfWidthSprite=getImage().getWidth()/2;
@@ -61,19 +62,14 @@ public class shiro extends collision
     }
     public void addedToWorld(World world) {
         lvl=((level)getWorld());
+        lvl.player=this;
         getWorld().addObject(gun, x+72, y-2);
-        getWorld().addObject(knife, x+72, y-2);
+        getWorld().addObject(knifee, x+82, y-2);
     }
     int knifeCooldown = 20;
-    int damageCooldown = 0;
     public void act()
     {
-        damageCooldown--;
         knifeCooldown--;
-        if(damageCooldown <= 0 && isTouching(enemies.class) && hp > 0){
-            takeDmg();
-            damageCooldown =100;
-        }
         
         //move
         if(!hasGun){
@@ -89,7 +85,7 @@ public class shiro extends collision
             hSpeed=speed;
             if(isLeft){
                 gun.flip();
-                knife.flip();
+                knifee.flip();
                 isLeft = false;
             }
         }
@@ -98,7 +94,7 @@ public class shiro extends collision
             hSpeed=-speed;
             if(!isLeft){
                 gun.flip();
-                knife.flip();
+                knifee.flip();
                 isLeft = true;
             }
         }
@@ -109,31 +105,28 @@ public class shiro extends collision
         if(Greenfoot.isKeyDown("up") &&onGround()&&vSpeed>=0)
         {//press up and push shiro up
             jump();
-        }  
-        if(timer > 0)
-            timer--;       
+        }     
         
         gunCooldown--;
         timerShowGun--;
         gun.location(x,y);
-        knife.location(x, y);
+        knifee.location(x, y);
         if(timerShowGun > 0){
             gun.getImage().setTransparency(255);
         }
         if(knifeCooldown < 0)
             usesKnife = false;
-            
-        if(Greenfoot.isKeyDown("x") && knifeCooldown < 0){
-            knife.getImage().setTransparency(255);
-            getWorld().addObject(knife, x+72*direction, y-2);
-            knife.resetAnimation();
+        if(Greenfoot.isKeyDown("x") && knifeCooldown < 0&&!usesGun){
+            knifee.swing();
             knifeCooldown = 20;
             usesKnife = true;
             if(checkRightWall() || checkLeftWall()){
                 vSpeed = -17;
             }
         }
-        
+        if(gunCooldown<0){
+            usesGun=false;            
+        }
         if(Greenfoot.isKeyDown("z") && hasGun && !usesKnife){
             if (gunCooldown < 0 && ammo > 0){
                 ammo--;
@@ -144,6 +137,7 @@ public class shiro extends collision
                 gunCooldown = 20;
                 timerShowGun = 20;
                 gun.shoot();
+                usesGun=true;
             }
             if (ammo == 0 && gunCooldown < 0){
                 gunCooldown = 70;
@@ -193,19 +187,7 @@ public class shiro extends collision
         jumpParticles idk=new jumpParticles();
         idk.location(x,y);
         getWorld().addObject(idk, this.getX(),this.getY());
-        timer = 20;
         vSpeed =-jumpStrength;
-    }
-    
-    public void scaleShiro(int scalar){
-        setImage(scaleSprite(getImage(),3));
-        //scale collider
-        leftUpCorner=leftUpCorner.multiply(scalar);
-        rightUpCorner=rightUpCorner.multiply(scalar);
-        leftDownCorner=leftDownCorner.multiply(scalar);
-        leftDownCorner.x+=(scalar-1);
-        rightDownCorner=rightDownCorner.multiply(scalar);
-        rightDownCorner.x+=(scalar-1);
     }
     public void reloadGun(){
         for(int i  = 7; i >= 0; i--){
@@ -216,8 +198,13 @@ public class shiro extends collision
         hasGun = true;
     }
     public void takeDmg(){
-        hp--;
-        ((border)lvl.border).currentAnimation++;
+        if(damageCooldown <= 0 && isTouching(enemies.class) && hp > 0){
+            damageCooldown =77;
+            hp--;
+            if(((border)lvl.border).currentAnimation<3){
+                ((border)lvl.border).currentAnimation++;   
+            }
+        }
     }
     public boolean isKeyJustPressed(String key) {//fixing some of the engines inferiority
         boolean currentKeyPressed = Greenfoot.isKeyDown(key);
