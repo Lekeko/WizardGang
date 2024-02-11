@@ -183,7 +183,7 @@ public class enemy2 extends enemies{
     private void aimGun(int idk){
         hSpeed=0;
         shootTimer++;
-        if(shootTimer>=77){
+        if(shootTimer>=60){
             shootTimer=0;
             SHOOT=true;
         }

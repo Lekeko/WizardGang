@@ -303,8 +303,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 5598.484848484848,
-                "y": 369.69696969696963
+                "x": 5578.787878787878,
+                "y": 778.7878787878788
             }
         },
         "lvls/level2.json": {
@@ -327,8 +327,8 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 3167.333333333333,
-                "y": 876
+                "x": 3166,
+                "y": 874.6666666666665
             }
         },
         "lvls/lof2_back.tsx": {
@@ -419,8 +419,8 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "lvls/level3.json",
         "lvls/level1.json",
+        "lvls/level3.json",
         "lvls/trump.tsx",
         "lvls/miniBoss.tsx",
         "lvls/allBlocksLevel.json",

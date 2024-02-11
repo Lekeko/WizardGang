@@ -203,7 +203,7 @@ public class miniBoss extends enemies{
     private void aimGun(int idk){
         hSpeed=0;
         shootTimer++;
-        if(shootTimer>=67){
+        if(shootTimer>=50){
             shootTimer=0;
             SHOOT=true;
         }

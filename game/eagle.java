@@ -15,6 +15,8 @@ public class eagle extends collision
         shouldFall = false;
         shouldCollide=false;
         hSpeed = 10;
+        GreenfootSound sound = new GreenfootSound("eagle.mp3");
+        sound.play();
         //setImage(scaleSprite(getImage(),2));
     }
     public void addedToWorld(World world) {
