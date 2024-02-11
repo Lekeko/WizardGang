@@ -6,6 +6,7 @@ public class deathScreen extends idk
     }
     
     public void act(){
+        menu.sound.stop();
         if(Greenfoot.isKeyDown("q")){
             Greenfoot.setWorld(new menu());
         }

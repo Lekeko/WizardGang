@@ -1,7 +1,7 @@
 import greenfoot.*;
 public class menu extends idk
 {
-    GreenfootSound sound ;
+    static GreenfootSound sound ;
     public menu()
     {
         sound=new GreenfootSound("level2.mp3");
