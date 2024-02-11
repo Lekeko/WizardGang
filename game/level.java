@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 public abstract class level extends World
 {//:)
     private int offset=0;
-    private int cameraSpeed=7;
+    private int cameraSpeed=15;
     private int halfWidth=getWidth()/2;
     private int halfHeight=getHeight()/2;
     private int mapHeight;
@@ -21,6 +21,7 @@ public abstract class level extends World
     public shiro player = null;
     public Actor border = new border();
     public File jsonFile;
+    public static World lastMap= new lvl1();
     public Actor[] bulletAmmo = {
             new GunShowcase(),
             new bulletShowcase(), 
@@ -57,6 +58,7 @@ public abstract class level extends World
             bulletShowcase.class,
             GunShowcase.class,
             border.class,
+            speciatBackground.class,
             knife.class,
             Gun.class,
             Boom.class,
@@ -156,59 +158,66 @@ public abstract class level extends World
                     Actor actor = null;
                     
                     switch (kind){ 
-                    case 1 ->  {actor = new stone(); }
-                    case 2 ->  {actor = new log_back(); }
-                    case 3 ->  {actor = new tree1(); }
-                    case 4 ->  {actor = new all_wood(); }
-                    case 5 ->  {actor = new all_wood2(); }
-                    case 6 ->  {actor = new grassLand(); }
-                    case 7 ->  {actor = new outer_grass_corner_left(); }
-                    case 8 ->  {actor = new log(); }
-                    case 9 ->  {actor = new grass_corner_right(); }
-                    case 10 ->  {actor = new log2_back(); }
-                    case 11 ->  {actor = new tree2(); }
-                    case 12 ->  {actor = new grass_corner_left(); }
-                    case 13 ->  {actor = new grass_left(); }
-                    case 14 ->  {actor = new log2(); }
-                    case 15 ->  {actor = new plank2(); }
-                    case 16 ->  {actor = new plank2_back(); }
-                    case 17 ->  {actor = new fence(); }
-                    case 18 ->  {actor = new shiro(); }
-                    case 19 ->  {actor = new grass(); }
-                    case 20 ->  {actor = new plank_back(); }
-                    case 21 ->  {actor = new dirt(); }
-                    case 22 ->  {actor = new plank(); }
-                    case 23 ->  {actor = new window(); }
-                    case 24 ->  {actor = new grass_right(); }
-                    case 25 ->  {actor = new enemy(); }
+                    case 1 ->  {actor = new outer_grass_corner_left(); }
+                    case 2 ->  {actor = new plank(); }
+                    case 3 ->  {actor = new all_wood(); }
+                    case 4 ->  {actor = new grass_right(); }
+                    case 5 ->  {actor = new log(); }
+                    case 6 ->  {actor = new fence(); }
+                    case 7 ->  {actor = new tutorialMove(); }
+                    case 8 ->  {actor = new log2(); }
+                    case 9 ->  {actor = new stone(); }
+                    case 10 ->  {actor = new plank2_back(); }
+                    case 11 ->  {actor = new plank_back(); }
+                    case 12 ->  {actor = new grass(); }
+                    case 13 ->  {actor = new grass_corner_left(); }
+                    case 14 ->  {actor = new tutorialGun(); }
+                    case 15 ->  {actor = new shiro(); }
+                    case 16 ->  {actor = new grassLand(); }
+                    case 17 ->  {actor = new log2_back(); }
+                    case 18 ->  {actor = new colored(); }
+                    case 19 ->  {actor = new all_wood2(); }
+                    case 20 ->  {actor = new tree2(); }
+                    case 21 ->  {actor = new tutorialZ(); }
+                    case 22 ->  {actor = new window(); }
+                    case 23 ->  {actor = new tutorialKnife(); }
+                    case 24 ->  {actor = new enemy(); }
+                    case 25 ->  {actor = new tutorialX(); }
                     case 26 ->  {actor = new outer_grass_corner_right(); }
-                    case 27 ->  {actor = new standed_light(); }
-                    case 28 ->  {actor = new brick_out_right(); }
-                    case 29 ->  {actor = new brick_out_Dleft(); }
-                    case 30 ->  {actor = new brick_corner_Dright(); }
-                    case 31 ->  {actor = new brick_corner_right(); }
-                    case 32 ->  {actor = new brick_corner_left(); }
-                    case 33 ->  {actor = new brick_side_right(); }
-                    case 34 ->  {actor = new door(); }
-                    case 35 ->  {actor = new brick_side_left(); }
-                    case 36 ->  {actor = new brick_out_left(); }
-                    case 37 ->  {actor = new white_block(); }
-                    case 38 ->  {actor = new brick_down(); }
-                    case 39 ->  {actor = new pillar(); }
-                    case 40 ->  {actor = new colored(); }
-                    case 41 ->  {actor = new wall_house(); }
-                    case 42 ->  {actor = new brick(); }
-                    case 43 ->  {actor = new brick_ground(); }
-                    case 44 ->  {actor = new brick_corner_Dleft(); }
-                    case 45 ->  {actor = new brick_out_Dright(); }
-                    case 47 ->  {actor = new enemy2(); }
-                    case 49 ->  {actor = new tutorial1(); }
-                    //case 50 ->  {actor = new miniBoss();}
-                    case 51 ->  {actor = new tutorialZ(); }
-                    case 56 ->  {actor = new tutorialGun(); }
-                    case 54 ->  {actor = new red(); }
-                    case 53 ->  {actor = new tutorialMove(); }
-                    case 55 ->  {actor = new trump(); }
+                    case 27 ->  {actor = new plank2(); }
+                    case 28 ->  {actor = new grass_corner_right(); }
+                    case 29 ->  {actor = new tutorial1(); }
+                    case 30 ->  {actor = new tree1(); }
+                    case 31 ->  {actor = new tree3(); }
+                    case 32 ->  {actor = new dirt(); }
+                    case 33 ->  {actor = new enemy2(); }
+                    case 34 ->  {actor = new walled_light(); }
+                    case 35 ->  {actor = new grass_left(); }
+                    case 36 ->  {actor = new log_back(); }
+                    case 37 ->  {actor = new wall_house(); }
+                    case 38 ->  {actor = new brick_out_left(); }
+                    case 39 ->  {actor = new door(); }
+                    case 40 ->  {actor = new brick_corner_left(); }
+                    case 41 ->  {actor = new brick_corner_right(); }
+                    case 42 ->  {actor = new standed_light(); }
+                    case 43 ->  {actor = new brick_out_right(); }
+                    case 44 ->  {actor = new brick_out_Dright(); }
+                    case 45 ->  {actor = new brick_side_left(); }
+                    case 46 ->  {actor = new white_block(); }
+                    case 47 ->  {actor = new brick_corner_Dright(); }
+                    case 48 ->  {actor = new brick_corner_Dleft(); }
+                    case 49 ->  {actor = new pillar(); }
+                    case 50 ->  {actor = new brick_ground();}
+                    case 51 ->  {actor = new brick(); }
+                    case 52 ->  {actor = new brick_corner_Dleft(); }
+                    case 53 ->  {actor = new brick_side_right(); }
+                    case 54 ->  {actor = new brick_down(); }
+                    case 55 ->  {actor = new miniBoss(); }
+                    case 56 ->  {actor = new flag1(); }
+                    case 57 ->  {actor = new flag2(); }
+                    case 58 ->  {actor = new flag3(); }
+                    case 59 ->  {actor = new carpet(); }
+                    case 60 ->  {actor = new trump(); }
                    
                     
                     

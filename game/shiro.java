@@ -149,6 +149,17 @@ public class shiro extends collision
                 takeDmg();
                 knockedUp=true;
             }
+            else if(isTouching(boomTrump.class)){
+                if(checkLeftWall(boomTrump.class)){
+                    hSpeed=5;
+                }
+                else{
+                    hSpeed=-5;
+                }
+                vSpeed=-17;
+                takeDmg();
+                knockedUp=true;
+            }
         }
         gun.location(x,y);
         knifee.location(x, y);

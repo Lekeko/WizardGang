@@ -12,5 +12,6 @@ public class lvl2 extends level
     }
     public void nextLevel(){
         Greenfoot.setWorld(new lvl3());
+        lastMap=new lvl3();
     }
 }

@@ -113,7 +113,7 @@ public class enemy extends enemies
         }
     }
     else{
-        //getImage().setTransparency(0);
+        getImage().setTransparency(0);
     }
 }
     

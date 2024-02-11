@@ -3,7 +3,7 @@ public class enemyBullet extends bullet
 {
     public enemyBullet(){
         enemyClass=shiro.class;
-        boom=new BoomEnemy();
+        boom=new boomTrump();
     }
     public void act()
     {

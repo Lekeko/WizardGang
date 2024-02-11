@@ -146,7 +146,7 @@ public class trump extends enemies
                 changeAnimation(0);//idle
             }
             else{
-                if(SHOOT&&currentAnimation!=3){
+                if(SHOOT){
                     changeAnimation(0);
                     oneTimeAnimation=true;
                     

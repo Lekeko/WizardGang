@@ -1,17 +1,6 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class tutorialZ here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class tutorialZ extends backgroundTiles
+import greenfoot.*;
+public class tutorialZ extends speciatBackground
 {
-    /**
-     * Act - do whatever the tutorialZ wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act()
     {
         super.act();
