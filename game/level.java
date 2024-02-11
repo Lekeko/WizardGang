@@ -17,7 +17,7 @@ public abstract class level extends World
     private int mapWidth;
     public int curentLevel = 1;
     private vector2 cameraLocation=new vector2(halfWidth,halfHeight);
-    private List<List<Integer>> map = new ArrayList<>();
+    private List<List<Long>> map = new ArrayList<>();
     public shiro player = null;
     public Actor border = new border();
     public File jsonFile;
@@ -131,17 +131,17 @@ public abstract class level extends World
             mapHeight = jsonNode.get("height").asInt();
             // extract the "layers" array from the root JSON object
             JsonNode layersNode = jsonNode.get("layers");
-            for(int i=0;i<layersNode.size();i++){
-                // get the "data" array from the first layer in the "layers" array
+            for (int i = 0; i < layersNode.size(); i++) {
+                // get the "data" array from the current layer in the "layers" array
                 JsonNode dataNode = layersNode.get(i).get("data");
                 // convert the "data" array to a String
                 String layersData = dataNode.toString();
                 // remove square brackets and split the string by commas
                 String[] numbersArray = layersData.replaceAll("[\\[\\]]", "").split(",");
-                // parse each number string as an integer and add it to the list
-                List<Integer> layer = new ArrayList<>();
+                // parse each number string as a long and add it to the list
+                List<Long> layer = new ArrayList<>();
                 for (String numStr : numbersArray) {
-                    layer.add(Integer.parseInt(numStr.trim()));
+                    layer.add(Long.parseLong(numStr.trim()));
                 }
                 map.add(layer);
             }
@@ -150,14 +150,14 @@ public abstract class level extends World
         }
     }
     private void processMap(){
-        for (List<Integer> innerList : map){
+        for (List<Long> innerList : map){
             for (int i=0; i<mapHeight; i++){
                 for (int j=0; j<mapWidth; j++)
                 {
-                    int kind = innerList.get(i*mapWidth+j);
+                    Long kind = innerList.get(i*mapWidth+j);
                     Actor actor = null;
                     
-                    switch (kind){ 
+                    switch (kind.intValue()){ 
                     case 1 ->  {actor = new outer_grass_corner_left(); }
                     case 2 ->  {actor = new plank(); }
                     case 3 ->  {actor = new all_wood(); }
@@ -218,6 +218,7 @@ public abstract class level extends World
                     case 58 ->  {actor = new flag3(); }
                     case 59 ->  {actor = new carpet(); }
                     case 60 ->  {actor = new trump(); }
+                    case 61 ->  {actor = new red(); }
                    
                     
                     

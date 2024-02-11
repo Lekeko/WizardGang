@@ -5,7 +5,7 @@ public class enemy2 extends enemies{
     private int movingCooldown = 0;
     private int hp = 3;
     private boolean isLeft=false;
-    private int speed=9;
+    private int speed=6;
     private int jumpForce=21;
     private int shootTimer=0;
     private boolean SHOOT=false;
@@ -65,13 +65,17 @@ public class enemy2 extends enemies{
             super.act();
             animate();
             if(damageCooldown <= 0){
-                if((this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg)){
-                    takeDmg(2);
-                    damageCooldown=27;
+                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                    takeDmg(6);
+                    damageCooldown=20;
                 }
                 else if(this.isTouching(playerBoom.class)){
-                    takeDmg(1);
-                    damageCooldown=27;
+                    takeDmg(2);
+                    damageCooldown=20;
+                }
+                else if(this.isTouching(thrownGun.class)){
+                    takeDmg(4);
+                    damageCooldown=20;
                 }
             }
             movingCooldown--;
@@ -83,7 +87,7 @@ public class enemy2 extends enemies{
                     followPlayer(-1);
                 }
                 hSpeed=speed*direction;
-                if(((checkLeftWall()||checkRightWall())||lvl.player.y<y-200)&&onGround()){
+                if((checkLeftWall()||checkRightWall())||lvl.player.y<y-200){
                     vSpeed=-jumpForce;
                 }
             }

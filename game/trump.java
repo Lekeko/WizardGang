@@ -6,10 +6,12 @@ public class trump extends enemies
     private int movingCooldown = 0;
     private int hp = 3;
     private boolean isLeft=false;
-    private int speed=9;
+    private int speed=4;
     private int jumpForce=19;
     private int shootTimer=0;
     private boolean SHOOT=false;
+    private int bulletTimer=0;
+    private int eagleTimer=0;
     public trump(){
         leftUpCorner=new vector2(8,1);
         rightUpCorner=new vector2(25,1);
@@ -51,6 +53,9 @@ public class trump extends enemies
     public void act()
     {
         if(isOnScreen){
+            shootTimer++;
+            bulletTimer++;
+            eagleTimer++;
             getImage().setTransparency(255);
             if(lvl.player.x<x&&!isLeft){
                 isLeft=true;
@@ -60,16 +65,6 @@ public class trump extends enemies
             }
             super.act();
             animate();
-            if(damageCooldown <= 0){
-                if((this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg)){
-                    takeDmg(2);
-                    damageCooldown=27;
-                }
-                else if(this.isTouching(playerBoom.class)){
-                    takeDmg(1);
-                    damageCooldown=27;
-                }
-            }
             movingCooldown--;
             if(movingCooldown >0){
                 if(checkLeftWall()&&!isLeft){
@@ -90,18 +85,52 @@ public class trump extends enemies
                 else if(lvl.player.x<x-300){
                     followPlayer(-1);
                 }
-                
-                else{
-                    if(lvl.player.x>x)
-                        aimGun(1);
-                    else{
-                        aimGun(-1);
-                    }   
+            if (shootTimer>277&&shootTimer<777){
+                if(bulletTimer>=4){
+                    SHOOT=true;
+                    trumpBullet blt=new trumpBullet();
+                    blt.location(x+27*direction, y-10);
+                    int rotation = Greenfoot.getRandomNumber(41) - 20; // Generates a random number between -10 and 10
+                    blt.setRotation(rotation);
+                    if(direction<0){
+                        blt.flip();
+                    }
+                    getWorld().addObject(blt, x+27*direction, y);
+                    bulletTimer=0;
                 }
+                if(shootTimer>1000){
+                    shootTimer=0;
+                }
+            }
+        }
+        if(damageCooldown <= 0){
+            if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                takeDmg(2);
+                damageCooldown=20;
+            }
+            else if(this.isTouching(playerBoom.class)){
+                takeDmg(1);
+                damageCooldown=20;
+            }
+            else if(this.isTouching(thrownGun.class)){
+                    takeDmg(4);
+                    damageCooldown=20;
+                }
+        }
+        if(eagleTimer>=200){
+            eagleTimer=0;
+            eagle idk = new eagle();
+
+            // Create a Random object
+            Random random = new Random();
             
-            if(hp<=0){
-                getWorld().removeObject(this);
-            }   
+            // Generate a random number between 0 and 1
+            int randomValue = random.nextInt(2);
+            
+            // Adjust the random value to be either 1 or -1
+            int result = randomValue == 0 ? -1 : 1;
+            idk.location((getWorld().getWidth()+100)*(randomValue),lvl.player.y+21);
+            getWorld().addObject(idk, (getWorld().getWidth()+100)*((int)Math.random() * 2 - 1),lvl.player.y+21);
         }
     }
     else{
@@ -123,6 +152,9 @@ public class trump extends enemies
         knifeParticles particles = new knifeParticles();
         particles.location(x, y);
         getWorld().addObject(particles, x, y);
+        if(hp<=0){
+            Greenfoot.setWorld(new finale());
+        }
     }
     private void animate(){
         if(vSpeed<0){
@@ -142,28 +174,8 @@ public class trump extends enemies
                 }
                 
             }
-            else if(lvl.player.y<y-200){
-                changeAnimation(0);//idle
-            }
             else{
-                if(SHOOT){
-                    changeAnimation(0);
-                    oneTimeAnimation=true;
-                    
-                    bullet blt=new enemyBullet();
-                    blt.location(x+27*direction, y-10);
-                    if(direction<0){
-                        blt.flip();
-                    }
-                    getWorld().addObject(blt, x+27*direction, y-10);
-                }
-                if(finishedAnimating){
-                    finishedAnimating=false;
-                    SHOOT=false;
-                }
-                if(!SHOOT){
-                    changeAnimation(0);//aim
-                }
+                changeAnimation(0);//idle
             }
         }
         if(isLeft){
@@ -172,14 +184,5 @@ public class trump extends enemies
         else{
             direction=1;
         }
-    }
-    private void aimGun(int idk){
-        hSpeed=0;
-        shootTimer++;
-        if(shootTimer>=77){
-            shootTimer=0;
-            SHOOT=true;
-        }
-        //changeAnimation(2);
     }
 }

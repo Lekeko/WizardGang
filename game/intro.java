@@ -11,6 +11,11 @@ public class intro extends idk {
     };
     
     public intro() {
+        GreenfootImage img = new GreenfootImage(22, 222);
+        img.setColor(Color.BLACK);
+        img.drawString("Press \"q\" to continue!", 21 ,1);
+        Label label = new Label();
+        addObject(label, 222, 800);
     }
     
     public void act() {
@@ -32,5 +37,23 @@ public class intro extends idk {
                 Greenfoot.setWorld(new lvl1());
             }
         }
+        
+        if(Greenfoot.isKeyDown("q")){
+            Greenfoot.setWorld(new lvl1());
+        }
+    }
+}
+
+class Label extends Actor{
+    public Label(){
+        GreenfootImage img = new GreenfootImage(530,130);
+        img.setColor(Color.BLACK);
+        
+        img.drawString("Press \"q\" to skip intro!", 111 ,22);
+        setImage(img);
+    }
+    
+    public void act(){
+    
     }
 }

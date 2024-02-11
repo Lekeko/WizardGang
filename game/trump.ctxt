@@ -12,6 +12,4 @@ comment5.params=dmg
 comment5.target=void\ takeDmg(int)
 comment6.params=
 comment6.target=void\ animate()
-comment7.params=idk
-comment7.target=void\ aimGun(int)
-numComments=8
+numComments=7

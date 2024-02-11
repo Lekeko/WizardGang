@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=trumpBullet()
 comment2.params=
 comment2.target=void\ act()
-numComments=3
+comment3.params=distance
+comment3.target=void\ moveInDirection(double)
+numComments=4

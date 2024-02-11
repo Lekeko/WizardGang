@@ -1,8 +1,8 @@
 {
-    "activeFile": "lvls/level1.json",
+    "activeFile": "lvls/level3.json",
     "expandedProjectPaths": [
-        ".",
-        "lvls"
+        "lvls",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -228,6 +228,12 @@
         "lvls/all_wood2.tsx": {
             "scaleInDock": 1
         },
+        "lvls/barier.tsx": {
+            "scaleInDock": 1
+        },
+        "lvls/boss.tsx": {
+            "scaleInDock": 1
+        },
         "lvls/brick)corner_left.tsx": {
             "scaleInDock": 1
         },
@@ -297,8 +303,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1374.2424242424242,
-                "y": 551.5151515151515
+                "x": 5598.484848484848,
+                "y": 369.69696969696963
             }
         },
         "lvls/level2.json": {
@@ -318,11 +324,11 @@
             }
         },
         "lvls/level3.json": {
-            "scale": 0.11231770833333332,
+            "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 2105.634129376304,
-                "y": -658.8453512636215
+                "x": 3167.333333333333,
+                "y": 876
             }
         },
         "lvls/lof2_back.tsx": {
@@ -404,25 +410,21 @@
             "scaleInDock": 1
         }
     },
+    "last.externalTilesetPath": "E:/greenfoot/WizardGang/game/lvls",
     "last.imagePath": "E:/greenfoot/WizardGang/game/images",
     "map.lastUsedFormat": "json",
     "openFiles": [
-        "lvls/level2.json",
-        "lvls/level3.json",
         "lvls/level1.json",
-        "lvls/red.tsx",
-        "lvls/allBlocksLevel.json",
-        "lvls/miniBoss.tsx",
-        "lvls/trump.tsx"
+        "lvls/level3.json"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "lvls/level3.json",
+        "lvls/level1.json",
         "lvls/trump.tsx",
         "lvls/miniBoss.tsx",
         "lvls/allBlocksLevel.json",
         "lvls/red.tsx",
-        "lvls/level1.json",
-        "lvls/level3.json",
         "lvls/level2.json",
         "lvls/level2json.json"
     ],

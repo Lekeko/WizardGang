@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=eagle
+comment1.params=
+comment1.target=eagle()
+comment2.params=world
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ flip()
+numComments=5

@@ -11,7 +11,7 @@ public class shiro extends collision
     private int hp= 3;
     private int timeSinceLastFrame = 0;
     private int currentFrame = 0;
-    private int gunCooldown = 20;
+    private int gunCooldown = 17;
     private int offsetBullet = 0;
     private int offsetGun = 0;
     private int ammo = 7;
@@ -67,7 +67,7 @@ public class shiro extends collision
         getWorld().addObject(gun, x+72, y-2);
         getWorld().addObject(knifee, x+82, y-2);
     }
-    int knifeCooldown = 40;
+    int knifeCooldown = 20;
     public void act()
     {
         damageCooldown--;
@@ -160,6 +160,17 @@ public class shiro extends collision
                 takeDmg();
                 knockedUp=true;
             }
+            else if(isTouching(eagle.class)){
+                if(checkLeftWall(eagle.class)){
+                    hSpeed=2;
+                }
+                else{
+                    hSpeed=-2;
+                }
+                vSpeed=-2;
+                takeDmg();
+                knockedUp=true;
+            }
         }
         gun.location(x,y);
         knifee.location(x, y);
@@ -170,7 +181,7 @@ public class shiro extends collision
             usesKnife = false;
         if(Greenfoot.isKeyDown("x") && knifeCooldown < 0&&!usesGun){
             knifee.swing();
-            knifeCooldown = 20;
+            knifeCooldown = 61;
             usesKnife = true;
             if(checkRightWall() || checkLeftWall()){
                 vSpeed = -17;
@@ -179,20 +190,20 @@ public class shiro extends collision
         if(gunCooldown<0){
             usesGun=false;            
         }
-        if(Greenfoot.isKeyDown("z") && hasGun && !usesKnife){
+        if(Greenfoot.isKeyDown("z") && hasGun && !knifee.active){
             if (gunCooldown < 0 && ammo > 0){
                 ammo--;
                 for(int i  = 7; i >= ammo + 1; i--){
                     lvl.bulletAmmo[i].getImage().setTransparency(0);
                 }
                 gun.getImage().setTransparency(255);
-                gunCooldown = 20;
-                timerShowGun = 20;
+                gunCooldown = 17;
+                timerShowGun = 17;
                 gun.shoot();
                 usesGun=true;
             }
             if (ammo == 0 && gunCooldown < 0){
-                gunCooldown = 70;
+                gunCooldown = 50;
                 hasGun = false;
                 gun.throww();
                 lvl.bulletAmmo[0].getImage().setTransparency(0);
@@ -255,6 +266,9 @@ public class shiro extends collision
         if(((border)lvl.border).currentAnimation<3){
             ((border)lvl.border).currentAnimation++;   
         }
+        if(hp<=0){
+            Greenfoot.setWorld(new deathScreen());
+        }
     }
     public boolean isKeyJustPressed(String key) {//fixing some of the engines inferiority
         boolean currentKeyPressed = Greenfoot.isKeyDown(key);
@@ -263,6 +277,6 @@ public class shiro extends collision
         return result;
     }
     private void die(){
-        
+        Greenfoot.setWorld(new finale());
     }
 }

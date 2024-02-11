@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Random;
 public class knife extends animatedEntity
 {
-    public boolean dealingDmg=false;
+    public boolean active=false;
     int offsetX=82, offsetY=-2;
     public knife(){
         animateSpeed=0;
@@ -21,10 +21,10 @@ public class knife extends animatedEntity
     public void act()
     {
         if(oneTimeAnimation||crazyAnimation||animate){
-            dealingDmg=true;
+            active=true;
         }
         else{
-            dealingDmg=false;
+            active=false;
         }
         if(finishedAnimating){
             getImage().setTransparency(0);

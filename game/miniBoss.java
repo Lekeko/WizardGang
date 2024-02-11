@@ -3,7 +3,7 @@ import java.util.Random;
 public class miniBoss extends enemies{
     private boolean isMoving = false;
     private int movingCooldown = 0;
-    private int hp = 3;
+    private int hp = 9;
     private boolean isLeft=false;
     private int speed=9;
     private int jumpForce=21;
@@ -67,13 +67,17 @@ public class miniBoss extends enemies{
             super.act();
             animate();
             if(damageCooldown <= 0){
-                if((this.isTouching(knife.class)&&lvl.player.knifee.dealingDmg)){
-                    takeDmg(2);
-                    damageCooldown=27;
+                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                    takeDmg(6);
+                    damageCooldown=20;
                 }
                 else if(this.isTouching(playerBoom.class)){
-                    takeDmg(1);
-                    damageCooldown=27;
+                    takeDmg(2);
+                    damageCooldown=20;
+                }
+                else if(this.isTouching(thrownGun.class)){
+                    takeDmg(4);
+                    damageCooldown=20;
                 }
             }
             movingCooldown--;
@@ -106,7 +110,8 @@ public class miniBoss extends enemies{
                 }
             
                 if(hp<=0){
-                getWorld().removeObject(this);
+                    lvl.nextLevel();
+                    getWorld().removeObject(this);
                 }  
             }
         }
@@ -198,7 +203,7 @@ public class miniBoss extends enemies{
     private void aimGun(int idk){
         hSpeed=0;
         shootTimer++;
-        if(shootTimer>=77){
+        if(shootTimer>=67){
             shootTimer=0;
             SHOOT=true;
         }

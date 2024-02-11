@@ -11,6 +11,7 @@ public abstract class collision extends animatedEntity
     private int acceleration = 1;
     public boolean onGround=false;
     public boolean shouldFall = true;
+    public boolean shouldMove=true;
     public boolean shouldCollide=true;
     public int halfWidthSprite;
     public int halfHeightSprite;
@@ -55,7 +56,9 @@ public abstract class collision extends animatedEntity
                 //stayOnLeftWall(currenLeftWall);
             }
         }
-        moveOnX();
+        if(shouldMove){
+            moveOnX();   
+        }
         super.act();
     }
     public boolean platformAbove()//prevents the player from no clipping through the ceiling
