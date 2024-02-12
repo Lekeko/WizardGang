@@ -8,6 +8,4 @@ comment3.params=
 comment3.target=void\ followPlayer()
 comment4.params=scalar
 comment4.target=void\ scaleShiro(int)
-comment5.params=
-comment5.target=void\ goombaWalk()
-numComments=6
+numComments=5

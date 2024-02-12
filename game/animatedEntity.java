@@ -14,6 +14,9 @@ public class animatedEntity extends entity
     public int direction=1;//1 right -1 left
     public int scalar;
     public level lvl;
+    public void addedToWorld(World world) {
+        lvl=((level)getWorld());
+    }
     public animatedEntity(){
     }
     public void act()
@@ -22,7 +25,7 @@ public class animatedEntity extends entity
             processFrame();
             if(currentFrame== imagini[currentAnimation].length){ 
                 if(crazyAnimation){
-                    getWorld().removeObject(this);
+                    lvl.removeObject(this);
                 }
                 else if(oneTimeAnimation){
                     oneTimeAnimation=false;

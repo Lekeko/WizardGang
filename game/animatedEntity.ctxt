@@ -1,15 +1,17 @@
 #BlueJ class context
 comment0.target=animatedEntity
-comment1.params=
-comment1.target=animatedEntity()
+comment1.params=world
+comment1.target=void\ addedToWorld(greenfoot.World)
 comment2.params=
-comment2.target=void\ act()
+comment2.target=animatedEntity()
 comment3.params=
-comment3.target=void\ processFrame()
-comment4.params=animation
-comment4.target=void\ changeAnimation(int)
-comment5.params=
-comment5.target=void\ resetAnimation()
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ processFrame()
+comment5.params=animation
+comment5.target=void\ changeAnimation(int)
 comment6.params=
-comment6.target=void\ nextFrame()
-numComments=7
+comment6.target=void\ resetAnimation()
+comment7.params=
+comment7.target=void\ nextFrame()
+numComments=8

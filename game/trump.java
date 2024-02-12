@@ -134,11 +134,11 @@ public class trump extends enemies
             idk.location((getWorld().getWidth()+100)*(randomValue),lvl.player.y+21);
             getWorld().addObject(idk, (getWorld().getWidth()+100)*((int)Math.random() * 2 - 1),lvl.player.y+21);
         }
+        if(hp<=0){
+            getWorld().removeObject(this);
+            sound.play();
+        } 
     }
-    if(hp<=0){
-        getWorld().removeObject(this);
-        sound.play();
-    } 
     else{
         getImage().setTransparency(0);
     }

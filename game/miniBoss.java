@@ -112,8 +112,10 @@ public class miniBoss extends enemies{
                 }
             }
             if(hp<=0){
-                getWorld().removeObject(this);
-                sound.play();
+                try{
+                    sound.play();
+                    getWorld().removeObject(this);   
+                }catch(Exception e){}
             } 
         }
         else{

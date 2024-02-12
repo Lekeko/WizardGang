@@ -96,18 +96,6 @@ public class mini_boss extends enemies{
         rightDownCorner=rightDownCorner.multiply(scalar);
         rightDownCorner.x+=(scalar-1);
     }
-    public void goombaWalk(){
-        shiro player = (shiro)getWorld().getObjects(shiro.class).get(0);
-        if(checkRightWall()){
-            hSpeed=-10;
-        }
-        else if (checkLeftWall()){
-            hSpeed=10;
-        }
-        if((checkRightWall()||checkLeftWall())&&onGround()){
-            vSpeed=-20;
-        }
-    }
 }
     
 
