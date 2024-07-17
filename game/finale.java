@@ -3,7 +3,7 @@ public class finale extends idk
 {
     public finale()
     {
-        level.lastMap=new lvl1();
+        level.lastLvl=1;
     }
     public void act(){
         if(Greenfoot.isKeyDown("q")){

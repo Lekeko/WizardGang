@@ -11,6 +11,6 @@ public class lvl3 extends level
         jsonFile = new File("lvls/level3.json");
     }
     public void nextLevel(){
-        Greenfoot.setWorld(new lvl3());
+        Greenfoot.setWorld(new lvl1());
     }
 }

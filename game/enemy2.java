@@ -3,10 +3,10 @@ import java.util.Random;
 public class enemy2 extends enemies{
     private boolean isMoving = false;
     private int movingCooldown = 0;
-    private int hp = 3;
+    private int hp = 12;
     private boolean isLeft=false;
     private int speed=6;
-    private int jumpForce=21;
+    private int jumpForce=19;
     private int shootTimer=0;
     private boolean SHOOT=false;
     GreenfootSound sound = new GreenfootSound("hurt.mp3");
@@ -66,18 +66,20 @@ public class enemy2 extends enemies{
             }
             super.act();
             animate();
-            if(damageCooldown <= 0){
-                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+            if(damageCooldown <= 4){
+                if(this.isTouching(playerBoom.class)){
+                    takeDmg(3);
+                    damageCooldown=18;
+                }
+                if(this.isTouching(BoomGun.class)){
                     takeDmg(6);
-                    damageCooldown=20;
+                    damageCooldown=18;
                 }
-                else if(this.isTouching(playerBoom.class)){
-                    takeDmg(2);
-                    damageCooldown=20;
-                }
-                else if(this.isTouching(thrownGun.class)){
-                    takeDmg(4);
-                    damageCooldown=20;
+            }
+            if(damageCooldown <= 18){
+                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                    takeDmg(5);
+                    damageCooldown=28;
                 }
             }
             movingCooldown--;
@@ -94,10 +96,10 @@ public class enemy2 extends enemies{
                 }
             }
             else{
-                if(lvl.player.x>x+300){
+                if(lvl.player.x>x+190){
                     followPlayer(1);
                 }
-                else if(lvl.player.x<x-300){
+                else if(lvl.player.x<x-190){
                     followPlayer(-1);
                 }
                 
@@ -187,7 +189,7 @@ public class enemy2 extends enemies{
     private void aimGun(int idk){
         hSpeed=0;
         shootTimer++;
-        if(shootTimer>=40){
+        if(shootTimer>=57){
             shootTimer=0;
             SHOOT=true;
         }

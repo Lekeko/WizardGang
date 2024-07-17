@@ -23,7 +23,7 @@ public abstract class level extends World
     public Actor border = new border();
     public File jsonFile;
     public static World lastMap= new lvl1();
-    
+    public static int lastLvl= 1;    
     public boolean activateDoor=false;
     
     public Actor[] bulletAmmo = {

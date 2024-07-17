@@ -5,7 +5,7 @@ public class trump extends enemies
     private GreenfootSound sound = new GreenfootSound("hurt.mp3");
     private boolean isMoving = false;
     private int movingCooldown = 0;
-    private int hp = 15;
+    private int hp = 40;
     private boolean isLeft=false;
     private int speed=4;
     private int jumpForce=19;
@@ -105,20 +105,22 @@ public class trump extends enemies
                 }
             }
         }
-        if(damageCooldown <= 0){
-            if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
-                takeDmg(2);
-                damageCooldown=20;
-            }
-            else if(this.isTouching(playerBoom.class)){
-                takeDmg(1);
-                damageCooldown=20;
-            }
-            else if(this.isTouching(thrownGun.class)){
-                    takeDmg(4);
-                    damageCooldown=20;
+        if(damageCooldown <= 4){
+                if(this.isTouching(playerBoom.class)){
+                    takeDmg(3);
+                    damageCooldown=18;
                 }
-        }
+                if(this.isTouching(BoomGun.class)){
+                    takeDmg(6);
+                    damageCooldown=18;
+                }
+            }
+            if(damageCooldown <= 18){
+                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                    takeDmg(5);
+                    damageCooldown=28;
+                }
+            }
         if(eagleTimer>=457){
             eagleTimer=0;
             eagle idk = new eagle();

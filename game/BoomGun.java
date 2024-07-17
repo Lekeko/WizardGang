@@ -2,6 +2,7 @@ import greenfoot.*;
 public class BoomGun extends Boom
 {
     public BoomGun(){
+        scalar=5;
         imagini = new GreenfootImage[][] {
             {
                 new GreenfootImage("bullet1_gun.png"),

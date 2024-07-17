@@ -4,7 +4,7 @@ public class miniBoss extends enemies{
     GreenfootSound sound = new GreenfootSound("hurt.mp3");
     private boolean isMoving = false;
     private int movingCooldown = 0;
-    private int hp = 9;
+    private int hp = 20;
     private boolean isLeft=false;
     private int speed=9;
     private int jumpForce=21;
@@ -68,18 +68,20 @@ public class miniBoss extends enemies{
             }
             super.act();
             animate();
-            if(damageCooldown <= 0){
-                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+            if(damageCooldown <= 4){
+                if(this.isTouching(playerBoom.class)){
+                    takeDmg(3);
+                    damageCooldown=18;
+                }
+                if(this.isTouching(BoomGun.class)){
                     takeDmg(6);
-                    damageCooldown=20;
+                    damageCooldown=18;
                 }
-                else if(this.isTouching(playerBoom.class)){
-                    takeDmg(2);
-                    damageCooldown=20;
-                }
-                else if(this.isTouching(thrownGun.class)){
-                    takeDmg(4);
-                    damageCooldown=20;
+            }
+            if(damageCooldown <= 18){
+                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                    takeDmg(5);
+                    damageCooldown=28;
                 }
             }
             movingCooldown--;
@@ -112,10 +114,9 @@ public class miniBoss extends enemies{
                 }
             }
             if(hp<=0){
-                try{
-                    sound.play();
-                    getWorld().removeObject(this);   
-                }catch(Exception e){}
+                lvl.activateDoor=true;
+                sound.play();
+                getWorld().removeObject(this);
             } 
         }
         else{
@@ -135,10 +136,7 @@ public class miniBoss extends enemies{
         knifeParticles particles = new knifeParticles();
         particles.location(x, y);
         getWorld().addObject(particles, x, y);
-        if(hp<=0){
-            lvl.activateDoor=true;;
-            getWorld().removeObject(this);
-        }
+        
     }
     private void animate(){
         if(vSpeed<0){

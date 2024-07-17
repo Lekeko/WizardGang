@@ -1,7 +1,7 @@
 import greenfoot.*;
 public class shiro extends collision
 {
-    public static boolean isLeft = false; //if the player is facing left
+    public boolean isLeft = false; //if the player is facing left
     private boolean previousKeyPressed = false;
     private boolean hasGun = true;
     private int jumpStrength = 18;
@@ -191,9 +191,6 @@ public class shiro extends collision
             knifee.swing();
             knifeCooldown = 61;
             usesKnife = true;
-            if(checkRightWall() || checkLeftWall()){
-                vSpeed = -17;
-            }
         }
         if(gunCooldown<0){
             usesGun=false;            
@@ -205,13 +202,13 @@ public class shiro extends collision
                     lvl.bulletAmmo[i].getImage().setTransparency(0);
                 }
                 gun.getImage().setTransparency(255);
-                gunCooldown = 17;
+                gunCooldown = 20;
                 timerShowGun = 17;
                 gun.shoot();
                 usesGun=true;
             }
             if (ammo == 0 && gunCooldown < 0){
-                gunCooldown = 50;
+                gunCooldown = 51;
                 hasGun = false;
                 gun.throww();
                 lvl.bulletAmmo[0].getImage().setTransparency(0);

@@ -5,9 +5,9 @@ public class enemy extends enemies
     GreenfootSound sound = new GreenfootSound("hurt.mp3");
     private boolean isMoving = false;
     private int movingCooldown = 0;
-    private int hp = 7;
+    private int hp = 9;
     private boolean isLeft=false;
-    private int speed=9;
+    private int speed=6;
     private int jumpForce=19;
     private int shootTimer=0;
     private boolean SHOOT=false;
@@ -70,18 +70,20 @@ public class enemy extends enemies
             }
             super.act();
             animate();
-            if(damageCooldown <= 0){
-                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+            if(damageCooldown <= 4){
+                if(this.isTouching(playerBoom.class)){
+                    takeDmg(3);
+                    damageCooldown=18;
+                }
+                if(this.isTouching(BoomGun.class)){
                     takeDmg(6);
-                    damageCooldown=20;
+                    damageCooldown=18;
                 }
-                else if(this.isTouching(playerBoom.class)){
-                    takeDmg(2);
-                    damageCooldown=20;
-                }
-                else if(this.isTouching(thrownGun.class)){
-                    takeDmg(4);
-                    damageCooldown=20;
+            }
+            if(damageCooldown <= 18){
+                if((this.isTouching(knife.class)&&lvl.player.knifee.active)){
+                    takeDmg(5);
+                    damageCooldown=28;
                 }
             }
             movingCooldown--;
@@ -123,9 +125,6 @@ public class enemy extends enemies
         getImage().setTransparency(0);
     }
 }
-    
-    
-    
     public void followPlayer(int idk){
         Random random= new Random();
         hSpeed = speed * idk;
